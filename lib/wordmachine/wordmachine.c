@@ -6,6 +6,13 @@
 boolean EndWord;
 Word currentWord;
 
+void ignoreSpace(){
+    while (currentChar == '\n' || currentChar == '\r')
+    {
+        /* code */
+    }
+}
+
 void IgnoreBlanks(){
     while (currentChar == BLANK)
     {
@@ -19,6 +26,7 @@ void IgnoreBlanks(){
 
 void STARTWORD(){
     START();
+    ignoreSpace();
     IgnoreBlanks();
     if (currentChar == MARK){
         EndWord = true;
@@ -35,6 +43,7 @@ void STARTWORD(){
           currentChar karakter pertama sesudah karakter terakhir kata */
 
 void ADVWORD(){
+    ignoreSpace();
     IgnoreBlanks();
     if (currentChar == MARK){
         EndWord = true;
@@ -79,8 +88,9 @@ void deleteWord(Word * w){
 
 Word readWord(){
     Word w;
-    CreateWord(&w);
     int cnt = 0;
+    CreateWord(&w);
+    ignoreSpace();
     START();
     while (!EOP)
     {
@@ -91,7 +101,6 @@ Word readWord(){
         cnt++;
         ADV();
     }
-    ADV();
     w.Length = cnt;
     return w;
 }

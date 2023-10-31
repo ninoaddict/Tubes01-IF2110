@@ -1,5 +1,4 @@
-# include <stdio.h>
-# include "main.h"
+# include "../wordmachine.h"
 int main(){
     Word a = readWord();
     displayWord(a);
