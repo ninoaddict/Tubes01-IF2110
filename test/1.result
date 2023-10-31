@@ -1,1 +1,1 @@
-test/1.in test/1.out: TRUE
+test/1.in test/1.out: WRONG
