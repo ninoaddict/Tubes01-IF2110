@@ -81,7 +81,7 @@ void ConstructWeton(){
 }
 
 void readWeton(User * user){
-    constructWeton();
+    ConstructWeton();
     boolean still = true;
     printf("Masukkan Weton: \n");
     Word weton = readWord();
@@ -130,5 +130,5 @@ boolean isAllNum(Word w){
 }
 
 void changeProfilePicture(User * user){
-    printf("");
+    return;
 }

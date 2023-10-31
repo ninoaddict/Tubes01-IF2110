@@ -50,6 +50,7 @@ void ADVWORD(){
     }
     else{
         CopyWord();
+        ignoreSpace();
         IgnoreBlanks();
     }
 }
