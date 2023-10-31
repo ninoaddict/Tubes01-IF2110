@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.ejs": "html",
-        "charmachine.h": "c"
+        "charmachine.h": "c",
+        "wordmachine.h": "c"
     }
 }
