@@ -7,9 +7,9 @@ boolean EndWord;
 Word currentWord;
 
 void ignoreSpace(){
-    while (currentChar == '\n' || currentChar == '\r')
+    while (currentChar == SPACE || currentChar == CARRIAGE)
     {
-        /* code */
+        ADV();
     }
 }
 
@@ -34,7 +34,8 @@ void STARTWORD(){
     else{
         EndWord = false;
         CopyWord();
-        // IgnoreBlanks();
+        ignoreSpace();
+        IgnoreBlanks();
     }
 }
 /* I.S. : currentChar sembarang
@@ -62,7 +63,7 @@ void ADVWORD(){
 
 void CopyWord(){
     int i = 0;
-    while (currentChar != MARK && currentChar != BLANK){
+    while (currentChar != MARK && currentChar != BLANK && currentChar != SPACE && currentChar != CARRIAGE){
         if (i < NMax){
             currentWord.TabWord[i] = currentChar;
             i++;
@@ -74,35 +75,27 @@ void CopyWord(){
 
 void CreateWord(Word * w){
     w->Length = 0;
-    w->maxEl = NMax;
-    w->TabWord = (char*) malloc(NMax * sizeof(char));
 }
 
-void expandWordSize(Word * w){
-    w->TabWord = realloc(w->TabWord, sizeof(int) * w->maxEl * 2);
-    w->maxEl <<= 1;
-}
-
-void deleteWord(Word * w){
-    free(w->TabWord);
-}
-
-Word readWord(){
+Word readWord(int len){
     Word w;
     int cnt = 0;
     CreateWord(&w);
-    ignoreSpace();
     START();
+    ignoreSpace();
     while (!EOP)
     {
-        if (cnt == w.maxEl + 1){
-            expandWordSize(&w);
-        }
-        w.TabWord[cnt] = currentChar;
+        if (cnt < len)
+            w.TabWord[cnt] = currentChar;
         cnt++;
         ADV();
     }
-    w.Length = cnt;
+    if (cnt > len){
+        w.Length = len;
+    }
+    else{
+        w.Length = cnt;
+    }
     return w;
 }
 
@@ -132,9 +125,3 @@ boolean isWordEqual(Word w1, Word w2){ // case sensitive
     }
     return true;
 }
-/* Mengakuisisi kata, menyimpan dalam currentWord
-   I.S. : currentChar adalah karakter pertama dari kata
-   F.S. : currentWord berisi kata yang sudah diakuisisi;
-          currentChar = BLANK atau currentChar = MARK;
-          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
-          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */

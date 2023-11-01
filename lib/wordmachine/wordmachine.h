@@ -7,14 +7,14 @@
 #include "../boolean.h"
 #include "../charmachine/charmachine.h"
 
-#define NMax 64
+#define NMax 1024
 #define BLANK ' '
-
+#define SPACE '\n'
+#define CARRIAGE '\r'
 typedef struct
 {
-   char *TabWord; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
-   int maxEl;
 } Word;
 
 /* State Mesin Word */
@@ -49,11 +49,7 @@ void CopyWord();
 
 void CreateWord(Word *w);
 
-void DeleteWord(Word *w);
-
-Word readWord();
-
-void expandWordSize(Word * w);
+Word readWord(int len);
 
 void displayWord(Word w);
 
