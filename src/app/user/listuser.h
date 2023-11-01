@@ -20,7 +20,9 @@ void CreateListUser(ListUser * listuser);
 int searchUserByID(ListUser listuser, Word name);
 
 // AUTHENTICATION
-void SignUp(ListUser *listuser);
+void SignUp(ListUser *listuser, int *currIdx);
+
+void LogIn(ListUser *listuser, int *currIdx);
 
 int isUsernameNotValid(Word name, ListUser listuser);
 /*
