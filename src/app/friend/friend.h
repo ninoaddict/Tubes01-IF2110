@@ -9,4 +9,12 @@
 // CONSTRUCTOR
 void CreateFriend(Friend * friend);
 
+// CHECK
+boolean isFriend(Friend friend, int id1, int id2);
+
+// SELECTOR
+void setFriend(Friend *friend, int id1, int id2);
+
+void unsetFriend(Friend *friend, int id1, int id2);
+
 #endif
