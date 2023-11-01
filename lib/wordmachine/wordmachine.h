@@ -53,8 +53,10 @@ Word readWord(int len);
 
 void displayWord(Word w);
 
-boolean isWordEqual(Word w1, Word w2);
+void displayWordWithoutEnter(Word w);
 
-boolean isCharEqual(Word w1, Word w2);
+boolean isWordEqual(Word w1, Word w2); // case sensitive
+ 
+boolean isCharEqual(Word w1, Word w2); // case insensitive
 
 #endif

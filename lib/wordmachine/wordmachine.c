@@ -106,6 +106,12 @@ void displayWord(Word w){
     printf("\n");
 }
 
+void displayWordWithoutEnter(Word w){
+    for (int i = 0; i < w.Length; i++){
+        printf("%c", w.TabWord[i]);
+    }
+}
+
 boolean isCharEqual(Word w1, Word w2){ // case insensitive
     if (w1.Length != w2.Length) return false;
     for (int i = 0; i < w1.Length; i++){
