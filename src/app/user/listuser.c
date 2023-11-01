@@ -107,7 +107,7 @@ void SignUp(ListUser *listuser, int *currIdx)
         listuser->listU[listuser->Neff].password = password;
         listuser->Neff += 1;
         printf("Anda telah berhasil masuk dengan nama pengguna ");
-        displayWord(listuser->listU[listuser->Neff - 1].name);
+        displayWordWithoutEnter(listuser->listU[listuser->Neff - 1].name);
         printf(". Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n\n");
 
         // set current idx
@@ -148,7 +148,7 @@ void LogIn(ListUser *listuser, int *currIdx)
 
         // keluarkan pesan
         printf("Anda telah berhasil masuk dengan nama pengguna ");
-        displayWord(listuser->listU[idx].name);
+        displayWordWithoutEnter(listuser->listU[idx].name);
         printf(". Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n\n");
 
         // set current idx
