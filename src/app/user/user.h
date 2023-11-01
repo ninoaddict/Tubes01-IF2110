@@ -2,7 +2,8 @@
 #define PENGGUNA_H
 #include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
-
+#include "pcolor.h"
+#include <stdio.h>
 typedef struct
 {
     int id;
@@ -31,4 +32,5 @@ boolean isAllNum(Word w);
 
 // SHOW
 void showProfile(User user);
+void showProfilePicture(User user);
 #endif
