@@ -34,4 +34,9 @@ int isUsernameNotValid(Word name, ListUser listuser);
 
 boolean isPasswordValid(Word password);
 
+// FRIEND RELATED FUNCTION
+void friendList(ListUser listuser, int currIdx, Friend friend);
+
+void deleteFriend(ListUser *listuser, int currIdx, Friend *friend);
+
 #endif

@@ -66,7 +66,7 @@ void SignUp(ListUser *listuser, int *currIdx)
     else
     {
         // masukkan nama
-        printf("Masukkan nama: \n");
+        printf("Masukkan nama:\n");
         Word name = readWord(25);
         printf("\n");
         int errorCode = isUsernameNotValid(name, *listuser);
@@ -84,20 +84,20 @@ void SignUp(ListUser *listuser, int *currIdx)
             {
                 printf("Username tidak boleh hanya terdiri atas spasi!\n\n");
             }
-            printf("Masukkan nama: \n");
+            printf("Masukkan nama:\n");
             name = readWord(25);
             printf("\n");
             errorCode = isUsernameNotValid(name, *listuser);
         }
 
         // masukkan password
-        printf("Masukkan password: \n");
+        printf("Masukkan password:\n");
         Word password = readWord(25);
         printf("\n");
         while (!isPasswordValid(password))
         {
             printf("Password lebih dari 20 karakter!\n\n");
-            printf("Masukkan password: \n");
+            printf("Masukkan password:\n");
             password = readWord(25);
             printf("\n");
         }
@@ -124,21 +124,21 @@ void LogIn(ListUser *listuser, int *currIdx)
     else
     {
         // masukkan nama
-        printf("Masukkan nama: \n");
+        printf("Masukkan nama:\n");
         Word name = readWord(25);
         printf("\n");
         int idx = searchUserByID(*listuser, name);
         while (idx == -1)
         {
             printf("Wah, nama yang Anda cari tidak ada. Masukkan nama lain!\n\n");
-            printf("Masukkan nama: \n");
+            printf("Masukkan nama:\n");
             Word name = readWord(25);
             idx = searchUserByID(*listuser, name);
             printf("\n");
         }
 
         // masukkan password
-        printf("Masukkan password: \n");
+        printf("Masukkan password:\n");
         Word password = readWord(25);
         printf("\n");
         while (isWordEqual(password, listuser->listU[idx].password))
@@ -153,5 +153,78 @@ void LogIn(ListUser *listuser, int *currIdx)
 
         // set current idx
         *currIdx = idx;
+    }
+}
+
+void friendList(ListUser listuser, int currIdx, Friend friend)
+{
+    if (currIdx == -1)
+    {
+        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+    }
+    else
+    {
+        int listFriendIdx[listuser.Neff], cnt = 0;
+        for (int i = 0; i < listuser.Neff; i++)
+        {
+            if (i != currIdx && isFriend(friend, currIdx, i))
+            {
+                listFriendIdx[cnt] = i;
+                cnt++;
+            }
+        }
+        if (!cnt)
+        {
+            displayWordWithoutEnter(listuser.listU[currIdx].name);
+            printf(" belum mempunyai teman\n\n");
+        }
+        else
+        {
+            displayWordWithoutEnter(listuser.listU[currIdx].name);
+            printf(" memiliki %d teman\n");
+            printf("Daftar teman Alice\n");
+            for (int i = 0; i < cnt; i++)
+            {
+                printf("| ");
+                displayWord(listuser.listU[listFriendIdx[i]].name);
+            }
+            printf("\n");
+        }
+    }
+}
+
+void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
+{
+    if (currIdx == -1)
+    {
+        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
+    }
+    else
+    {
+        printf("Masukkan nama pengguna:\n");
+        Word name = readWord(25);
+        printf("\n");
+        int idx = searchUserByID(*listuser, name);
+        if (idx == -1)
+        {
+            printf("Pengguna bernama ");
+            displayWordWithoutEnter(name);
+            printf(" tidak ditemukan.\n\n");
+        }
+        else if (!isFriend(*friend, currIdx, idx)){
+            displayWordWithoutEnter(name);
+            printf(" bukan teman Anda\n\n");
+        }   
+        else{
+            printf("Apakah anda yakin ingin menghapus Bob dari daftar teman anda? (YA/TIDAK) ");
+            Word confirm = readWord(25);
+            if (confirm.Length == 2){
+                unsetFriend(friend, currIdx, idx);
+                printf("Bob berhasil dihapus dari daftar teman Anda.\n\n");
+            }
+            else{
+                printf("Penghapusan teman dibatalkan.\n\n");
+            }
+        }
     }
 }
