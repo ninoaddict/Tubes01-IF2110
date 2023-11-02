@@ -20,9 +20,6 @@ void IgnoreBlanks(){
     }
     
 }
-/* Mengabaikan satu atau beberapa BLANK
-   I.S. : currentChar sembarang
-   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
 void STARTWORD(){
     START();
@@ -38,10 +35,6 @@ void STARTWORD(){
         IgnoreBlanks();
     }
 }
-/* I.S. : currentChar sembarang
-   F.S. : EndWord = true, dan currentChar = MARK;
-          atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
-          currentChar karakter pertama sesudah karakter terakhir kata */
 
 void ADVWORD(){
     ignoreSpace();
@@ -55,11 +48,6 @@ void ADVWORD(){
         IgnoreBlanks();
     }
 }
-/* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
-   F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
-          currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
-          Jika currentChar = MARK, EndWord = true.
-   Proses : Akuisisi kata menggunakan procedure SalinWord */
 
 void CopyWord(){
     int i = 0;
@@ -77,6 +65,7 @@ void CreateWord(Word * w){
     w->Length = 0;
 }
 
+/*Fungsi untuk membaca word berdasarkan masukan dari terminal. Akan mengembalikan word dengan panjang maksimum len, yang diberikan di parameter*/
 Word readWord(int len){
     Word w;
     int cnt = 0;
@@ -99,6 +88,7 @@ Word readWord(int len){
     return w;
 }
 
+/*Fungsi untuk menampilkan word w diakhiri dengan spasi*/
 void displayWord(Word w){
     for (int i = 0; i < w.Length; i++){
         printf("%c", w.TabWord[i]);
@@ -106,12 +96,14 @@ void displayWord(Word w){
     printf("\n");
 }
 
+/*Fungsi untuk menampilkan word w tanpa diakhiri dengan spasi*/
 void displayWordWithoutEnter(Word w){
     for (int i = 0; i < w.Length; i++){
         printf("%c", w.TabWord[i]);
     }
 }
 
+/*Fungsi yang mengembalikan true jika w1 = w2 dengan case insensitive*/
 boolean isCharEqual(Word w1, Word w2){ // case insensitive
     if (w1.Length != w2.Length) return false;
     for (int i = 0; i < w1.Length; i++){
@@ -122,11 +114,10 @@ boolean isCharEqual(Word w1, Word w2){ // case insensitive
     return true;
 }
 
+/*Fungsi yang mengembalikan true jika w1 = w2 dengan case sensitive*/
 boolean isWordEqual(Word w1, Word w2){ // case sensitive
     if (w1.Length != w2.Length) return false;
     for (int i = 0; i < w1.Length; i++){
-        if (w1.TabWord[i] >= 65 && w1.TabWord[i] <= 90) w1.TabWord[i] += 32;
-        if (w2.TabWord[i] >= 65 && w2.TabWord[i] <= 90) w2.TabWord[i] += 32;
         if (w1.TabWord[i] != w2.TabWord[i]) return false;
     }
     return true;

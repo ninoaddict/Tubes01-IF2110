@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "user.h"
 #include "../friend/friend.h"
+#include "../friend/friendrequest.h"
 #include "../../../lib/boolean.h"
 #include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
@@ -33,5 +34,18 @@ int isUsernameNotValid(Word name, ListUser listuser);
 */
 
 boolean isPasswordValid(Word password);
+
+// FRIEND RELATED FUNCTION
+void friendList(ListUser listuser, int currIdx, Friend friend);
+
+void deleteFriend(ListUser *listuser, int currIdx, Friend *friend);
+
+void addFriendReq(ListUser *listuser, int currIdx, Friend *friend);
+
+void cancelFriendReq(ListUser *listuser, int currIdx, Friend *friend);
+
+void displayFriendRequestList(ListUser listuser, int currIdx);
+
+void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend);
 
 #endif
