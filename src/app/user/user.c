@@ -10,6 +10,7 @@ void CreateUser(User *user)
     CreateWord(&(user->phoneNum));
     CreateWord(&(user->bio));
     CreateWord(&(user->weton));
+    CreateFriendRequest(&(user->friend));
     for (int i = 0; i < 5; i++)
     {
         for (int j = 0; j < 10; j += 2)
@@ -25,7 +26,7 @@ void CreateUser(User *user)
 
 void readPhoneNum(User *user)
 {
-    printf("Masukkan No HP: \n");
+    printf("Masukkan No HP:\n");
     Word num = readWord(1023);
     printf("\n");
     while (!isAllNum(num))
@@ -40,7 +41,7 @@ void readPhoneNum(User *user)
 
 void readBio(User *user)
 {
-    printf("Masukkan Bio Akun: \n");
+    printf("Masukkan Bio Akun:\n");
     Word bio = readWord(135);
     printf("\n");
     user->bio = bio;
@@ -97,7 +98,7 @@ void readWeton(User *user)
 {
     ConstructWeton();
     boolean still = true;
-    printf("Masukkan Weton: \n");
+    printf("Masukkan Weton:\n");
     Word weton = readWord(10);
     printf("\n");
     for (int i = 0; i < 5; i++)
@@ -140,7 +141,7 @@ void switchAccType(User *user)
         printf("Saat ini, akun Anda adalah akun Privat.\n");
         printf("Ingin mengubah ke Akun Publik?\n");
     }
-    printf("(YA/TIDAK)  ");
+    printf("(YA/TIDAK) ");
     ans = readWord(10);
     if (ans.Length == 2)
         user->accType = !user->accType;

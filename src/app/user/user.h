@@ -2,11 +2,12 @@
 #define PENGGUNA_H
 #include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
+#include "../friend/friendrequest.h"
 #include "pcolor.h"
 #include <stdio.h>
 typedef struct
 {
-    int id;
+    int idUser;
     Word name;
     Word password;
     int requestID;
@@ -15,6 +16,7 @@ typedef struct
     Word weton;
     boolean accType;
     char profilePic[10][10];
+    FriendRequest friend;
 } User;
 
 // CONSTRUCTOR
