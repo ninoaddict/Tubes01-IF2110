@@ -26,6 +26,7 @@ void bacaKicauan(ListKicauan* lkic, User currUser, int* IdKicau){
         DATETIME time;
         BacaDATETIME(&time);
         createKicauan(*IdKicau, text, 0, currUser.name,time,&((*lkic).buffer[*IdKicau-1]));
+        NEFF(*lkic) += 1;
         printf("Selamat! kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
         displayKicau((*lkic).buffer[*IdKicau-1]);
