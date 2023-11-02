@@ -57,7 +57,7 @@ void BacaDATETIME(DATETIME *D){
     ptr = localtime(&t);
     hari = (*ptr).tm_mday;
     bulan = (*ptr).tm_mon;
-    printf("%d\n",bulan);
+    
     tahun = (*ptr).tm_year;
 
     jam = (*ptr).tm_hour;

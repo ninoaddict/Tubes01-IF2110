@@ -1,9 +1,8 @@
-#ifndef __THREAD.H__
-#define __THREAD.H__
+#ifndef __THREAD_H__
+#define __THREAD_H__
 #include "../../../lib/datetime/datetime.h"
 #include "../../../lib/wordmachine/wordmachine.h"
-#include "../tweet/tweet.h"
-#include "../../../lib/listlinier/listlinier.h"
+
 
 typedef struct {
     int IdUtas;
