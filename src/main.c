@@ -10,7 +10,7 @@ int main(){
    BacaDATETIME(&T);
    
    TulisDATETIME(T);
-   
+
    printf("\n");
     
     return 0;
