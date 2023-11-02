@@ -17,4 +17,7 @@ void setFriend(Friend *friend, int id1, int id2);
 
 void unsetFriend(Friend *friend, int id1, int id2);
 
+/*OPERATION*/
+void countFriend(Friend friend, int currID);
+
 #endif
