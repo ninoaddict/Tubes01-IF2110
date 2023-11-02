@@ -8,6 +8,15 @@ void CreatePriorityQueue(PriorityQueue *pq){
     pq->count = 0;
 }
 
+/*CHECK*/
+boolean isPQEmpty(PriorityQueue pq){
+    return !pq.count;
+}
+
+boolean isPQFull(PriorityQueue pq){
+    return pq.count == maxN;
+}
+
 /*OPERATION*/
 
 void swap(pii *a, pii *b)
@@ -79,10 +88,10 @@ void dequeue(PriorityQueue *pq, pii *val)
     }
 }
 
-void front(PriorityQueue pq){
+pii front(PriorityQueue pq){
     return pq.pair[0];
 }
 
-void PQLength(PriorityQueue pq){
+int PQLength(PriorityQueue pq){
     return pq.count;
 }

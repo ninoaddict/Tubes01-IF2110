@@ -18,8 +18,10 @@ typedef struct
 
 /*CONSTRUCTOR*/
 void CreatePriorityQueue(PriorityQueue *pq);
-boolean isEmpty(PriorityQueue pq);
-boolean isFull(PriorityQueue pq);
+
+/*CHECK*/
+boolean isPQEmpty(PriorityQueue pq);
+boolean isPQFull(PriorityQueue pq);
 
 /*OPERATION*/
 void swap(pii *a, pii *b);
@@ -28,5 +30,5 @@ void enqueue(PriorityQueue *pq, pii val);
 void dequeue(PriorityQueue *pq, pii *val);
 
 /*INFO*/
-void front(PriorityQueue pq);
-void PQLength(PriorityQueue pq);
+pii front(PriorityQueue pq);
+int PQLength(PriorityQueue pq);
