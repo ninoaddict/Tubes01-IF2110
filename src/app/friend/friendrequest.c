@@ -14,7 +14,7 @@ void addToFriendReqList(FriendRequest *pq, int idUser, int cntFriend){
 void removeFromFriendReqList(FriendRequest *pq, int idUser){
     pii tempArr[20], tempVal;
     int cnt = 0;
-    while (!isEmpty(*pq)){
+    while (!isPQEmpty(*pq)){
         dequeue(pq, &tempVal);
         if (tempVal.first == idUser) break;
         tempArr[cnt] = tempVal;

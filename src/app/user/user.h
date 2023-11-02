@@ -7,16 +7,15 @@
 #include <stdio.h>
 typedef struct
 {
-    int idUser;
+    int friendNum; // banyak teman
     Word name;
     Word password;
-    int requestID;
     Word phoneNum;
     Word bio;
     Word weton;
     boolean accType;
     char profilePic[10][10];
-    FriendRequest friend;
+    FriendRequest friendReqList;
 } User;
 
 // CONSTRUCTOR

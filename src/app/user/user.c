@@ -3,14 +3,14 @@ Word wetons[5];
 
 void CreateUser(User *user)
 {
-    user->requestID = -1;
     user->accType = true;
+    user->friendNum = 0;
     CreateWord(&(user->name));
     CreateWord(&(user->password));
     CreateWord(&(user->phoneNum));
     CreateWord(&(user->bio));
     CreateWord(&(user->weton));
-    CreateFriendRequest(&(user->friend));
+    CreateFriendRequest(&(user->friendReqList));
     for (int i = 0; i < 5; i++)
     {
         for (int j = 0; j < 10; j += 2)

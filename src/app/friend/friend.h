@@ -12,12 +12,18 @@ void CreateFriend(Friend * friend);
 // CHECK
 boolean isFriend(Friend friend, int id1, int id2);
 
+boolean isRequested(Friend friend, int id1, int id2);
+
 // SELECTOR
 void setFriend(Friend *friend, int id1, int id2);
 
 void unsetFriend(Friend *friend, int id1, int id2);
 
+void setRequest(Friend *friend, int id1, int id2);
+
+void unsetRequest(Friend *friend, int id1, int id2);
+
 /*OPERATION*/
-void countFriend(Friend friend, int currID);
+int countFriend(Friend friend, int currID);
 
 #endif
