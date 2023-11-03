@@ -31,10 +31,12 @@ void unsetFriend(Friend *friend, int id1, int id2)
 
 void setRequest(Friend *friend, int id1, int id2){
     friend->adjMat[id1][id2] = true;
+    friend->adjMat[id2][id1] = false;
 }
 
 void unsetRequest(Friend *friend, int id1, int id2){
     friend->adjMat[id1][id2] = false;
+    friend->adjMat[id2][id1] = false;
 }
 
 /*OPERATOR*/
