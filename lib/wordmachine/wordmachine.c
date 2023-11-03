@@ -53,8 +53,7 @@ void CopyWord(){
     int i = 0;
     while (currentChar != MARK && currentChar != BLANK && currentChar != SPACE && currentChar != CARRIAGE){
         if (i < NMax){
-            currentWord.TabWord[i] = currentChar;
-            i++;
+            currentWord.TabWord[i++] = currentChar;
         }
         ADV();
     }
@@ -121,4 +120,24 @@ boolean isWordEqual(Word w1, Word w2){ // case sensitive
         if (w1.TabWord[i] != w2.TabWord[i]) return false;
     }
     return true;
+}
+
+/*Word w sembarang*/
+void assignWord(Word *w, char arr[], int len){
+    CreateWord(w);
+    for (int i = 0; i < len; i++){
+        w->TabWord[i] = arr[i];
+    }
+    w->Length = len;
+}
+
+void readCommand(Word *command){
+    int cnt = 0;
+    STARTWORD();
+    while (!EndWord)
+    {
+        command[cnt] = currentWord;
+        cnt++;
+        ADVWORD();
+    }
 }
