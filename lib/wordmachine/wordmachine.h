@@ -51,6 +51,8 @@ void CreateWord(Word *w);
 
 Word readWord(int len);
 
+void readCommand(Word *command);
+
 void displayWord(Word w);
 
 void displayWordWithoutEnter(Word w);
@@ -58,5 +60,7 @@ void displayWordWithoutEnter(Word w);
 boolean isWordEqual(Word w1, Word w2); // case sensitive
  
 boolean isCharEqual(Word w1, Word w2); // case insensitive
+
+void assignWord(Word *w, char arr[], int len);
 
 #endif

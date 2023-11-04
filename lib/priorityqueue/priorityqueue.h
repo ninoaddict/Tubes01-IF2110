@@ -25,7 +25,6 @@ boolean isPQFull(PriorityQueue pq);
 
 /*OPERATION*/
 void swap(pii *a, pii *b);
-void makeHeap(PriorityQueue *pq, int i);
 void enqueue(PriorityQueue *pq, pii val);
 void dequeue(PriorityQueue *pq, pii *val);
 

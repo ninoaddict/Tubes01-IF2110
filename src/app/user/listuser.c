@@ -141,9 +141,12 @@ void LogIn(ListUser *listuser, int *currIdx)
         printf("Masukkan password:\n");
         Word password = readWord(25);
         printf("\n");
-        while (isWordEqual(password, listuser->listU[idx].password))
+        while (!isWordEqual(password, listuser->listU[idx].password))
         {
             printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n\n");
+            printf("Masukkan password:\n");
+            password = readWord(25);
+            printf("\n");
         }
 
         // keluarkan pesan
@@ -182,7 +185,8 @@ void friendList(ListUser listuser, int currIdx, Friend friend)
         {
             displayWordWithoutEnter(listuser.listU[currIdx].name);
             printf(" memiliki %d teman\n", cnt);
-            printf("Daftar teman Alice\n");
+            printf("Daftar teman\n");
+            displayWord(listuser.listU[currIdx].name);
             for (int i = 0; i < cnt; i++)
             {
                 printf("| ");
@@ -218,7 +222,9 @@ void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
         }
         else
         {
-            printf("Apakah anda yakin ingin menghapus Bob dari daftar teman anda? (YA/TIDAK) ");
+            printf("Apakah anda yakin ingin menghapus ");
+            displayWordWithoutEnter(name);
+            printf("dari daftar teman anda? (YA/TIDAK) ");
             Word confirm = readWord(25);
             if (confirm.Length == 2)
             {
@@ -241,6 +247,11 @@ void addFriendReq(ListUser *listuser, int currIdx, Friend *friend)
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
+    else if (listuser->listU[currIdx].friendReqList.count)
+    {
+        printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n\n");
+        return;
+    }
     printf("Masukkan nama pengguna:\n");
     Word name = readWord(25);
     printf("\n");
@@ -250,10 +261,6 @@ void addFriendReq(ListUser *listuser, int currIdx, Friend *friend)
         printf("Pengguna bernama ");
         displayWordWithoutEnter(name);
         printf(" tidak ditemukan\n\n");
-    }
-    else if (listuser->listU[currIdx].friendReqList.count)
-    {
-        printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n\n");
     }
     else if (isRequested(*friend, currIdx, nameIdx))
     {
@@ -369,6 +376,8 @@ void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend)
         if (confirm.Length == 2)
         {
             setFriend(friend, currIdx, val.first);
+            listuser->listU[currIdx].friendNum += 1;
+            listuser->listU[val.first].friendNum += 1;
             printf("Permintaan pertemanan dari ");
             displayWordWithoutEnter(listuser->listU[val.first].name);
             printf(" telah disetujui. Selamat! Anda telah berteman dengan ");
