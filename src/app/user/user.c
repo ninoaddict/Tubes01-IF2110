@@ -1,15 +1,16 @@
 #include "user.h"
-Word wetons[5];
+Word wetons[6];
 
 void CreateUser(User *user)
 {
-    user->requestID = -1;
     user->accType = true;
+    user->friendNum = 0;
     CreateWord(&(user->name));
     CreateWord(&(user->password));
     CreateWord(&(user->phoneNum));
     CreateWord(&(user->bio));
     CreateWord(&(user->weton));
+    CreateFriendRequest(&(user->friendReqList));
     for (int i = 0; i < 5; i++)
     {
         for (int j = 0; j < 10; j += 2)
@@ -25,7 +26,7 @@ void CreateUser(User *user)
 
 void readPhoneNum(User *user)
 {
-    printf("Masukkan No HP: \n");
+    printf("Masukkan No HP:\n");
     Word num = readWord(1023);
     printf("\n");
     while (!isAllNum(num))
@@ -40,7 +41,7 @@ void readPhoneNum(User *user)
 
 void readBio(User *user)
 {
-    printf("Masukkan Bio Akun: \n");
+    printf("Masukkan Bio Akun:\n");
     Word bio = readWord(135);
     printf("\n");
     user->bio = bio;
@@ -48,59 +49,34 @@ void readBio(User *user)
 
 void ConstructWeton()
 {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 6; i++)
     {
         CreateWord(&wetons[i]);
     }
     // Weton pertama
-    wetons[0].Length = 6;
-    char pahing[] = "Pahing";
-    for (int i = 0; i < 6; i++)
-    {
-        wetons[0].TabWord[i] = pahing[i];
-    }
+    assignWord(&wetons[0], "Pahing", 6);
 
     // Weton kedua
-    wetons[1].Length = 6;
-    char kliwon[] = "Kliwon";
-    for (int i = 0; i < 6; i++)
-    {
-        wetons[1].TabWord[i] = kliwon[i];
-    }
+    assignWord(&wetons[1], "Kliwon", 6);
 
     // Weton ketiga
-    wetons[2].Length = 4;
-    char wage[] = "Wage";
-    for (int i = 0; i < 4; i++)
-    {
-        wetons[2].TabWord[i] = wage[i];
-    }
+    assignWord(&wetons[2], "Wage", 4);
 
     // Weton keempat
-    wetons[3].Length = 3;
-    char pon[] = "Pon";
-    for (int i = 0; i < 3; i++)
-    {
-        wetons[3].TabWord[i] = pon[i];
-    }
+    assignWord(&wetons[3], "Pon", 3);
 
     // Weton kelima
-    wetons[4].Length = 4;
-    char legi[] = "Legi";
-    for (int i = 0; i < 4; i++)
-    {
-        wetons[4].TabWord[i] = legi[i];
-    }
+    assignWord(&wetons[4], "Legi", 4);
 }
 
 void readWeton(User *user)
 {
     ConstructWeton();
     boolean still = true;
-    printf("Masukkan Weton: \n");
+    printf("Masukkan Weton:\n");
     Word weton = readWord(10);
     printf("\n");
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 6; i++)
     {
         if (isCharEqual(weton, wetons[i]))
         {
@@ -140,7 +116,7 @@ void switchAccType(User *user)
         printf("Saat ini, akun Anda adalah akun Privat.\n");
         printf("Ingin mengubah ke Akun Publik?\n");
     }
-    printf("(YA/TIDAK)  ");
+    printf("(YA/TIDAK) ");
     ans = readWord(10);
     if (ans.Length == 2)
         user->accType = !user->accType;
@@ -207,4 +183,5 @@ void showProfile(User user)
     printf("\nFoto profil akun ");
     displayWord(user.name);
     showProfilePicture(user);
+    printf("\n");
 }
