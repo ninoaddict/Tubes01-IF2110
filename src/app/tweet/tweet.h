@@ -15,9 +15,9 @@ typedef struct kicauan{
     Word author;
     DATETIME time;
     Utas* ut;
+    int idAuthor; // lokasi user di listuser, jadi currId
     // pointer to utas
     // pointer to tree
-   
 
 } Kicauan;
 #define ID(kic) (kic).id
@@ -26,9 +26,10 @@ typedef struct kicauan{
 #define AUTHOR(kic) (kic).author
 #define DATE(kic) (kic).time
 #define UTAS(kic) (kic).ut
+#define IDAUTHOR(kic) (kic).idAuthor
 
 
-void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan* kic);
+void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan* kic, int idAuthor);
 
 
 // KICAUAN , harus ada friendgroup dulu
@@ -36,6 +37,6 @@ void ubahKicau(int idKicau);
 
 void displayKicau(Kicauan kic); // display sebuah kicau
 
-void displayKicauan(); // display kicauan user dan teman berdasarkan waktu
+
 
 #endif

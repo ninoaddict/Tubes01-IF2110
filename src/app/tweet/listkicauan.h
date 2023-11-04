@@ -6,6 +6,8 @@
 #include "../../../lib/boolean.h"
 #include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
+#include "../friend/friend.h"
+#include "../user/listuser.h"
 /* Indeks minimum list */
 #define IDX_MIN 0
 /* Indeks minimum list */
@@ -32,6 +34,22 @@ typedef struct listKicauan{
 void createListKicauan(ListKicauan* l, int capacity);
 
 void dealocateListKicauan(ListKicauan *l);
-void bacaKicauan(ListKicauan* lkic, User currUser, int* IdKicau);
+
+void bacaKicauan(ListKicauan* lkic, User currUser, int* IdKicau,int currId);
+
+void displayListKicauan(ListKicauan lkic, Friend friend , int currId);
+
+void copyListKicauan(ListKicauan lIn, ListKicauan* lOut);
+
+void expandListKicauan(ListKicauan* l, int num);
+
+boolean isFullListKicauan(ListKicauan l);
+
+void likeKicau(ListKicauan* lkic,ListUser l,Friend friend, int idKicauYangInginDiLike, int currIdx);
+
+void updateKicau(ListKicauan* lkic, int currIdx, int idKicau);
+
+boolean userOwnsKicau(ListKicauan lkic, int currIdx, int idKicau);
+
 
 #endif

@@ -5,13 +5,14 @@
 
 
 
-void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan* kic){
+void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan* kic,int idAuthor){
     ID(*kic) = id;
     TEXT(*kic) = text;
     LIKE(*kic) = like;
     AUTHOR(*kic) = author;
     DATE(*kic) = time;
     UTAS(*kic) = NULL;
+    IDAUTHOR(*kic) = idAuthor;
 }
 
 void displayKicau(Kicauan kic){
