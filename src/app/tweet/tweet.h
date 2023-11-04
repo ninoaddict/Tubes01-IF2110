@@ -14,9 +14,9 @@ typedef struct kicauan{
     int like;
     Word author;
     DATETIME time;
-    Utas* ut;
+    ListUtas ut; // null jika tidak ada
+    int idUtas; // -1 jika tidak ada
     int idAuthor; // lokasi user di listuser, jadi currId
-    // pointer to utas
     // pointer to tree
 
 } Kicauan;
@@ -36,6 +36,8 @@ void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kica
 void ubahKicau(int idKicau);
 
 void displayKicau(Kicauan kic); // display sebuah kicau
+
+void displayUtas(Kicauan kic);
 
 
 

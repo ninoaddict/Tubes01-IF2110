@@ -51,5 +51,7 @@ void updateKicau(ListKicauan* lkic, int currIdx, int idKicau);
 
 boolean userOwnsKicau(ListKicauan lkic, int currIdx, int idKicau);
 
+void makeKicauanUtama(ListUtas l, ListKicauan* lkic, int currIdx,int idKicau,int* idUtas);
+
 
 #endif
