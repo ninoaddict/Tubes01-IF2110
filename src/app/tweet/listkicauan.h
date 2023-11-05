@@ -56,6 +56,11 @@ void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser,int currIdx,int i
 
 boolean possibleToConnect(ListUtas lUtas, int index);
 
+boolean possibleToDisConnect(ListUtas lUtas, int index);
+
 void sambungUtas(ListKicauan* lkic, int currIdx,int idUtas, int index);
+
+void putusUtas(ListKicauan* lkic,DATETIME* date, Word* text ,int currIdx,int idUtas,int index);
+
 
 #endif

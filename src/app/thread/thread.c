@@ -94,3 +94,84 @@ void displayListUtas(ListUtas l, Word author){
         p = NEXTUTAS(p);
     }
 }
+
+
+
+
+void deleteFirstListUtas(ListUtas *l, DATETIME* date, Word* text){
+    AddressUtas p = *l;
+    *date = DATEUTAS(p);
+    *text = TEXTUTAS(p);
+
+    if (NEXTUTAS(p) == NULL){
+        *l = NULL;
+        free(*l);
+        CreateUtas(l);
+    }
+    else{
+        *l = NEXTUTAS(p);
+    }
+    free(p);
+
+}
+void deleteLastListUtas(ListUtas *l, DATETIME* date, Word* text){
+    AddressUtas p = *l;
+    *date = DATEUTAS(p);
+    *text = TEXTUTAS(p);
+
+    if (NEXTUTAS(p) == NULL){
+        *l = NULL;
+        free(*l);
+        CreateUtas(l);
+    }
+    else{
+        AddressUtas before = NULL;
+        while (NEXTUTAS(p) != NULL){
+            before =  p;
+            p = NEXTUTAS(p);
+        }
+        if (before == NULL){
+            *l = NULL;
+        }
+        else{
+            NEXTUTAS(before) = NULL;
+        }
+        *date = DATEUTAS(p);
+        *text = TEXTUTAS(p);
+        free(p);
+        
+    }
+}
+
+void deleteAtListUtas(ListUtas *l, int idx ,DATETIME* date, Word* text){
+    idx -= 1;
+    int i = 0;
+    AddressUtas p, before;
+    p = *l;
+    before = NULL;
+
+    if (NEXTUTAS(*l) == NULL){
+        deleteFirstListUtas(l,date,text);
+    }
+    else{
+        if (idx == 0){
+            deleteFirstListUtas(l, date,text);
+
+        }
+        else{
+            while (i < idx){
+                before = p;
+                p = NEXTUTAS(p);
+                i++;
+            }
+            *date = DATEUTAS(p);
+            *text = TEXTUTAS(p);
+            NEXTUTAS(before) = NEXTUTAS(p);
+            NEXTUTAS(p) = NULL;
+            free(p);
+            
+
+
+        }
+    }
+}

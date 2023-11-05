@@ -37,4 +37,11 @@ void insertLastListUtas(ListUtas* l, DATETIME date, Word text);
 void displayListUtas(ListUtas l, Word author);
 
 void insertAtListUtas(ListUtas *l, DATETIME date, Word text, int index);
+
+void deleteFirstListUtas(ListUtas *l, DATETIME* date, Word* text);
+
+void deleteLastListUtas(ListUtas *l, DATETIME* date, Word* text);
+
+void deleteAtListUtas(ListUtas *l, int idx,DATETIME* date, Word* text);
+
 #endif

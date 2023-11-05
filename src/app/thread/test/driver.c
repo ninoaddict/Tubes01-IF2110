@@ -81,5 +81,16 @@ int main(void){
     index = wordToInteger(userinput);
     sambungUtas(&l,currIdx,id,index);
     cetakUtas(l,friend,listuser,currIdx,1);
+    printf("percobaan hapus utas\n");
+    printf("Masukkan idUTas: ");
+    userinput = readWord(20);
+    id = wordToInteger(userinput);
+    printf("Masukan index yang ingin dihapus : ");
+    userinput = readWord(20);
+    index = wordToInteger(userinput);
+    DATETIME t;
+    Word w;
+    putusUtas(&l,&t,&w,currIdx,id,index);
+    cetakUtas(l,friend,listuser,currIdx,1);
 
 } 
