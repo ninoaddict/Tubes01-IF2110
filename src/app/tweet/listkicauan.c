@@ -137,6 +137,71 @@ void updateKicau(ListKicauan* lkic, int currIdx, int idKicau){
 }
 
 
-void makeKicauanUtama(ListUtas l, ListKicauan* lkic, int currIdx,int idKicau,int* idUtas){
-    
+void makeKicauanUtama( ListKicauan* lkic, int currIdx,int idKicau,int* idUtas){
+    if (userOwnsKicau(*lkic,currIdx,idKicau) && isEmpty((*lkic).buffer[idKicau-1].ut)){
+        (*lkic).buffer[idKicau-1].idUtas = *idUtas;
+        CreateUtas(&(*lkic).buffer[idKicau-1].ut);
+        *idUtas += 1;
+        Word text,yes;
+        boolean done = false;
+        do{
+            
+            DATETIME date;
+            BacaDATETIME(&date);
+            printf("\n");
+            if (!done){
+                printf("Utas berhasil dibuat!\n\n");
+                done = true;
+
+            }
+            
+            printf("Masukkan kicauan:\n");
+            text = readWord(280);
+            insertLastListUtas(&(*lkic).buffer[idKicau-1].ut,date,text);
+            printf("\n");
+            printf("Apakah Anda ingin melanjutkan utas ini?\n");
+            text = readWord(5);
+            
+            
+            yes.Length  = 3;
+            yes.TabWord[0] = 'Y';
+            yes.TabWord[1] = 'E';
+            yes.TabWord[2] = 'S';
+
+
+
+
+        }while(isWordEqual(text,yes));
+        printf("Utas selesai!\n");
+
+    }
+    else if (!userOwnsKicau(*lkic,currIdx,idKicau)){
+        printf("Utas ini bukan milik anda!\n");
+    }
+    else if (!isEmpty((*lkic).buffer[idKicau-1].ut)  ){
+        printf("Kicauan ini sudah merupakan utas!\n");
+    }
+    else if (idKicau < 1 || idKicau > NEFF(*lkic));
+}
+
+void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser,int currIdx, int idUtas){
+    boolean found = false;
+    int i,idAuthor;
+
+    for (i = 0; i < NEFF(lkic); i++){
+        if (ELMT(lkic,i).idUtas == idUtas){
+            found = true;
+            break;
+            
+        }
+    }
+    idAuthor = (lkic).buffer[i].idAuthor;
+    if (!found){
+        printf("Utas tidak ditemukan!\n");
+    }
+    if(userOwnsKicau(lkic,currIdx,i+1) || lUser.listU[idAuthor].accType == 1 || isFriend(friend,idAuthor,currIdx)){
+        displayKicau(lkic.buffer[i]);
+        displayListUtas(lkic.buffer[i].ut,lkic.buffer[i].author);
+
+    }
 }

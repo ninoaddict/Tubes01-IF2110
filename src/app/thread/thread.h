@@ -18,6 +18,7 @@ typedef struct utas{
 typedef AddressUtas ListUtas;
 
 #define DATE(p) (p)->date
+#define TEXT(p) (p)-> text
 #define NEXT(p) (p)-> nextUtas
 
 AddressUtas newNode(DATETIME date, Word text);
@@ -29,6 +30,11 @@ void CreateUtas(ListUtas*l); // membentuk utas kosong
 
 boolean isEmpty(ListUtas l);
 
+void insertFirstListUtas(ListUtas *l, DATETIME date ,Word text);
 
+void insertLastListUtas(ListUtas* l, DATETIME date, Word text);
 
+void displayListUtas(ListUtas l, Word author);
+
+void insertAtListUtas();
 #endif
