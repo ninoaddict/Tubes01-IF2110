@@ -27,6 +27,6 @@ void displayKicau(Kicauan kic){
     printf("| ");
     displayWordWithoutEnter(TEXTKICAU(kic));
     printf("\n");
-    printf("Disukai: %d\n",LIKE(kic));
+    printf("| Disukai: %d\n\n",LIKE(kic));
 }
 

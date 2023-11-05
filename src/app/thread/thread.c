@@ -4,9 +4,9 @@
 
 AddressUtas newNode(DATETIME date, Word text){
     AddressUtas p = (AddressUtas) malloc(sizeof(Utas));
-    DATE(p) = date;
-    TEXT(p) = text;
-    NEXT(p) = NULL;
+    DATEUTAS(p) = date;
+    TEXTUTAS(p) = text;
+    NEXTUTAS(p) = NULL;
     return p;
 }
 
@@ -27,7 +27,7 @@ void insertFirstListUtas(ListUtas *l, DATETIME date, Word text){
 
     }
     else{
-        NEXT(p) = *l;
+        NEXTUTAS(p) = *l;
         *l = p;
     }
 }
@@ -45,25 +45,52 @@ void insertLastListUtas(ListUtas* l, DATETIME date, Word text){
         }
         else{
             AddressUtas p2 = *l;
-            while (NEXT(p2) != NULL){
-                p2 = NEXT(p2);
+            while (NEXTUTAS(p2) != NULL){
+                p2 = NEXTUTAS(p2);
             }
-            NEXT(p2) = p;
+            NEXTUTAS(p2) = p;
         }
     }
+}
+
+void insertAtListUtas(ListUtas *l, DATETIME date, Word text, int index){
+    AddressUtas p = *l, pcontainer = newNode(date,text);
+   
+    index -= 1;
+    int i = 0;
+    if (pcontainer == NULL){
+        printf("gagal membuat node\n\n");
+
+    }
+    else{
+        if (index == 0){
+            insertFirstListUtas(l,date,text);
+        }
+        else{
+            while (i < index - 1){
+                p = NEXTUTAS(p);
+                i++;
+            }
+            NEXTUTAS(pcontainer) = NEXTUTAS(p);
+            NEXTUTAS(p) = pcontainer;
+            printf("\n\n");
+        }
+    }
+
+
+
 }
 
 void displayListUtas(ListUtas l, Word author){
     AddressUtas p = l;
     int index = 0;
-    printf("\n");
     while (p != NULL){
         index += 1;
         printf("   | INDEX = %d\n",index);
         printf("   | ");displayWordWithoutEnter(author);printf("\n");
-        printf("   | ");TulisDATETIME(DATE(p));printf("\n");
-        printf("   | ");displayWordWithoutEnter(TEXT(p));printf("\n");printf("\n");
+        printf("   | ");TulisDATETIME(DATEUTAS(p));printf("\n");
+        printf("   | ");displayWordWithoutEnter(TEXTUTAS(p));printf("\n\n");
 
-        p = NEXT(p);
+        p = NEXTUTAS(p);
     }
 }

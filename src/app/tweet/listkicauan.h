@@ -54,4 +54,8 @@ void makeKicauanUtama(ListKicauan* lkic, int currIdx,int idKicau,int* idUtas);
 
 void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser,int currIdx,int idUtas);
 
+boolean possibleToConnect(ListUtas lUtas, int index);
+
+void sambungUtas(ListKicauan* lkic, int currIdx,int idUtas, int index);
+
 #endif

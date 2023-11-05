@@ -17,9 +17,9 @@ typedef struct utas{
 }Utas;
 typedef AddressUtas ListUtas;
 
-#define DATE(p) (p)->date
-#define TEXT(p) (p)-> text
-#define NEXT(p) (p)-> nextUtas
+#define DATEUTAS(p) (p)->date
+#define TEXTUTAS(p) (p)-> text
+#define NEXTUTAS(p) (p)-> nextUtas
 
 AddressUtas newNode(DATETIME date, Word text);
 
@@ -36,5 +36,5 @@ void insertLastListUtas(ListUtas* l, DATETIME date, Word text);
 
 void displayListUtas(ListUtas l, Word author);
 
-void insertAtListUtas();
+void insertAtListUtas(ListUtas *l, DATETIME date, Word text, int index);
 #endif
