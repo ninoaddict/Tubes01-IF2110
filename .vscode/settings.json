@@ -1,7 +1,8 @@
 {
-    "files.associations": {
-        "*.ejs": "html",
-        "charmachine.h": "c",
-        "wordmachine.h": "c"
-    }
+  "files.associations": {
+    "*.ejs": "html",
+    "charmachine.h": "c",
+    "wordmachine.h": "c",
+    "stdio.h": "c"
+  }
 }
