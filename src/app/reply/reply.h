@@ -4,13 +4,12 @@
 #include "../../../lib/wordmachine/wordmachine.h"
 #include "../user/user.h"
 
-typedef struct balasan{
+typedef struct balasan
+{
     int id;
     Word text;
     Word author;
     DATETIME time;
-    // pointer to tree
-
 } Balasan;
 
 #define ID(balasan) (balasan).id
@@ -19,15 +18,10 @@ typedef struct balasan{
 #define DATE(balasan) (balasan).time
 #define BALASAN(balasan) (balasan).balasan
 
+void createBalasan(int id, Word author, Word text, DATETIME time, Balasan *balasan);
 
-void createBalasan(int id, Word text, Word author, DATETIME time, Blasan* balasan);
+void displayBalasan(Kicauan kic, Balasan balasan, int depth);
 
-
-// KICAUAN , harus ada friendgroup dulu
-void ubahKicau(int idKicau);
-
-void displayKicau(Kicauan kic); // display sebuah kicau
-
-void displayKicauan(); // display kicauan user dan teman berdasarkan waktu
+void isHaveReply(Kicauan kic);
 
 #endif

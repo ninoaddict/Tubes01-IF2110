@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "files.associations": {
     "*.ejs": "html",
     "charmachine.h": "c",
@@ -6,3 +7,17 @@
     "stdio.h": "c"
   }
 }
+=======
+    "files.associations": {
+        "*.ejs": "html",
+        "charmachine.h": "c",
+        "wordmachine.h": "c",
+        "boolean.h": "c",
+        "stdlib.h": "c",
+        "thread.h": "c",
+        "user.h": "c",
+        "datetime.h": "c",
+        "listlinier.h": "c"
+    }
+}
+>>>>>>> 9babc8efcddb51bfccdd1b9b615088cc5af08281

@@ -63,4 +63,6 @@ boolean isCharEqual(Word w1, Word w2); // case insensitive
 
 void assignWord(Word *w, char arr[], int len);
 
+int wordToInteger(Word w);
+
 #endif

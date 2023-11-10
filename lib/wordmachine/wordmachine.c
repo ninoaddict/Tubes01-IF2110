@@ -141,3 +141,13 @@ void readCommand(Word *command){
         ADVWORD();
     }
 }
+
+int wordToInteger(Word W){
+    int mult = 1,num = 0,i; // 300
+    for (i = W.Length - 1; i >= 0; i--){
+        num += (W.TabWord[i] - '0')*mult;
+        mult *= 10;
+
+    }
+    return num;
+}
