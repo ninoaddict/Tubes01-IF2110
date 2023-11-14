@@ -7,10 +7,6 @@
 #include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
 
-int depth, i;
-Graph friend;
-int id1, id2;
-
 void createBalasan(int id, Word author, Word text, DATETIME time, Balasan *balasan)
 {
     ID(*balasan) = id;
@@ -28,26 +24,26 @@ void displayBalasan(Kicauan kic, Balasan balasan, int depth, boolean isFriendwit
         {
             if (isFriend(friend, id1, id2))
             {
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
                 printf("| ID = %d\n", ID(balasan));
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
                 printf("| ");
                 displayWordWithoutEnter(AUTHOR(balasan));
                 printf("\n");
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
                 printf("| ");
                 displayWordWithoutEnter(TEXT(balasan));
                 printf("\n");
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
@@ -57,22 +53,22 @@ void displayBalasan(Kicauan kic, Balasan balasan, int depth, boolean isFriendwit
             }
             else
             {
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
                 printf("| ID = %d\n", ID(balasan));
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
                 printf("| PRIVAT\n");
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
                 printf("| PRIVAT\n");
-                for (i = 0; i < depth - 1; i++)
+                for (int i = 0; i < depth - 1; i++)
                 {
                     printf("    ");
                 }
@@ -89,7 +85,8 @@ void displayBalasan(Kicauan kic, Balasan balasan, int depth, boolean isFriendwit
     }
 }
 
-boolean isHaveReply(Kicauan kic)
+boolean isHaveReply(Balasan balasan)
 {
-    return BALASAN(kic) != NULL;
+    Address p = 
+    return !isUnerLeft(balasan);
 }

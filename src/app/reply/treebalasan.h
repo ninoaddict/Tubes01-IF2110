@@ -12,7 +12,7 @@
 #define IDX_MIN 0
 #define IDX_UNDEF -1
 
-typedef Balasan ElType; /* type elemen list */
+typedef Balasan ElType; 
 typedef int IdxType;
 
 typedef struct treeBalasan{
@@ -28,8 +28,10 @@ typedef struct treeBalasan{
 
 void createTreeBalasan(TreeBalasan* t);
 
+void deleteTreeBalasan(TreeBalasan* t);
+
 void dealocateTreeBalasan(TreeBalasan *l);
 
-void bacaBalasan(TreeBalasan* lkic, User currUser, int* IdKicau,int currId);
+void addBalasan(TreeBalasan* t);
 
 #endif
