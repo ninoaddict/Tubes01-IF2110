@@ -3,14 +3,16 @@
 
 #include "boolean.h"
 #include <stdio.h>
+#include "../linkedlist/linkedlist.h"
 #include "../../../src/app/reply/reply.h"
+#include "../../../src/app/reply/treebalasan.h"
 
 /* Selektor */
 #define ROOT(p) (p)->info
 #define LEFT(p) (p)->left
 #define RIGHT(p) (p)->right
 
-typedef balasan ElType;
+typedef Balasan ElType;
 typedef struct treeNode* Address;
 typedef struct treeNode { 
      ElType info;

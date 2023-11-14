@@ -89,7 +89,7 @@ void displayBalasan(Kicauan kic, Balasan balasan, int depth, boolean isFriendwit
     }
 }
 
-void isHaveReply(Kicauan kic)
+boolean isHaveReply(Kicauan kic)
 {
     return BALASAN(kic) != NULL;
 }
