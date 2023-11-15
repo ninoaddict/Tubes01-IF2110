@@ -7,6 +7,7 @@
 #include "../../../lib/boolean.h"
 #include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
+#include "../../../lib/dsu/dsu.h"
 
 typedef struct 
 {
@@ -47,5 +48,8 @@ void cancelFriendReq(ListUser *listuser, int currIdx, Friend *friend);
 void displayFriendRequestList(ListUser listuser, int currIdx);
 
 void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend);
+
+// FRIEND GROUP
+void searchFriendGroup(ListUser listuser, int currIdx, Friend friend);
 
 #endif
