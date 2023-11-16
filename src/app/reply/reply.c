@@ -15,12 +15,20 @@ void createBalasan(int id, Word author, Word text, DATETIME time, Balasan *balas
     DATE(*balasan) = time;
 }
 
+void Balas (int IDKicau, int IDbalasan){
+
+}
+
+void deleteBalasan(int IDbalasan){
+    
+}
+
 void displayBalasan(Kicauan kic, Balasan balasan, int depth, boolean isFriendwithTweet)
 {
     // balasan pertama dari tweet memiliki depth = 1
     if (isFriendwithTweet)
     {
-        if (isHaveReply(kic))
+        if (isHaveBalasan(kic))
         {
             if (isFriend(friend, id1, id2))
             {
@@ -83,10 +91,4 @@ void displayBalasan(Kicauan kic, Balasan balasan, int depth, boolean isFriendwit
     else{
         printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman akun tersebu!\n");
     }
-}
-
-boolean isHaveReply(Balasan balasan)
-{
-    Address p = 
-    return !isUnerLeft(balasan);
 }

@@ -23,12 +23,10 @@ typedef struct balasan
 
 void createBalasan(int id, Word author, Word text, DATETIME time, Balasan *balasan);
 
-void Balas (int IDKicau, IDbalasan);
+void Balas (int IDKicau, int id);
 
 void deleteBalasan(int IDbalasan);
 
-void displayBalasan(Address balasan);
-
-void isHaveReply(Balasan balasan);
+void displayBalasan(Balasan balasan);
 
 #endif

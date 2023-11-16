@@ -2,29 +2,47 @@
 #include <stdlib.h>
 #include "treebalasan.h"
 
-void createTreeBalasan(TreeBalasan *t, int IDbalasan)
-{
-    CreateTree(IDbalasan, NULL, NULL);
-}
-
-void deleteTreeBalasan(TreeBalasan *t)
-{
-}
-
-void dealocateTreeBalasan(TreeBalasan *t)
-{
-}
-
-void addBalasan(TreeBalasan *t, int IDyangingindibalasan, int IDbalasan)
-{
-    Address p = newTreeNode(IDbalasan);
-}
-
-Address searchByID (TreeBalasan t, int id){
-    boolean isFound = false;
-    Address p = LEFT(t);
-    if (ID(p) == id){
-        return p;
+NodeBalasan *newNode(Balasan balasan){
+    NodeBalasan *newBalasan = malloc(sizeof(newBalasan));
+    if (newBalasan != NULL)
+    {
+        INFO(*newBalasan) = balasan;
+        LEFT(*newBalasan) = NULL;
+        RIGHT(*newBalasan) = NULL;
     }
-    
+    return newBalasan;
+}
+
+void createTreeBalasan(NodeBalasan** t){
+    *t = NULL;
+}
+
+void addBalasan(NodeBalasan** t, Balasan balasan){
+    NodeBalasan* newBalasan = newNode(balasan);
+    if (LEFT(*t) == NULL){
+        LEFT(*t) = newBalasan;
+    }
+    else {
+        addReply(RIGHT(t));
+    }
+}
+
+void deleteTreeBalasan(NodeBalasan *t){
+
+    if (LEFT(*t) == NULL){
+        free(t);
+    }
+    else{
+        deleteAll(RIGHT(LEFT(*t)));
+        deleteTreeBalasan(LEFT(*t));
+    }
+}
+
+boolean isTreeBalasanEmpty (NodeBalasan* t){
+    return t == NULL;
+}
+
+boolean isHaveBalasan(NodeBalasan t){
+    return LEFT(t) == NULL;
+    // RIGHT(t) gausah dicek soalnya dia ngisinya dari LEFT(t), kalo leftnya null pasti rightnya juga null
 }
