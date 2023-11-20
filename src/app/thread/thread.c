@@ -14,7 +14,7 @@ void CreateUtas(ListUtas*l){
     FIRST(*l) = NULL;
 }
 
-boolean isEmpty(ListUtas l){
+boolean isEmptyUtas(ListUtas l){
     return (FIRST(l) == NULL);
     
 }
@@ -39,7 +39,7 @@ void insertLastListUtas(ListUtas* l, DATETIME date, Word text){
 
     }
     else{
-        if(isEmpty(*l)){
+        if(isEmptyUtas(*l)){
             insertFirstListUtas(l,date,text);
 
         }

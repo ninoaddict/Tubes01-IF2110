@@ -28,7 +28,7 @@ AddressUtas newNode(DATETIME date, Word text);
 
 void CreateUtas(ListUtas*l); // membentuk utas kosong
 
-boolean isEmpty(ListUtas l);
+boolean isEmptyUtas(ListUtas l);
 
 void insertFirstListUtas(ListUtas *l, DATETIME date ,Word text);
 

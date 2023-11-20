@@ -7,20 +7,25 @@
 
 
 int main(void){
-     ListUser listuser;
+    ListUser listuser;
     Friend friend;
     Word userinput;
     int currIdx = -1;
     ListKicauan l;
     int idKicau;
     int index;
+    int idUtas = 1;
+    int IdKicau = 0;
+    int id;
+    DATETIME t;
+    Word w;
 
     CreateFriend(&friend);
     
     CreateListUser(&listuser);
     
     
-    int IdKicau = 0; // index kicau pada listkicau, bukan id kicau itu sendiri
+     // index kicau pada listkicau, bukan id kicau itu sendiri
     createListKicauan(&l,10);
 
     SignUp(&listuser, &currIdx);  // signup pertama
@@ -61,7 +66,7 @@ int main(void){
     // printf("Login : \n");
     // LogIn(&listuser,&currIdx);
     // printf("\n"); ///////////////////////////////////
-    int idUtas = 1;
+   
     printf("percobaan membuat utas\n");
     printf("id kicau berapa ? : ");
     userinput = readWord(100);
@@ -72,7 +77,7 @@ int main(void){
     cetakUtas(l,friend,listuser,currIdx,1);
     printf("percobaan sambung utas\n");
     printf("Masukan idutas : "); 
-    int id;
+    
     userinput = readWord(280);
     id = wordToInteger(userinput);
     printf("Masukan index : "); 
@@ -88,9 +93,41 @@ int main(void){
     printf("Masukan index yang ingin dihapus : ");
     userinput = readWord(20);
     index = wordToInteger(userinput);
-    DATETIME t;
-    Word w;
+
     putusUtas(&l,&t,&w,currIdx,id,index);
     cetakUtas(l,friend,listuser,currIdx,1);
+    printf("percobaan hapus utas\n");
+    printf("Masukkan idUTas: ");
+    userinput = readWord(20);
+    id = wordToInteger(userinput);
+    printf("Masukan index yang ingin dihapus : ");
+    userinput = readWord(20);
+    index = wordToInteger(userinput);
+
+    putusUtas(&l,&t,&w,currIdx,id,index);
+    cetakUtas(l,friend,listuser,currIdx,1);
+    printf("percobaan sambung utas\n");
+    printf("Masukan idutas : "); 
+    userinput = readWord(280);
+    id = wordToInteger(userinput);
+    printf("Masukan index : "); 
+    
+    userinput = readWord(280);
+    index = wordToInteger(userinput);
+    sambungUtas(&l,currIdx,id,index);
+    cetakUtas(l,friend,listuser,currIdx,1);
+    currIdx = -1;
+    SignUp(&listuser, &currIdx);  // signup pertama
+    bacaKicauan(&l, listuser.listU[0],&IdKicau,currIdx);
+    printf("percobaan membuat utas\n");
+    printf("id kicau berapa ? : ");
+    userinput = readWord(100);
+    idKicau = wordToInteger(userinput);
+    makeKicauanUtama(&l,currIdx,idKicau,&idUtas);
+    printf("\n");
+    printf("berikut cetak utas, jika utas gagal dibuat maka akan tercetak id 0 date 0/0/0\n\n");
+    cetakUtas(l,friend,listuser,currIdx,2);
+    printf("percobaan sambung utas\n");
+    printf("Masukan idutas : "); 
 
 } 
