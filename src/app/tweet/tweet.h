@@ -4,6 +4,7 @@
 #include "../../../lib/wordmachine/wordmachine.h"
 #include "../user/user.h"
 #include "../thread/thread.h"
+#include "../reply/reply.h"
 
 typedef struct kicauan
 {
@@ -13,7 +14,7 @@ typedef struct kicauan
     Word author;
     DATETIME time;
     Utas *ut;
-    Balasan *balasan;
+    struct NodeBalasan *bal;
     int idAuthor;
     // lokasi user di listuser, jadi currId
     // pointer to utas

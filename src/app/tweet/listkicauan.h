@@ -51,5 +51,6 @@ void updateKicau(ListKicauan* lkic, int currIdx, int idKicau);
 
 boolean userOwnsKicau(ListKicauan lkic, int currIdx, int idKicau);
 
+boolean isKicauanHaveBalasan(ListKicauan l, int id);
 
 #endif

@@ -135,3 +135,7 @@ void updateKicau(ListKicauan* lkic, int currIdx, int idKicau){
     }
 
 }
+
+boolean isKicauanHaveBalasan(ListKicauan l, int id){
+    return ELMT(l, id).balasan == NULL;
+}
