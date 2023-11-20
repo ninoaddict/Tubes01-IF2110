@@ -43,6 +43,12 @@ void readBio(User *user)
 {
     printf("Masukkan Bio Akun:\n");
     Word bio = readWord(135);
+    while (bio.Length > 0 && isAllSpace(bio))
+    {
+        printf("Bio Anda tidak valid\n\n");
+        printf("Masukkan Bio Akun:\n");
+        bio = readWord(135);
+    }
     printf("\n");
     user->bio = bio;
 }
@@ -76,12 +82,12 @@ void readWeton(User *user)
     printf("Masukkan Weton:\n");
     Word weton = readWord(10);
     printf("\n");
+    if (weton.Length == 0) return;
     for (int i = 0; i < 6; i++)
     {
         if (isCharEqual(weton, wetons[i]))
         {
             user->weton = wetons[i];
-            displayWord(wetons[i]);
             still = false;
             break;
         }

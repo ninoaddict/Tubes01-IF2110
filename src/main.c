@@ -26,8 +26,15 @@ int main()
             LogIn(&listuser, &currID);
             break;
         case 2:
-            printf("Keluar dari akun...\n\n");
-            currID = -1;
+            if (currID == -1)
+            {
+                printf("Anda memang tidak pernah masuk...\n\n");
+            }
+            else
+            {
+                printf("Keluar dari akun...\n\n");
+                currID = -1;
+            }
             break;
         case 3:
             run = false;
@@ -47,11 +54,18 @@ int main()
             int idNameProfile = searchUserByID(listuser, command[1]);
             if (listuser.listU[idNameProfile].accType)
                 showProfile(listuser.listU[idNameProfile]);
-            else if (currID != -1 && isFriend(friendGraph, currID, idNameProfile)){
+            else if (currID != -1 && (isFriend(friendGraph, currID, idNameProfile) || currID == idNameProfile))
+            {
                 showProfile(listuser.listU[idNameProfile]);
             }
             else
-                printf("Wah, akun Tuan Prim diprivat nih. Ikuti dulu yuk untuk bisa melihat profil Tuan Prim!\n\n");
+            {
+                printf("Wah, akun ");
+                displayWordWithoutEnter(listuser.listU[idNameProfile].name);
+                printf(" diprivat nih. Ikuti dulu yuk untuk bisa melihat profil ");
+                displayWord(listuser.listU[idNameProfile].name);
+                printf("\n");
+            }
             break;
         case 6:
             if (currID != -1)

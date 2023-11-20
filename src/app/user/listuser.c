@@ -185,7 +185,7 @@ void friendList(ListUser listuser, int currIdx, Friend friend)
         {
             displayWordWithoutEnter(listuser.listU[currIdx].name);
             printf(" memiliki %d teman\n", cnt);
-            printf("Daftar teman\n");
+            printf("Daftar teman ");
             displayWord(listuser.listU[currIdx].name);
             for (int i = 0; i < cnt; i++)
             {
@@ -224,12 +224,13 @@ void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
         {
             printf("Apakah anda yakin ingin menghapus ");
             displayWordWithoutEnter(name);
-            printf("dari daftar teman anda? (YA/TIDAK) ");
+            printf(" dari daftar teman anda? (YA/TIDAK) ");
             Word confirm = readWord(25);
             if (confirm.Length == 2)
             {
                 unsetFriend(friend, currIdx, idx);
-                printf("Bob berhasil dihapus dari daftar teman Anda.\n\n");
+                displayWordWithoutEnter(name);
+                printf(" berhasil dihapus dari teman Anda.\n\n");
             }
             else
             {
@@ -420,7 +421,7 @@ void searchFriendGroup(ListUser listuser, int currIdx, Friend friend)
             idx++;
         }
     }
-    printf("Terdapat %d orang dalam Kelompok Teman ");
+    printf("Terdapat %d orang dalam Kelompok Teman", idx);
     displayWordWithoutEnter(listuser.listU[currIdx].name);
     printf(" :\n");
     for (int i = 0; i < idx; i++)
