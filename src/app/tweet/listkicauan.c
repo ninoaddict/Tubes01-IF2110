@@ -135,3 +135,180 @@ void updateKicau(ListKicauan* lkic, int currIdx, int idKicau){
     }
 
 }
+
+
+void makeKicauanUtama( ListKicauan* lkic, int currIdx,int idKicau,int* idUtas){
+    if (userOwnsKicau(*lkic,currIdx,idKicau) && isEmpty((*lkic).buffer[idKicau-1].ut)){
+        (*lkic).buffer[idKicau-1].idUtas = *idUtas;
+        CreateUtas(&(*lkic).buffer[idKicau-1].ut);
+        *idUtas += 1;
+        Word text,yes;
+        boolean done = false;
+        do{
+            
+            DATETIME date;
+            BacaDATETIME(&date);
+            printf("\n");
+            if (!done){
+                printf("Utas berhasil dibuat!\n\n");
+                done = true;
+
+            }
+            
+            printf("Masukkan kicauan:\n");
+            text = readWord(280);
+            insertLastListUtas(&(*lkic).buffer[idKicau-1].ut,date,text);
+            printf("\n");
+            printf("Apakah Anda ingin melanjutkan utas ini?\n");
+            text = readWord(5);
+            
+            
+            yes.Length  = 3;
+            yes.TabWord[0] = 'Y';
+            yes.TabWord[1] = 'E';
+            yes.TabWord[2] = 'S';
+
+
+
+
+        }while(isWordEqual(text,yes));
+        printf("Utas selesai!\n");
+
+    }
+    else if (!userOwnsKicau(*lkic,currIdx,idKicau)){
+        printf("Utas ini bukan milik anda!\n");
+    }
+    else if (!isEmpty((*lkic).buffer[idKicau-1].ut)  ){
+        printf("Kicauan ini sudah merupakan utas!\n");
+    }
+    else if (idKicau < 1 || idKicau > NEFF(*lkic));
+}
+
+void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser,int currIdx, int idUtas){
+    boolean found = false;
+    int i,idAuthor;
+
+    for (i = 0; i < NEFF(lkic); i++){
+        if (ELMT(lkic,i).idUtas == idUtas){
+            found = true;
+            break;
+            
+        }
+    }
+    idAuthor = (lkic).buffer[i].idAuthor;
+    if (!found){
+        printf("Utas tidak ditemukan!\n");
+    }
+    if(userOwnsKicau(lkic,currIdx,i+1) || lUser.listU[idAuthor].accType == 1 || isFriend(friend,idAuthor,currIdx)){
+        displayKicau(lkic.buffer[i]);
+        displayListUtas(lkic.buffer[i].ut,lkic.buffer[i].author);
+
+    }
+}
+boolean possibleToConnect(ListUtas lUtas, int index){
+    index -= 1;
+    boolean possible = false;
+    AddressUtas p  = lUtas;
+    if (index >= 0){
+        int i = 0;
+        while (p != NULL && (i < index - 1 )){
+            p = NEXTUTAS(p);
+            i += 1;
+        }
+        if (i == index - 1 || index == 0){
+            possible = true;
+        }
+
+    }
+    return possible;
+}
+boolean possibleToDisConnect(ListUtas lUtas, int index){
+    return possibleToConnect(lUtas,index);
+}
+
+void sambungUtas(ListKicauan* lkic, int currIdx,int idUtas,int index){
+    boolean found = false;
+    // int i,idAuthor;
+    int i;
+
+    for (i = 0; i < NEFF(*lkic); i++){
+        if (ELMT(*lkic,i).idUtas == idUtas){
+            found = true;
+            break;
+            
+        }
+    }
+    if (found){
+        if (!userOwnsKicau((*lkic),currIdx,i)){
+            printf("Anda tidak bisa menyambung utas ini!\n\n");
+        }
+        else {
+            if (!possibleToConnect((*lkic).buffer[i].ut,index)){
+                if (index - 1 < 0){
+                    printf("Index terlalu rendah\n\n ");
+                }
+                else{
+                    printf("Index terlalu tinggi!\n\n");
+                }
+            }
+            else{
+                Word text;
+                DATETIME time;
+                printf("Masukkan kicauan:\n");
+                text = readWord(280);
+                if (text.Length == 0){
+                    printf("utas tidak bisa spasi saja\n\n");
+                }
+                else{
+                    BacaDATETIME(&time);
+                    insertAtListUtas(&(*lkic).buffer[i].ut, time,text,index);
+                }
+
+            }
+
+        }
+    }
+    else{
+        printf("Utas tidak ditemukan!\n\n");
+    }
+}
+
+void putusUtas(ListKicauan* lkic,DATETIME* date, Word* text, int currIdx,int idUtas,int index){
+    boolean found = false;
+    // int i,idAuthor;
+    int i;
+
+    for (i = 0; i < NEFF(*lkic); i++){
+        if (ELMT(*lkic,i).idUtas == idUtas){
+            found = true;
+            break;
+            
+        }
+    }
+    if (found){
+        if (!userOwnsKicau((*lkic),currIdx,i)){
+            printf("Anda tidak bisa menghapus kicauan dalam utas ini!\n\n");
+            
+        }
+        else{
+            if(!possibleToDisConnect((*lkic).buffer[i].ut,index)){
+                if (index == 0){
+                    printf("Anda tidak bisa menghapus kicauan utama!\n\n");
+                }
+                else{
+                    printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!\n\n",index);
+                }
+            }
+            else{
+
+                deleteAtListUtas(&(*lkic).buffer[i].ut,index,date,text);
+                printf("Kicauan sambungan berhasil dihapus!\n\n");
+            }
+        }
+        
+    }
+    else{
+            printf("Utas tidak ditemukan!\n\n");
+    }
+}
+

@@ -10,8 +10,7 @@
 #include "../user/listuser.h"
 /* Indeks minimum list */
 #define IDX_MIN 0
-/* Indeks minimum list */
-#define IDX_UNDEF -1
+
 
 /* Indeks tak terdefinisi*/
 
@@ -50,6 +49,18 @@ void likeKicau(ListKicauan* lkic,ListUser l,Friend friend, int idKicauYangInginD
 void updateKicau(ListKicauan* lkic, int currIdx, int idKicau);
 
 boolean userOwnsKicau(ListKicauan lkic, int currIdx, int idKicau);
+
+void makeKicauanUtama(ListKicauan* lkic, int currIdx,int idKicau,int* idUtas);
+
+void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser,int currIdx,int idUtas);
+
+boolean possibleToConnect(ListUtas lUtas, int index);
+
+boolean possibleToDisConnect(ListUtas lUtas, int index);
+
+void sambungUtas(ListKicauan* lkic, int currIdx,int idUtas, int index);
+
+void putusUtas(ListKicauan* lkic,DATETIME* date, Word* text ,int currIdx,int idUtas,int index);
 
 
 #endif
