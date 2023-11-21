@@ -8,6 +8,10 @@
         "thread.h": "c",
         "user.h": "c",
         "datetime.h": "c",
-        "listlinier.h": "c"
+        "listlinier.h": "c",
+        "friendrequest.h": "c",
+        "friend.h": "c",
+        "stdio.h": "c",
+        "listuser.h": "c"
     }
 }
