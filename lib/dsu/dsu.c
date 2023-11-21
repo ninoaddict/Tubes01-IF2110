@@ -4,7 +4,7 @@ int parent[20];
 
 void makeSet(int n){
     for (int i = 0; i < n; i++)
-        parent[i] = 0;
+        parent[i] = i;
 }
 
 int findParent(int v){
