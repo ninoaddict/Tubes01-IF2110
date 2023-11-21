@@ -202,7 +202,7 @@ long int DATETIMEDurasi(DATETIME DAw, DATETIME DAkh){
 
 }
 
-DATETIME string_toDate_time(char arr[]){
+DATETIME string_toDate_time(Word dateInsert){
     Word store;
     DATETIME t;
     int i = 0,word_count = 0,insert_date=0;
@@ -211,8 +211,8 @@ DATETIME string_toDate_time(char arr[]){
 
     CreateWord(&store);
 
-    while (arr[i] != ' '){
-        if (arr[i] == '/'){
+    while (dateInsert.TabWord[i]!= ' '){
+        if (dateInsert.TabWord[i] == '/'){
             store.Length = word_count;
             word_count = 0;
             date[insert_date] = wordToInteger(store);
@@ -220,7 +220,7 @@ DATETIME string_toDate_time(char arr[]){
             
         }
         else{
-            store.TabWord[word_count] = arr[i];
+            store.TabWord[word_count] = dateInsert.TabWord[i];
             word_count ++;
 
         }
@@ -233,8 +233,8 @@ DATETIME string_toDate_time(char arr[]){
     i++;
     insert_date = 0;
     word_count = 0;
-    while (arr[i] != '\n'){
-        if (arr[i] == ':'){
+    while (dateInsert.TabWord[i] != '\n'){
+        if (dateInsert.TabWord[i]== ':'){
             store.Length = word_count;
             word_count = 0;
             time[insert_date] = wordToInteger(store);
@@ -242,7 +242,7 @@ DATETIME string_toDate_time(char arr[]){
             
         }
         else{
-            store.TabWord[word_count] = arr[i];
+            store.TabWord[word_count] = dateInsert.TabWord[i];
             word_count ++;
 
         }

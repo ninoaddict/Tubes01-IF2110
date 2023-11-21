@@ -2,7 +2,8 @@
 #include "../datetime.h"
 
 int main(){
-    char arr[] = "14/10/2023 01:09:18\n";
+    Word arr;
+    assignWord(&arr,"14/10/2023 11:09:18\n",21);
     DATETIME t;
     Word b;
     t = string_toDate_time(arr);

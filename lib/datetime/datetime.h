@@ -93,7 +93,7 @@ long int DATETIMEDurasi(DATETIME DAw, DATETIME DAkh);
 /* Mengirim DAkh-DAw dlm Detik, dengan kalkulasi */
 /* Prekondisi: DAkh > DAw */
 
-DATETIME string_toDate_time(char arr[]);
+DATETIME string_toDate_time(Word date_insert);
 /*menerima array of characters, dan membentuk datetime*/
 
 Word dateTimeToWord(DATETIME t);

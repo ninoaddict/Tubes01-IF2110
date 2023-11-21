@@ -6,6 +6,9 @@ Friend friendGraph;
 int idxCommand;
 Word command[4];
 Word commands[30];
+DATETIME current_time;
+ListKicauan lkic;
+extern int id_kicau;
 boolean run;
 
 void setup(){
