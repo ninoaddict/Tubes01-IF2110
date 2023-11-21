@@ -185,7 +185,7 @@ void friendList(ListUser listuser, int currIdx, Friend friend)
         {
             displayWordWithoutEnter(listuser.listU[currIdx].name);
             printf(" memiliki %d teman\n", cnt);
-            printf("Daftar teman\n");
+            printf("Daftar teman ");
             displayWord(listuser.listU[currIdx].name);
             for (int i = 0; i < cnt; i++)
             {
@@ -224,12 +224,13 @@ void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
         {
             printf("Apakah anda yakin ingin menghapus ");
             displayWordWithoutEnter(name);
-            printf("dari daftar teman anda? (YA/TIDAK) ");
+            printf(" dari daftar teman anda? (YA/TIDAK) ");
             Word confirm = readWord(25);
             if (confirm.Length == 2)
             {
                 unsetFriend(friend, currIdx, idx);
-                printf("Bob berhasil dihapus dari daftar teman Anda.\n\n");
+                displayWordWithoutEnter(name);
+                printf(" berhasil dihapus dari teman Anda.\n\n");
             }
             else
             {
@@ -384,10 +385,48 @@ void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend)
             displayWordWithoutEnter(listuser->listU[val.first].name);
             printf(".\n\n");
         }
-        else{
+        else
+        {
             printf("Permintaan pertemanan dari ");
             displayWordWithoutEnter(listuser->listU[val.first].name);
             printf(" telah ditolak\n\n");
         }
     }
+}
+
+void searchFriendGroup(ListUser listuser, int currIdx, Friend friend)
+{
+    if (currIdx == -1)
+    {
+        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
+        return;
+    }
+    makeSet(listuser.Neff);
+    for (int i = 0; i < listuser.Neff; i++)
+    {
+        for (int j = i + 1; j < listuser.Neff; j++)
+        {
+            if (i != j && isFriend(friend, i, j))
+            {
+                unionSet(i, j);
+            }
+        }
+    }
+    int friendGroupResult[20], idx = 0;
+    for (int i = 0; i < listuser.Neff; i++)
+    {
+        if (findParent(currIdx) == findParent(i))
+        {
+            friendGroupResult[idx] = i;
+            idx++;
+        }
+    }
+    printf("Terdapat %d orang dalam Kelompok Teman", idx);
+    displayWordWithoutEnter(listuser.listU[currIdx].name);
+    printf(" :\n");
+    for (int i = 0; i < idx; i++)
+    {
+        displayWord(listuser.listU[friendGroupResult[i]].name);
+    }
+    printf("\n");
 }
