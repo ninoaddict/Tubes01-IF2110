@@ -420,7 +420,7 @@ void searchFriendGroup(ListUser listuser, int currIdx, Friend friend)
             idx++;
         }
     }
-    printf("Terdapat %d orang dalam Kelompok Teman ");
+    printf("Terdapat %d orang dalam Kelompok Teman ", idx);
     displayWordWithoutEnter(listuser.listU[currIdx].name);
     printf(" :\n");
     for (int i = 0; i < idx; i++)

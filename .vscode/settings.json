@@ -8,6 +8,7 @@
         "thread.h": "c",
         "user.h": "c",
         "datetime.h": "c",
-        "listlinier.h": "c"
+        "listlinier.h": "c",
+        "stdio.h": "c"
     }
 }
