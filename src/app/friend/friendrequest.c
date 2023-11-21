@@ -31,5 +31,5 @@ void confirmFriend(FriendRequest *pq){
 }
 
 pii topFriendRequest(FriendRequest pq){
-    return pq.pair[0];
+    return pq->info;
 }

@@ -243,46 +243,46 @@ void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
 void addFriendReq(ListUser *listuser, int currIdx, Friend *friend)
 {
     // kalau belum login
-    if (currIdx == -1)
-    {
-        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
-        return;
-    }
-    else if (listuser->listU[currIdx].friendReqList.count)
-    {
-        printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n\n");
-        return;
-    }
-    printf("Masukkan nama pengguna:\n");
-    Word name = readWord(25);
-    printf("\n");
-    int nameIdx = searchUserByID(*listuser, name);
-    if (nameIdx == -1)
-    {
-        printf("Pengguna bernama ");
-        displayWordWithoutEnter(name);
-        printf(" tidak ditemukan\n\n");
-    }
-    else if (isRequested(*friend, currIdx, nameIdx))
-    {
-        printf("Anda sudah mengirimkan permintaan pertemanan kepada ");
-        displayWordWithoutEnter(name);
-        printf(". Silakan tunggu hingga permintaan Anda disetujui.\n\n");
-    }
-    else if (isFriend(*friend, currIdx, nameIdx))
-    {
-        printf("Pengguna yang bernama ");
-        displayWordWithoutEnter(name);
-        printf(" adalah teman anda. Silahkan coba lagi!\n\n");
-    }
-    else
-    {
-        setRequest(friend, currIdx, nameIdx); // set request di matrix friend
-        addToFriendReqList(&(listuser->listU[nameIdx].friendReqList), currIdx, listuser->listU[currIdx].friendNum);
-        printf("Permintaan pertemanan kepada ");
-        displayWordWithoutEnter(name);
-        printf(" telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n\n");
-    }
+    // if (currIdx == -1)
+    // {
+    //     printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
+    //     return;
+    // }
+    // else if (listuser->listU[currIdx].friendReqList.count)
+    // {
+    //     printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n\n");
+    //     return;
+    // }
+    // printf("Masukkan nama pengguna:\n");
+    // Word name = readWord(25);
+    // printf("\n");
+    // int nameIdx = searchUserByID(*listuser, name);
+    // if (nameIdx == -1)
+    // {
+    //     printf("Pengguna bernama ");
+    //     displayWordWithoutEnter(name);
+    //     printf(" tidak ditemukan\n\n");
+    // }
+    // else if (isRequested(*friend, currIdx, nameIdx))
+    // {
+    //     printf("Anda sudah mengirimkan permintaan pertemanan kepada ");
+    //     displayWordWithoutEnter(name);
+    //     printf(". Silakan tunggu hingga permintaan Anda disetujui.\n\n");
+    // }
+    // else if (isFriend(*friend, currIdx, nameIdx))
+    // {
+    //     printf("Pengguna yang bernama ");
+    //     displayWordWithoutEnter(name);
+    //     printf(" adalah teman anda. Silahkan coba lagi!\n\n");
+    // }
+    // else
+    // {
+    //     setRequest(friend, currIdx, nameIdx); // set request di matrix friend
+    //     addToFriendReqList(&(listuser->listU[nameIdx].friendReqList), currIdx, listuser->listU[currIdx].friendNum);
+    //     printf("Permintaan pertemanan kepada ");
+    //     displayWordWithoutEnter(name);
+    //     printf(" telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n\n");
+    // }
 }
 
 void cancelFriendReq(ListUser *listuser, int currIdx, Friend *friend)
@@ -331,7 +331,7 @@ void displayFriendRequestList(ListUser listuser, int currIdx)
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    int countPQ = listuser.listU[currIdx].friendReqList.count;
+    int countPQ = PQLength(listuser.listU[currIdx].friendReqList);
     if (!countPQ)
     {
         printf("Tidak ada permintaan pertemanan untuk Anda.\n\n");
@@ -357,7 +357,7 @@ void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend)
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    if (!listuser->listU[currIdx].friendReqList.count)
+    if (PQLength(listuser->listU[currIdx].friendReqList))
     {
         printf("Tidak ada permintaan pertemanan untuk Anda.\n\n");
     }
