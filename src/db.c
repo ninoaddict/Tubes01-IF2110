@@ -8,13 +8,16 @@ Word command[4];
 Word commands[30];
 DATETIME current_time;
 ListKicauan lkic;
-extern int id_kicau;
+int id_kicau;
+int id_utas;
 boolean run;
 
 void setup(){
     run = true;
     currID = -1;
+    createListKicauan(&lkic,50);
     currTweetID = 0;
+    id_utas = 1;
     CreateListUser(&listuser);
     CreateFriend(&friendGraph);
 
@@ -46,4 +49,27 @@ void setup(){
     assignWord(&commands[12], "DAFTAR_PERMINTAAN_PERTEMANAN", 28);
 
     assignWord(&commands[13], "SETUJUI_PERTEMANAN", 18);
+
+    assignWord(&commands[14], "KICAU", 5);
+
+    assignWord(&commands[15], "KICAUAN", 7);
+
+    assignWord(&commands[16], "SUKA_KICAUAN", 12);
+
+    assignWord(&commands[17], "UBAH_KICAUAN", 12);
+
+    assignWord(&commands[18], "UTAS", 4);
+
+    assignWord(&commands[19], "SAMBUNG_UTAS", 12);
+
+    assignWord(&commands[20], "HAPUS_UTAS", 10);
+
+    assignWord(&commands[21], "CETAK_UTAS", 10);
+
+
+
+
+
+
+
 }

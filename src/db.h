@@ -15,6 +15,7 @@ extern Word commands[30];
 extern DATETIME current_time;
 extern ListKicauan lkic;
 extern int id_kicau;
+extern int id_utas;
 
 
 void setup();
