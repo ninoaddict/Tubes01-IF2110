@@ -7,14 +7,14 @@
 #include "../boolean.h"
 #include "../charmachine/charmachine.h"
 
-#define NMax 64
+#define NMax 1024
 #define BLANK ' '
-
+#define SPACE '\n'
+#define CARRIAGE '\r'
 typedef struct
 {
-   char *TabWord; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
-   int maxEl;
 } Word;
 
 /* State Mesin Word */
@@ -49,16 +49,22 @@ void CopyWord();
 
 void CreateWord(Word *w);
 
-void DeleteWord(Word *w);
+Word readWord(int len);
 
-Word readWord();
-
-void expandWordSize(Word * w);
+void readCommand(Word *command);
 
 void displayWord(Word w);
 
-boolean isWordEqual(Word w1, Word w2);
+void displayWordWithoutEnter(Word w);
 
-boolean isCharEqual(Word w1, Word w2);
+boolean isWordEqual(Word w1, Word w2); // case sensitive
+ 
+boolean isCharEqual(Word w1, Word w2); // case insensitive
+
+void assignWord(Word *w, char arr[], int len);
+
+int wordToInteger(Word w);
+
+boolean isAllSpace(Word w);
 
 #endif

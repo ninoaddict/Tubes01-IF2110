@@ -10,9 +10,9 @@ MAIN_OUT = bin/main
 ALL_SRC = $(wildcard lib/*/*.c) $(wildcard src/app/*/*.c) src/db.c
 ALL_OBJ = $(ALL_SRC:.c=.o)
 
-.PHONY: all clean run build compile test recompile %.test %.ADTrun %.run test %.ADTtest %.test %.result %/driver
+.PHONY: all clean run build compile test recompile %.test %.ADTrun %.run test %.ADTtest %.test
 
-all: run build
+all: build run
 
 run: 
 	$(MAIN_OUT)
