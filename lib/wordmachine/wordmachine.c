@@ -144,7 +144,12 @@ void readCommand(Word *command){
 
 int wordToInteger(Word W){
     int mult = 1,num = 0,i; // 300
-    for (i = W.Length - 1; i >= 0; i--){
+    int end_at = 0;
+    if (W.TabWord[0] == '-'){
+        mult = -1;
+        end_at = 1;
+    }
+    for (i = W.Length - 1; i >= end_at; i--){
         num += (W.TabWord[i] - '0')*mult;
         mult *= 10;
 

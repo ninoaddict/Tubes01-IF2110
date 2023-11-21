@@ -7,11 +7,12 @@
 
 void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan* kic,int idAuthor){
     ID(*kic) = id;
-    TEXT(*kic) = text;
+    TEXTKICAU(*kic) = text;
     LIKE(*kic) = like;
     AUTHOR(*kic) = author;
-    DATE(*kic) = time;
+    DATEKICAU(*kic) = time;
     UTAS(*kic) = NULL;
+    IDUTAS(*kic) = -1;
     IDAUTHOR(*kic) = idAuthor;
 }
 
@@ -21,11 +22,11 @@ void displayKicau(Kicauan kic){
     displayWordWithoutEnter(AUTHOR(kic));
     printf("\n");
     printf("| ");
-    TulisDATETIME(DATE(kic));
+    TulisDATETIME(DATEKICAU(kic));
     printf("\n");
     printf("| ");
-    displayWordWithoutEnter(TEXT(kic));
+    displayWordWithoutEnter(TEXTKICAU(kic));
     printf("\n");
-    printf("Disukai: %d\n",LIKE(kic));
+    printf("| Disukai: %d\n\n",LIKE(kic));
 }
 
