@@ -1,6 +1,7 @@
 #ifndef __TWEET_H__
 #define __TWEET_H__
 #include "../../../lib/datetime/datetime.h"
+#include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
 #include "../user/user.h"
 #include "../thread/thread.h"
@@ -14,7 +15,7 @@ typedef struct kicauan
     Word author;
     DATETIME time;
     Utas *ut;
-    struct NodeBalasan *bal;
+    struct NodeBalasan *balasan;
     int idAuthor;
     // lokasi user di listuser, jadi currId
     // pointer to utas

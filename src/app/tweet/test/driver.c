@@ -69,7 +69,5 @@ int main(void){
     idKicau = wordToInteger(userinput);
     updateKicau(&l,currIdx,idKicau);
 
-
-
     return 0 ;
 }

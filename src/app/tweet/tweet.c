@@ -1,8 +1,5 @@
 #include "tweet.h"
 #include <stdio.h>
-#include "../../../lib/charmachine/charmachine.h"
-#include "../../../lib/wordmachine/wordmachine.h"
-
 
 
 void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan* kic,int idAuthor){
@@ -13,6 +10,7 @@ void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kica
     DATE(*kic) = time;
     UTAS(*kic) = NULL;
     IDAUTHOR(*kic) = idAuthor;
+    BALASAN(*kic) = NULL;
 }
 
 void displayKicau(Kicauan kic){

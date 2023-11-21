@@ -5,9 +5,6 @@
 #include <stdlib.h>
 #include "reply.h"
 #include "../../../lib/boolean.h"
-#include "../../../lib/charmachine/charmachine.h"
-#include "../../../lib/wordmachine/wordmachine.h"
-#include "../friend/friend.h"
 
 #define IDX_MIN 0
 #define IDX_UNDEF -1
@@ -24,10 +21,6 @@ typedef struct nodeBalasan
 #define LEFT(t) (t)->left
 #define RIGHT(t) (t)->right
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "treeBalasan.h"
-
 typedef AddressTree TreeBalasan;
 
 AddressTree createNewNode(Balasan balasan);
@@ -36,7 +29,7 @@ void createTreeBalasan(TreeBalasan *t);
 
 void addBalasan(AddressTree *n, Balasan balasan);
 
-void deleteTreeBalasan(TreeBalasan *t, int id);
+boolean deleteTreeBalasan(TreeBalasan t, int idFind);
 
 void deleteAllNode(NodeBalasan *n);
 
