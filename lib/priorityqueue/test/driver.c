@@ -21,15 +21,10 @@ PriorityQueue pq;
     enqueue(&pq, d);
     enqueue(&pq, e);
     enqueue(&pq, f);
-    // while (!isPQEmpty(pq)){
-    //     pii temp;
-    //     dequeue(&pq, &temp);
-    //     printf("%d %d\n", temp.first, temp.second);
-    // }
+    while (!isPQEmpty(pq)){
+        pii temp;
+        dequeue(&pq, &temp);
+        printf("%d %d\n", temp.first, temp.second);
+    }
     printf("%d\n", PQLength(pq));
-    pii val;
-    dequeue(&pq, &val);
-    printf("%d %d\n", val.first, val.second);
-    dequeue(&pq, &val);
-    printf("%d %d\n", val.first, val.second);
 }

@@ -30,13 +30,13 @@ boolean isPQEmpty(PriorityQueue pq){
 void enqueue(PriorityQueue *pq, pii val){
     PQAddress newNode = newPQAddress(val);
     if (isPQEmpty(*pq)){
-        FIRST(*pq) = newNode;
+        *pq = newNode;
     }
     else{
-        PQAddress currNode = FIRST(*pq);
+        PQAddress currNode = *pq;
         if (INFO(currNode).second < val.second){
             NEXT(newNode) = currNode;
-            FIRST(*pq) = newNode;
+            *pq = newNode;
         }
         else{
             boolean udah = false;
@@ -57,15 +57,15 @@ void enqueue(PriorityQueue *pq, pii val){
 
 void dequeue(PriorityQueue *pq, pii *val){
     *val = FRONT(*pq);
-    PQAddress currNode = FIRST(*pq);
-    FIRST(*pq) = NEXT(currNode);
+    PQAddress currNode = *pq;
+    *pq = NEXT(currNode);
     free(currNode);
 }
 
 void DisplayPriorityQueue(PriorityQueue q){
     printf("[");
     if (!isPQEmpty(q)){
-        PQAddress currNode = FIRST(q);
+        PQAddress currNode = q;
         while (NEXT(currNode) != NULL){
             printf("%d %d,",INFO(currNode).first, INFO(currNode).second);
             currNode = NEXT(currNode);
