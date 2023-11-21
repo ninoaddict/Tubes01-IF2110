@@ -7,6 +7,7 @@
 
 #include "../boolean.h"
 #include "../time/time.h"
+#include "../wordmachine/wordmachine.h"
 
 /* *** Definisi TYPE DATETIME <DD/MM/YY HH:MM:SS> *** */
 typedef struct
@@ -91,5 +92,11 @@ DATETIME DATETIMEPrevNDetik(DATETIME D, int N);
 long int DATETIMEDurasi(DATETIME DAw, DATETIME DAkh);
 /* Mengirim DAkh-DAw dlm Detik, dengan kalkulasi */
 /* Prekondisi: DAkh > DAw */
+
+DATETIME string_toDate_time(char arr[]);
+/*menerima array of characters, dan membentuk datetime*/
+
+Word dateTimeToWord(DATETIME t);
+// mengeluarkan Word hasil datetime
 
 #endif

@@ -68,7 +68,7 @@ void BacaDATETIME(DATETIME *D){
 }
 
 void TulisDATETIME(DATETIME D){
-    printf("%d/%d/%d %d:%d:%d",Day(D),Month(D),Year(D),Hour(Time(D)) , Minute(Time(D)), Second(Time(D)));  
+    printf("%02d/%02d/%d %02d:%02d:%02d",Day(D),Month(D),Year(D),Hour(Time(D)) , Minute(Time(D)), Second(Time(D)));  
 
 }
 
@@ -201,3 +201,115 @@ long int DATETIMEDurasi(DATETIME DAw, DATETIME DAkh){
 
 
 }
+
+DATETIME string_toDate_time(char arr[]){
+    Word store;
+    DATETIME t;
+    int i = 0,word_count = 0,insert_date=0;
+    int date[3];
+    int time[3];
+
+    CreateWord(&store);
+
+    while (arr[i] != ' '){
+        if (arr[i] == '/'){
+            store.Length = word_count;
+            word_count = 0;
+            date[insert_date] = wordToInteger(store);
+            insert_date ++;
+            
+        }
+        else{
+            store.TabWord[word_count] = arr[i];
+            word_count ++;
+
+        }
+        i++;
+    }
+    store.Length = word_count;
+    word_count = 0;
+    date[insert_date] = wordToInteger(store);
+    insert_date ++;
+    i++;
+    insert_date = 0;
+    word_count = 0;
+    while (arr[i] != '\n'){
+        if (arr[i] == ':'){
+            store.Length = word_count;
+            word_count = 0;
+            time[insert_date] = wordToInteger(store);
+            insert_date ++;
+            
+        }
+        else{
+            store.TabWord[word_count] = arr[i];
+            word_count ++;
+
+        }
+        i++;
+    }
+    store.Length = word_count;
+    word_count = 0;
+    time[insert_date] = wordToInteger(store);
+    insert_date ++;
+    CreateDATETIME(&t,date[0],date[1],date[2],time[0],time[1],time[2]);
+    return t;
+}
+
+Word dateTimeToWord(DATETIME t){
+    Word date;
+    int i = 0;
+    // int date[] = {t.DD,t.MM,t.YYYY,t.T.HH,t.T.MM,t.T.SS};
+
+    date.TabWord[i] = (t.DD/10) + '0';
+    i++;
+    date.TabWord[i] = (t.DD%10) + '0';
+    i++;
+    date.TabWord[i] = '/';
+    i++;
+    date.TabWord[i] = (t.MM/10) + '0';
+    i++;
+    date.TabWord[i] = (t.MM%10) + '0';
+    i++;
+    date.TabWord[i] = '/';
+    i++;
+    date.TabWord[i] = (t.YYYY /1000) + '0';
+    i++;
+    date.TabWord[i] = ((t.YYYY % 1000)/100) + '0';
+    i++;
+    date.TabWord[i] = ((t.YYYY%100)/10) + '0';
+    i++;
+    date.TabWord[i] = ((t.YYYY%10)) + '0';
+    i++;
+    date.TabWord[i] = ' ';
+    i++;
+    date.TabWord[i] = t.T.HH/10 + '0';
+    i++;    
+    date.TabWord[i] = t.T.HH%10 + '0';
+    i++;
+    date.TabWord[i] = ':';
+    i++;
+    date.TabWord[i] = t.T.MM/10 + '0';
+    i++;
+    date.TabWord[i] = t.T.MM%10 + '0';
+    i++;
+    date.TabWord[i] = ':';
+    i++;
+    date.TabWord[i] = t.T.SS/10 + '0';
+    i++;
+    date.TabWord[i] = t.T.SS%10 + '0';
+    i++;
+    date.TabWord[i] = '\n';
+    i++;
+    date.Length = i;
+    
+    
+
+    date.Length = i;
+    return date;
+    // 2034
+
+}
+
+
+
