@@ -1,33 +1,38 @@
+#ifndef PRIOQUEUE_H
+#define PRIOQUEUE_H
 #include "../boolean.h"
 #include "../charmachine/charmachine.h"
 #include "../wordmachine/wordmachine.h"
+#include "../pii/pii.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-#define maxN 40
-
-typedef struct
+typedef struct pqnode* PQAddress;
+typedef struct pqnode
 {
-    int first;
-    int second;
-}pii; // pair of integer
+    pii info;
+    PQAddress next;
+} PQNode;
 
-typedef struct
-{
-    int count;
-    pii pair[maxN];
-} PriorityQueue;
+typedef PQAddress PriorityQueue;
 
-/*CONSTRUCTOR*/
+#define NEXT(p) (p)->next
+#define INFO(p) (p)->info
+
+#define FRONT(pq) (pq)->info
+#define FIRST(pq) (pq)
+
+/* Constructor */
+PQAddress newPQAddress(pii val);
 void CreatePriorityQueue(PriorityQueue *pq);
+void DisplayPriorityQueue(PriorityQueue pq);
 
-/*CHECK*/
+/* Priority Queue Properties */
+int PQLength(PriorityQueue pq);
 boolean isPQEmpty(PriorityQueue pq);
-boolean isPQFull(PriorityQueue pq);
 
-/*OPERATION*/
-void swap(pii *a, pii *b);
+/* Enqueue/Dequeue Primitive */
 void enqueue(PriorityQueue *pq, pii val);
 void dequeue(PriorityQueue *pq, pii *val);
 
-/*INFO*/
-pii front(PriorityQueue pq);
-int PQLength(PriorityQueue pq);
+#endif
