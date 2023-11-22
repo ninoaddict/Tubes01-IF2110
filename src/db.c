@@ -5,23 +5,26 @@ ListUser listuser;
 Friend friendGraph;
 int idxCommand;
 Word command[4];
-Word commands[30];
+Word commands[40];
 DATETIME current_time;
 ListKicauan lkic;
 int id_kicau;
 int id_utas;
 boolean run;
+HashTag hashtag;
 
-void setup(){
+void setup()
+{
     run = true;
     currID = -1;
-    createListKicauan(&lkic,50);
+    createListKicauan(&lkic, 50);
     currTweetID = 0;
     id_utas = 1;
     CreateListUser(&listuser);
     CreateFriend(&friendGraph);
+    CreateHashTag(&hashtag);
 
-    // setup commands  
+    // setup commands
     assignWord(&commands[0], "DAFTAR", 6);
 
     assignWord(&commands[1], "MASUK", 5);
@@ -66,10 +69,9 @@ void setup(){
 
     assignWord(&commands[21], "CETAK_UTAS", 10);
 
+    assignWord(&commands[22], "KELOMPOK_TEMAN", 14);
 
+    assignWord(&commands[23], "FYB", 3);
 
-
-
-
-
+    assignWord(&commands[24], "CARI_KICAUAN", 12);
 }

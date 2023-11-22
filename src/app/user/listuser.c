@@ -248,7 +248,7 @@ void addFriendReq(ListUser *listuser, int currIdx, Friend *friend)
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    else if (listuser->listU[currIdx].friendReqList.count)
+    else if (PQLength(listuser->listU[currIdx].friendReqList))
     {
         printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n\n");
         return;
@@ -331,7 +331,7 @@ void displayFriendRequestList(ListUser listuser, int currIdx)
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    int countPQ = listuser.listU[currIdx].friendReqList.count;
+    int countPQ = PQLength(listuser.listU[currIdx].friendReqList);
     if (!countPQ)
     {
         printf("Tidak ada permintaan pertemanan untuk Anda.\n\n");
@@ -339,25 +339,27 @@ void displayFriendRequestList(ListUser listuser, int currIdx)
     else
     {
         printf("Terdapat %d permintaan pertemanan untuk Anda\n\n", countPQ);
-        while (!isPQEmpty(listuser.listU[currIdx].friendReqList))
+        PQAddress currNode = listuser.listU[currIdx].friendReqList;
+        while (currNode != NULL)
         {
-            pii val;
-            dequeue(&listuser.listU[currIdx].friendReqList, &val);
+            pii val = INFO(currNode);
             printf("| ");
             displayWord(listuser.listU[val.first].name);
             printf("| Jumlah teman: %d\n\n", val.second);
+            currNode = NEXT(currNode);
         }
     }
 }
 
 void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend)
 {
+    ;
     if (currIdx == -1)
     {
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    if (!listuser->listU[currIdx].friendReqList.count)
+    if (PQLength(listuser->listU[currIdx].friendReqList) == 0)
     {
         printf("Tidak ada permintaan pertemanan untuk Anda.\n\n");
     }
@@ -421,7 +423,7 @@ void searchFriendGroup(ListUser listuser, int currIdx, Friend friend)
             idx++;
         }
     }
-    printf("Terdapat %d orang dalam Kelompok Teman", idx);
+    printf("Terdapat %d orang dalam Kelompok Teman ", idx);
     displayWordWithoutEnter(listuser.listU[currIdx].name);
     printf(" :\n");
     for (int i = 0; i < idx; i++)

@@ -8,7 +8,7 @@ int main()
         printf(">> ");
         readCommand(command);
         idxCommand = -1;
-        for (int i = 0; i < 22; i++)
+        for (int i = 0; i < 25; i++)
         {
             if (isWordEqual(command[0], commands[i]))
             {
@@ -49,7 +49,8 @@ int main()
                 readWeton(&(listuser.listU[currID]));
                 printf("Profil Anda sudah berhasil diperbaharui\n\n");
             }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
@@ -57,7 +58,7 @@ int main()
             int idNameProfile = searchUserByID(listuser, command[1]);
             if (listuser.listU[idNameProfile].accType)
                 showProfile(listuser.listU[idNameProfile]);
-            else if (currID != -1 && (isFriend(friendGraph, currID, idNameProfile) || currID == idNameProfile))
+            else if (currID != -1 && (isFriend(friendGraph, currID, idNameProfile)))
             {
                 showProfile(listuser.listU[idNameProfile]);
             }
@@ -102,74 +103,98 @@ int main()
             confirmFriendRequest(&listuser, currID, &friendGraph);
             break;
         case 14:
-            if (currID != -1){
-                bacaKicauan(&lkic,listuser.listU[currID],&currTweetID,currID);
+            if (currID != -1)
+            {
+                bacaKicauan(&lkic, listuser.listU[currID], &currTweetID, currID, &hashtag);
             }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
         case 15:
-            if (currID != -1){
-                displayListKicauan(lkic,friendGraph,currID);
+            if (currID != -1)
+            {
+                displayListKicauan(lkic, friendGraph, currID);
             }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
         case 16:
-            if (currID != -1){
-                likeKicau(&lkic,listuser,friendGraph,wordToInteger(command[1]),currID);
+            if (currID != -1)
+            {
+                likeKicau(&lkic, listuser, friendGraph, wordToInteger(command[1]), currID);
             }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
         case 17:
-            if (currID != -1){
-                updateKicau(&lkic,currID,wordToInteger(command[1]));
+            if (currID != -1)
+            {
+                updateKicau(&lkic, currID, wordToInteger(command[1]));
             }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
         case 18:
-            if (currID != -1){
-                makeKicauanUtama(&lkic,currID,wordToInteger(command[1]),&id_utas);
+            if (currID != -1)
+            {
+                makeKicauanUtama(&lkic, currID, wordToInteger(command[1]), &id_utas);
             }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
-        
+
         case 19:
-            if (currID != -1){
-                sambungUtas(&lkic,currID,wordToInteger(command[1]), wordToInteger(command[2]) );
+            if (currID != -1)
+            {
+                sambungUtas(&lkic, currID, wordToInteger(command[1]), wordToInteger(command[2]));
             }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
-        
+
         case 20:
-            if (currID != -1){
+            if (currID != -1)
+            {
                 DATETIME date;
                 Word text;
-                putusUtas(&lkic,&date,&text,currID,wordToInteger(command[1]),wordToInteger(command[2]));
+                putusUtas(&lkic, &date, &text, currID, wordToInteger(command[1]), wordToInteger(command[2]));
             }
-            else{
-                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
-            }
-            break;
-        
-        case 21:
-            if (currID != -1){
-                cetakUtas(lkic,friendGraph,listuser,currID,wordToInteger(command[1]));
-            }
-            else{
+            else
+            {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
             break;
+
+        case 21:
+            if (currID != -1)
+            {
+                cetakUtas(lkic, friendGraph, listuser, currID, wordToInteger(command[1]));
+            }
+            else
+            {
+                printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
+            }
+            break;
+        case 22:
+            searchFriendGroup(listuser, currID, friendGraph);
+            break;
+        case 23:
+            searchFYB(lkic, friendGraph, currID, listuser);
+            break;
+        case 24:
+            searchHashTag(lkic, &hashtag, command[1]);
         default:
             break;
         }

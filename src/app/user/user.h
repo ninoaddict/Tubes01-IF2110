@@ -13,8 +13,8 @@ typedef struct
     Word phoneNum;
     Word bio;
     Word weton;
-    boolean accType;
-    char profilePic[10][10];
+    boolean accType; // true if public
+    char profilePic[5][10];
     FriendRequest friendReqList;
 } User;
 

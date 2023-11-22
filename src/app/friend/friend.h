@@ -7,7 +7,7 @@
 #define Friend Graph // menggunakan ADT Graph dengan representasi adjacency matrix
 
 // CONSTRUCTOR
-void CreateFriend(Friend * friend);
+void CreateFriend(Friend *friend);
 
 // CHECK
 boolean isFriend(Friend friend, int id1, int id2);
