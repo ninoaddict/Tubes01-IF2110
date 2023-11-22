@@ -8,6 +8,6 @@ typedef struct
     int Neff;
 } Graph;
 
-void CreateGraph(Graph * graph);
+void CreateGraph(Graph *graph);
 
 #endif

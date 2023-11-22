@@ -185,7 +185,7 @@ void friendList(ListUser listuser, int currIdx, Friend friend)
         {
             displayWordWithoutEnter(listuser.listU[currIdx].name);
             printf(" memiliki %d teman\n", cnt);
-            printf("Daftar teman\n");
+            printf("Daftar teman ");
             displayWord(listuser.listU[currIdx].name);
             for (int i = 0; i < cnt; i++)
             {
@@ -224,12 +224,13 @@ void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
         {
             printf("Apakah anda yakin ingin menghapus ");
             displayWordWithoutEnter(name);
-            printf("dari daftar teman anda? (YA/TIDAK) ");
+            printf(" dari daftar teman anda? (YA/TIDAK) ");
             Word confirm = readWord(25);
             if (confirm.Length == 2)
             {
                 unsetFriend(friend, currIdx, idx);
-                printf("Bob berhasil dihapus dari daftar teman Anda.\n\n");
+                displayWordWithoutEnter(name);
+                printf(" berhasil dihapus dari teman Anda.\n\n");
             }
             else
             {
@@ -247,7 +248,7 @@ void addFriendReq(ListUser *listuser, int currIdx, Friend *friend)
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    else if (listuser->listU[currIdx].friendReqList.count)
+    else if (PQLength(listuser->listU[currIdx].friendReqList))
     {
         printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n\n");
         return;
@@ -330,7 +331,7 @@ void displayFriendRequestList(ListUser listuser, int currIdx)
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    int countPQ = listuser.listU[currIdx].friendReqList.count;
+    int countPQ = PQLength(listuser.listU[currIdx].friendReqList);
     if (!countPQ)
     {
         printf("Tidak ada permintaan pertemanan untuk Anda.\n\n");
@@ -338,25 +339,27 @@ void displayFriendRequestList(ListUser listuser, int currIdx)
     else
     {
         printf("Terdapat %d permintaan pertemanan untuk Anda\n\n", countPQ);
-        while (!isPQEmpty(listuser.listU[currIdx].friendReqList))
+        PQAddress currNode = listuser.listU[currIdx].friendReqList;
+        while (currNode != NULL)
         {
-            pii val;
-            dequeue(&listuser.listU[currIdx].friendReqList, &val);
+            pii val = INFO(currNode);
             printf("| ");
             displayWord(listuser.listU[val.first].name);
             printf("| Jumlah teman: %d\n\n", val.second);
+            currNode = NEXT(currNode);
         }
     }
 }
 
 void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend)
 {
+    ;
     if (currIdx == -1)
     {
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    if (!listuser->listU[currIdx].friendReqList.count)
+    if (PQLength(listuser->listU[currIdx].friendReqList) == 0)
     {
         printf("Tidak ada permintaan pertemanan untuk Anda.\n\n");
     }

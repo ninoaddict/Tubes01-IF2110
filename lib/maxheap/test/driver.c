@@ -1,8 +1,9 @@
-#include "../priorityqueue.h"
+#include "../maxheap.h"
+#include <stdio.h>
 int main(){
-PriorityQueue pq;
+    PriorityQueue pq;
     CreatePriorityQueue(&pq);
-    pii a, b, c, d, e, f;
+    pii a, b, c, d, e;
     a.first = 1;
     a.second = 2;
     b.first = 2;
@@ -13,18 +14,14 @@ PriorityQueue pq;
     d.second = -1;
     e.first = 5;
     e.second = 10;
-    f.first = 3;
-    f.second = 12;
     enqueue(&pq, a);
     enqueue(&pq, b);
     enqueue(&pq, c);
     enqueue(&pq, d);
     enqueue(&pq, e);
-    enqueue(&pq, f);
+    pii val;
     while (!isPQEmpty(pq)){
-        pii temp;
-        dequeue(&pq, &temp);
-        printf("%d %d\n", temp.first, temp.second);
+        dequeue(&pq, &val);
+        printf("%d %d\n", val.first, val.second);
     }
-    printf("%d\n", PQLength(pq));
 }

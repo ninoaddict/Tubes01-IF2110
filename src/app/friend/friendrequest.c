@@ -1,35 +1,49 @@
 #include "friendrequest.h"
 
-void CreateFriendRequest(FriendRequest *pq){
+void CreateFriendRequest(FriendRequest *pq)
+{
     CreatePriorityQueue(pq);
 }
 
-void addToFriendReqList(FriendRequest *pq, int idUser, int cntFriend){
+void addToFriendReqList(FriendRequest *pq, int idUser, int cntFriend)
+{
     pii val;
     val.first = idUser;
     val.second = cntFriend;
     enqueue(pq, val);
 }
 
-void removeFromFriendReqList(FriendRequest *pq, int idUser){
-    pii tempArr[20], tempVal;
-    int cnt = 0;
-    while (!isPQEmpty(*pq)){
-        dequeue(pq, &tempVal);
-        if (tempVal.first == idUser) break;
-        tempArr[cnt] = tempVal;
-        cnt++;
+void removeFromFriendReqList(FriendRequest *pq, int idUser)
+{
+    PQAddress currNode = *pq;
+    if (INFO(currNode).first == idUser)
+    {
+        free(currNode);
+        *pq = NULL;
     }
-    for (int i = 0; i < cnt; i++){
-        enqueue(pq, tempArr[i]);
+    else
+    {
+        while (NEXT(currNode) != NULL)
+        {
+            if (INFO(NEXT(currNode)).first == idUser)
+            {
+                PQAddress temp = NEXT(currNode);
+                NEXT(currNode) = NEXT(temp);
+                free(temp);
+                break;
+            }
+            currNode = NEXT(currNode);
+        }
     }
 }
 
-void confirmFriend(FriendRequest *pq){
+void confirmFriend(FriendRequest *pq)
+{
     pii val;
     dequeue(pq, &val);
 }
 
-pii topFriendRequest(FriendRequest pq){
-    return pq.pair[0];
+pii topFriendRequest(FriendRequest pq)
+{
+    return pq->info;
 }
