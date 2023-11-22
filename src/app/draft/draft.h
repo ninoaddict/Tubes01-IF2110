@@ -45,10 +45,10 @@ void deleteDraft(StackDraft *sd, Draft *d);
 
 boolean isEmptyDraft(StackDraft sd);
 
-void seeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *sd, int *IdKicau);
+void seeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *sd, int *IdKicau, HashTag *hashtag);
 
 void publishDraft(int id_kicau, int id_user, Word user_name, Kicauan *k, Draft d, Word author, int idAuthor);
 
-void makeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *st, int *IdKicau);
+void makeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *st, int *IdKicau, HashTag *hashtag);
 
 #endif
