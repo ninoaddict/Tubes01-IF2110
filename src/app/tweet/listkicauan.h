@@ -11,16 +11,16 @@
 /* Indeks minimum list */
 #define IDX_MIN 0
 
-
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
 typedef Kicauan ElType; /* type elemen list */
 typedef int IdxType;
 
-typedef struct listKicauan{
+typedef struct listKicauan
+{
     ElType *buffer;
-    int nEff;       
+    int nEff;
     int capacity;
 
 } ListKicauan;
@@ -30,37 +30,36 @@ typedef struct listKicauan{
 #define ELMT(l, i) (l).buffer[i]
 #define CAPACITY(l) (l).capacity
 
-void createListKicauan(ListKicauan* l, int capacity);
+void createListKicauan(ListKicauan *l, int capacity);
 
 void dealocateListKicauan(ListKicauan *l);
 
-void bacaKicauan(ListKicauan* lkic, User currUser, int* IdKicau,int currId);
+void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int currId);
 
-void displayListKicauan(ListKicauan lkic, Friend friend , int currId);
+void displayListKicauan(ListKicauan lkic, Friend friend, int currId);
 
-void copyListKicauan(ListKicauan lIn, ListKicauan* lOut);
+void copyListKicauan(ListKicauan lIn, ListKicauan *lOut);
 
-void expandListKicauan(ListKicauan* l, int num);
+void expandListKicauan(ListKicauan *l, int num);
 
 boolean isFullListKicauan(ListKicauan l);
 
-void likeKicau(ListKicauan* lkic,ListUser l,Friend friend, int idKicauYangInginDiLike, int currIdx);
+void likeKicau(ListKicauan *lkic, ListUser l, Friend friend, int idKicauYangInginDiLike, int currIdx);
 
-void updateKicau(ListKicauan* lkic, int currIdx, int idKicau);
+void updateKicau(ListKicauan *lkic, int currIdx, int idKicau);
 
 boolean userOwnsKicau(ListKicauan lkic, int currIdx, int idKicau);
 
-void makeKicauanUtama(ListKicauan* lkic, int currIdx,int idKicau,int* idUtas);
+void makeKicauanUtama(ListKicauan *lkic, int currIdx, int idKicau, int *idUtas);
 
-void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser,int currIdx,int idUtas);
+void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser, int currIdx, int idUtas);
 
 boolean possibleToConnect(ListUtas lUtas, int index);
 
 boolean possibleToDisConnect(ListUtas lUtas, int index);
 
-void sambungUtas(ListKicauan* lkic, int currIdx,int idUtas, int index);
+void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index);
 
-void putusUtas(ListKicauan* lkic,DATETIME* date, Word* text ,int currIdx,int idUtas,int index);
-
+void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int idUtas, int index);
 
 #endif

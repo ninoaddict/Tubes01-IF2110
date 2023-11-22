@@ -4,6 +4,6 @@ typedef struct
 {
     int first;
     int second;
-}pii; // pair of integer
+} pii; // pair of integer
 
 #endif

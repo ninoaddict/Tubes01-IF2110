@@ -53,23 +53,27 @@ void enqueueMaxHeap(MaxHeap *pq, pii newVal)
     }
 }
 
-void dequeueMaxHeap(MaxHeap *pq, pii *val){
+void dequeueMaxHeap(MaxHeap *pq, pii *val)
+{
     *val = pq->pair[0];
     swap(&pq->pair[0], &pq->pair[pq->count - 1]);
     pq->count = pq->count - 1;
     int i = 0;
-    while ((2 * i + 1) < pq->count){
+    while ((2 * i + 1) < pq->count)
+    {
         int j = 2 * i + 1;
-        if (2 * i + 2 < pq->count && pq->pair[2 * i + 2].second > pq->pair[j].second){
+        if (2 * i + 2 < pq->count && pq->pair[2 * i + 2].second > pq->pair[j].second)
+        {
             j = 2 * i + 2;
         }
-        if (pq->pair[j].second <= pq->pair[i].second){
+        if (pq->pair[j].second <= pq->pair[i].second)
+        {
             break;
         }
         swap(&pq->pair[j], &pq->pair[i]);
         i = j;
     }
-} 
+}
 
 pii maxHeapFront(MaxHeap pq)
 {

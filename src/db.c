@@ -12,16 +12,17 @@ int id_kicau;
 int id_utas;
 boolean run;
 
-void setup(){
+void setup()
+{
     run = true;
     currID = -1;
-    createListKicauan(&lkic,50);
+    createListKicauan(&lkic, 50);
     currTweetID = 0;
     id_utas = 1;
     CreateListUser(&listuser);
     CreateFriend(&friendGraph);
 
-    // setup commands  
+    // setup commands
     assignWord(&commands[0], "DAFTAR", 6);
 
     assignWord(&commands[1], "MASUK", 5);
@@ -65,11 +66,4 @@ void setup(){
     assignWord(&commands[20], "HAPUS_UTAS", 10);
 
     assignWord(&commands[21], "CETAK_UTAS", 10);
-
-
-
-
-
-
-
 }

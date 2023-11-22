@@ -15,17 +15,6 @@ void addToFriendReqList(FriendRequest *pq, int idUser, int cntFriend)
 
 void removeFromFriendReqList(FriendRequest *pq, int idUser)
 {
-    // pii tempArr[20], tempVal;
-    // int cnt = 0;
-    // while (!isPQEmpty(*pq)){
-    //     dequeue(pq, &tempVal);
-    //     if (tempVal.first == idUser) break;
-    //     tempArr[cnt] = tempVal;
-    //     cnt++;
-    // }
-    // for (int i = 0; i < cnt; i++){
-    //     enqueue(pq, tempArr[i]);
-    // }
     PQAddress currNode = *pq;
     if (INFO(currNode).first == idUser)
     {
@@ -34,8 +23,10 @@ void removeFromFriendReqList(FriendRequest *pq, int idUser)
     }
     else
     {
-        while (NEXT(currNode) != NULL){
-            if (INFO(NEXT(currNode)).first == idUser){
+        while (NEXT(currNode) != NULL)
+        {
+            if (INFO(NEXT(currNode)).first == idUser)
+            {
                 PQAddress temp = NEXT(currNode);
                 NEXT(currNode) = NEXT(temp);
                 free(temp);

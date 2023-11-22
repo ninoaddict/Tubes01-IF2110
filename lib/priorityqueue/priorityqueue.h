@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct pqnode* PQAddress;
+typedef struct pqnode *PQAddress;
 typedef struct pqnode
 {
     pii info;
@@ -20,7 +20,6 @@ typedef PQAddress PriorityQueue;
 #define INFO(p) (p)->info
 
 #define FRONT(pq) (pq)->info
-#define FIRST(pq) (pq)
 
 /* Constructor */
 PQAddress newPQAddress(pii val);

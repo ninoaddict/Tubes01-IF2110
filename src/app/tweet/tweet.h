@@ -7,16 +7,15 @@
 #include "../friend/friend.h"
 #include "../user/listuser.h"
 
-
-
-typedef struct kicauan{
+typedef struct kicauan
+{
     int id;
     Word text;
     int like;
     Word author;
     DATETIME time;
-    ListUtas ut; // null jika tidak ada
-    int idUtas; // -1 jika tidak ada
+    ListUtas ut;  // null jika tidak ada
+    int idUtas;   // -1 jika tidak ada
     int idAuthor; // lokasi user di listuser, jadi currId
     // pointer to tree
 
@@ -30,17 +29,11 @@ typedef struct kicauan{
 #define IDUTAS(kic) (kic).idUtas
 #define IDAUTHOR(kic) (kic).idAuthor
 
-
-
-void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan* kic, int idAuthor);
-
+void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan *kic, int idAuthor);
 
 // KICAUAN , harus ada friendgroup dulu
 void ubahKicau(int idKicau);
 
 void displayKicau(Kicauan kic); // display sebuah kicau
-
-
-
 
 #endif
