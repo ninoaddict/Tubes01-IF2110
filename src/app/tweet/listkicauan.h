@@ -6,6 +6,7 @@
 #include "../../../lib/boolean.h"
 #include "../../../lib/charmachine/charmachine.h"
 #include "../../../lib/wordmachine/wordmachine.h"
+#include "../hashtag/hashtag.h"
 #include "../friend/friend.h"
 #include "../user/listuser.h"
 /* Indeks minimum list */
@@ -34,7 +35,7 @@ void createListKicauan(ListKicauan *l, int capacity);
 
 void dealocateListKicauan(ListKicauan *l);
 
-void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int currId);
+void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int currId, HashTag * hashtag);
 
 void displayListKicauan(ListKicauan lkic, Friend friend, int currId);
 
@@ -61,5 +62,7 @@ boolean possibleToDisConnect(ListUtas lUtas, int index);
 void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index);
 
 void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int idUtas, int index);
+
+void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag);
 
 #endif

@@ -11,6 +11,7 @@ ListKicauan lkic;
 int id_kicau;
 int id_utas;
 boolean run;
+HashTag hashtag;
 
 void setup()
 {
@@ -21,6 +22,7 @@ void setup()
     id_utas = 1;
     CreateListUser(&listuser);
     CreateFriend(&friendGraph);
+    CreateHashTag(&hashtag);
 
     // setup commands
     assignWord(&commands[0], "DAFTAR", 6);
@@ -70,4 +72,6 @@ void setup()
     assignWord(&commands[22], "KELOMPOK_TEMAN", 14);
 
     assignWord(&commands[23], "FYB", 3);
+
+    assignWord(&commands[24], "CARI_KICAUAN", 12);
 }

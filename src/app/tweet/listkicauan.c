@@ -14,7 +14,7 @@ void dealocateListKicauan(ListKicauan *l)
     free(BUFFER(*l));
 }
 
-void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor)
+void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor, HashTag * hashtag)
 {
     Word text;
     int i;
@@ -38,6 +38,20 @@ void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor)
     }
     else
     {
+        printf("\nMasukkan hashtag: \n");
+        Word tag = readWord(300);
+        int hasLen = tag.Length;
+        for (i = 0; i < tag.Length; i++)
+        {
+            if (tag.TabWord[i] == ' ' || tag.TabWord[i] == '\t')
+            {
+                hasLen--;
+            }
+        }
+        if (hasLen)
+        {
+            addHashElement(tag, NEFF(*lkic), hashtag);   
+        }
         // *IdKicau += 1; // Idkicau dianggap 0 di main
         DATETIME time;
         BacaDATETIME(&time);
@@ -45,7 +59,7 @@ void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor)
         {
             expandListKicauan(lkic, 2 * NEFF(*lkic));
         }
-        createKicauan(NEFF(*lkic) + 1, text, 0, currUser.name, time, &((*lkic).buffer[NEFF(*lkic)]), idAuthor);
+        createKicauan(NEFF(*lkic) + 1, text, 0, currUser.name, time, &((*lkic).buffer[NEFF(*lkic)]), idAuthor, tag);
         NEFF(*lkic) += 1;
         *IdKicau = NEFF(*lkic) - 1;
         printf("\n");
@@ -446,5 +460,20 @@ void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int i
     else
     {
         printf("Utas tidak ditemukan!\n\n");
+    }
+}
+
+void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag){
+    int i = HashFunction(tag);
+    while (hashtag->Buffer[i].val != NULL && !isWordEqual(hashtag->Buffer[i].key, tag))
+    {
+        printf("ada collision bos!\n");
+        i = (i + 1) % mod;
+    }
+    hashAddress currNode = hashtag->Buffer[i].val;
+    while (currNode != NULL){
+        int idx = currNode->info;
+        displayKicau(lkic.buffer[idx]);
+        currNode = currNode->next;
     }
 }

@@ -8,7 +8,7 @@ int main()
         printf(">> ");
         readCommand(command);
         idxCommand = -1;
-        for (int i = 0; i < 24; i++)
+        for (int i = 0; i < 25; i++)
         {
             if (isWordEqual(command[0], commands[i]))
             {
@@ -105,7 +105,7 @@ int main()
         case 14:
             if (currID != -1)
             {
-                bacaKicauan(&lkic, listuser.listU[currID], &currTweetID, currID);
+                bacaKicauan(&lkic, listuser.listU[currID], &currTweetID, currID, &hashtag);
             }
             else
             {
@@ -193,6 +193,8 @@ int main()
         case 23:
             searchFYB(lkic, friendGraph, currID, listuser);
             break;
+        case 24:
+            searchHashTag(lkic, &hashtag, command[1]);
         default:
             break;
         }

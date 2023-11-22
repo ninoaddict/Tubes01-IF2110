@@ -17,6 +17,7 @@ extern DATETIME current_time;
 extern ListKicauan lkic;
 extern int id_kicau;
 extern int id_utas;
+extern HashTag hashtag;
 
 void setup();
 
