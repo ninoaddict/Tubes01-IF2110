@@ -5,51 +5,50 @@
 #include "../../../lib/stack/stack.h"
 #include "../../../lib/datetime/datetime.h"
 #include "../../../lib/wordmachine/wordmachine.h"
-#include "../tweet/tweet.h"
+#include "../tweet/listkicauan.h"
 
 typedef struct draft
 {
     Word word;
+    Word tag;
     DATETIME time;
 } Draft;
 
+typedef struct node *Address;
+typedef struct node
+{
+    Draft info;
+    Address next;
+} Node;
 
-typedef Draft ElType;
-
-typedef struct node* Address;
-typedef struct node { 
-    ElType info;
-    Address next; 
-} Node; 
-
-typedef struct { 
+typedef struct
+{
     Address addrTopDraft;
 } StackDraft;
 
-#define     NEXT(p) (p)->next
-#define     INFO(p) (p)->info
+#define NEXT(p) (p)->next
+#define INFO(p) (p)->info
 #define ADDR_TOP(sd) (sd).addrTopDraft
-#define      TOP(sd) (sd).addrTopDraft->info 
+#define TOP(sd) (sd).addrTopDraft->info
 #define WORD(d) (d).word
 #define TIME(d) (d).time
 
+Address newNodeDraft(Draft x);
 
-
-Address newNodeDraft(ElType x);
-
-void CreateDraft(Draft *d, Word w, DATETIME time);
+void CreateDraft(Draft *d, Word w, DATETIME time, Word tag);
 
 void CreateStackDraft(StackDraft *sd);
 
-void pushDraft(StackDraft *sd, ElType d);
+void pushDraft(StackDraft *sd, Draft d);
 
-void deleteDraft(StackDraft *sd, ElType *d);
+void deleteDraft(StackDraft *sd, Draft *d);
 
 boolean isEmptyDraft(StackDraft sd);
 
-void seeDraft(StackDraft sd);
+void seeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *sd, int *IdKicau);
 
-void publishDraft(int id_kicau, int id_user, Word user_name, Kicauan *k, ElType d,Word author, int idAuthor);
+void publishDraft(int id_kicau, int id_user, Word user_name, Kicauan *k, Draft d, Word author, int idAuthor);
 
+void makeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *st, int *IdKicau);
 
 #endif

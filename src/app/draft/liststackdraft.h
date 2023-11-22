@@ -12,8 +12,10 @@ typedef struct liststackdraft
    ListElType contents[MaxElListStack];
 } ListStackDraft;
 
-#define ELMT(l,idx) (l).contents[idx]
+// #define ELMT(l,idx) (l).contents[idx]
 
 void assignStackDraft(ListStackDraft *l, int userID, StackDraft sd);
+
+void CreateListStackDraft(ListStackDraft *l);
 
 #endif
