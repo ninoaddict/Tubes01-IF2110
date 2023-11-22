@@ -5,6 +5,6 @@
 #include "../tweet/listkicauan.h"
 #include "../../../lib/maxheap/maxheap.h"
 
-void searchFYB(ListKicauan listkicau);
+void searchFYB(ListKicauan listkicauan, Friend friendGraph, int currIdx, ListUser listuser);
 
 #endif

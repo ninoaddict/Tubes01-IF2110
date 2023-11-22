@@ -5,7 +5,7 @@ ListUser listuser;
 Friend friendGraph;
 int idxCommand;
 Word command[4];
-Word commands[30];
+Word commands[40];
 DATETIME current_time;
 ListKicauan lkic;
 int id_kicau;
@@ -66,4 +66,8 @@ void setup()
     assignWord(&commands[20], "HAPUS_UTAS", 10);
 
     assignWord(&commands[21], "CETAK_UTAS", 10);
+
+    assignWord(&commands[22], "KELOMPOK_TEMAN", 14);
+
+    assignWord(&commands[23], "FYB", 3);
 }

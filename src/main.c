@@ -8,7 +8,7 @@ int main()
         printf(">> ");
         readCommand(command);
         idxCommand = -1;
-        for (int i = 0; i < 22; i++)
+        for (int i = 0; i < 24; i++)
         {
             if (isWordEqual(command[0], commands[i]))
             {
@@ -58,7 +58,7 @@ int main()
             int idNameProfile = searchUserByID(listuser, command[1]);
             if (listuser.listU[idNameProfile].accType)
                 showProfile(listuser.listU[idNameProfile]);
-            else if (currID != -1 && (isFriend(friendGraph, currID, idNameProfile) || currID == idNameProfile))
+            else if (currID != -1 && (isFriend(friendGraph, currID, idNameProfile)))
             {
                 showProfile(listuser.listU[idNameProfile]);
             }
@@ -186,6 +186,12 @@ int main()
             {
                 printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
             }
+            break;
+        case 22:
+            searchFriendGroup(listuser, currID, friendGraph);
+            break;
+        case 23:
+            searchFYB(lkic, friendGraph, currID, listuser);
             break;
         default:
             break;
