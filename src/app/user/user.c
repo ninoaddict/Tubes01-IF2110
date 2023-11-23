@@ -82,7 +82,8 @@ void readWeton(User *user)
     printf("Masukkan Weton:\n");
     Word weton = readWord(10);
     printf("\n");
-    if (weton.Length == 0) return;
+    if (weton.Length == 0)
+        return;
     for (int i = 0; i < 6; i++)
     {
         if (isCharEqual(weton, wetons[i]))
@@ -111,7 +112,8 @@ void readWeton(User *user)
 
 void switchAccType(User *user)
 {
-    Word ans;
+    Word ans, ya;
+    assignWord(&ya, "YA", 2);
     if (user->accType)
     {
         printf("Saat ini, akun Anda adalah akun Publik.\n");
@@ -124,7 +126,7 @@ void switchAccType(User *user)
     }
     printf("(YA/TIDAK) ");
     ans = readWord(10);
-    if (ans.Length == 2)
+    if (isWordEqual(ans, ya))
         user->accType = !user->accType;
     printf("\n");
 }
@@ -145,8 +147,10 @@ void changeProfilePicture(User *user)
     showProfilePicture(*user);
     printf("Masukkan foto profil yang baru\n");
     STARTWORD();
-    for (int i = 0; i < 5; i++){
-        for (int j = 0; j < 10; j++){
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
             user->profilePic[i][j] = currentWord.TabWord[0];
             ADVWORD();
         }

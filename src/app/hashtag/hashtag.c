@@ -53,10 +53,10 @@ void addHashElement(Word w, int idx, HashTag *hashtag)
     int i = HashFunction(w);
     while (hashtag->Buffer[i].val != NULL && !isWordEqual(hashtag->Buffer[i].key, w))
     {
-        printf("ada collision bos!\n");
+        // printf("ada collision bos!\n");
         i = (i + 1) % mod;
     }
     insertHashElement(&(hashtag->Buffer[i].val), idx);
     hashtag->Buffer[i].key = w;
-    printf("%d\n", i);
+    // printf("%d\n", i);
 }

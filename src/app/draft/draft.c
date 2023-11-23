@@ -59,9 +59,10 @@ void seeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *sd, i
         printf("| ");
         displayWord(INFO(ADDR_TOP(*sd)).word);
         printf("\nApakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)\n");
-        Word ubah, terbit, ans;
+        Word ubah, terbit, ans, kembali;
         assignWord(&ubah, "UBAH", 4);
         assignWord(&terbit, "TERBIT", 6);
+        assignWord(&kembali, "KEMBALI", 7);
         ans = readWord(30);
         Draft temp;
         deleteDraft(sd, &temp);
@@ -71,18 +72,22 @@ void seeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *sd, i
             {
                 expandListKicauan(lkic, 2 * NEFF(*lkic));
             }
-            int hashLen = sd->addrTopDraft->info.tag.Length;
-            for (int i = 0; i < sd->addrTopDraft->info.tag.Length; i++)
+            int hashLen = temp.tag.Length;
+            for (int i = 0; i < temp.tag.Length; i++)
             {
-                if (sd->addrTopDraft->info.tag.TabWord[i] == ' ' || sd->addrTopDraft->info.tag.TabWord[i] == '\t')
+                if (temp.tag.TabWord[i] == ' ' || temp.tag.TabWord[i] == '\t')
                     hashLen--;
             }
             if (hashLen){
-                addHashElement(sd->addrTopDraft->info.tag, NEFF(*lkic), hashtag);
+                addHashElement(temp.tag, NEFF(*lkic), hashtag);
             }
+            else{
+                temp.tag.Length = 0;
+            }
+            
             DATETIME time;
             BacaDATETIME(&time);
-            createKicauan(NEFF(*lkic) + 1, sd->addrTopDraft->info.word, 0, authorName, time, &(lkic->buffer[NEFF(*lkic)]), currIdx, sd->addrTopDraft->info.tag);
+            createKicauan(NEFF(*lkic) + 1, temp.word, 0, authorName, time, &(lkic->buffer[NEFF(*lkic)]), currIdx, temp.tag);
             NEFF(*lkic) += 1;
             *IdKicau = NEFF(*lkic) - 1;
             printf("\nSelamat! Draf kicauan telah diterbitkan!\n");
@@ -93,6 +98,10 @@ void seeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *sd, i
         {
             printf("\nMasukkan draf yang baru: \n");
             makeDraft(lkic, currIdx, authorName, sd, IdKicau, hashtag);
+        }
+        else if (isWordEqual(ans, kembali)){
+            pushDraft(sd, temp);
+            printf("\nKembali..\n");
         }
         else
         {

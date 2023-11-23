@@ -63,6 +63,5 @@ void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index);
 
 void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int idUtas, int index);
 
-void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag);
-
+void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag, int currID, Friend friendGraph, ListUser listuser);
 #endif
