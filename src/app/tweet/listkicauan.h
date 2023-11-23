@@ -64,4 +64,10 @@ void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index);
 void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int idUtas, int index);
 
 void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag, int currID, Friend friendGraph, ListUser listuser);
+
+void balas(ListKicauan *lkic, int idKicauan, int idBalasan, int currID, Friend friendGraph, ListUser listuser);
+
+void deleteBalasan(int idKicau, int idBalasan, ListKicauan *lkic, int currID);
+
+void displayBalasan(AddressTree currTree, ListUser listuser, Friend friendGraph, int dep, int currID);
 #endif

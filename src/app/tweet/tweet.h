@@ -6,6 +6,7 @@
 #include "../thread/thread.h"
 #include "../friend/friend.h"
 #include "../user/listuser.h"
+#include "../reply/treebalasan.h"
 
 typedef struct kicauan
 {
@@ -18,9 +19,9 @@ typedef struct kicauan
     int idUtas;   // -1 jika tidak ada
     int idAuthor; // lokasi user di listuser, jadi currId
     Word tag;
-    // pointer to tree
-
+    TreeBalasan tb;
 } Kicauan;
+
 #define ID(kic) (kic).id
 #define TEXTKICAU(kic) (kic).text
 #define LIKE(kic) (kic).like
@@ -30,6 +31,7 @@ typedef struct kicauan
 #define IDUTAS(kic) (kic).idUtas
 #define IDAUTHOR(kic) (kic).idAuthor
 #define TAG(kic) (kic).tag
+#define TREE(kic) (kic).tb
 
 void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kicauan *kic, int idAuthor, Word tag);
 

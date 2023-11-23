@@ -14,6 +14,7 @@ void createKicauan(int id, Word text, int like, Word author, DATETIME time, Kica
     IDUTAS(*kic) = -1;
     IDAUTHOR(*kic) = idAuthor;
     TAG(*kic) = tag;
+    CreateTreeBalasan(&TREE(*kic));
 }
 
 void displayKicau(Kicauan kic)
