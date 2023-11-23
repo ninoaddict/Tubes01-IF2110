@@ -225,9 +225,12 @@ void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
             printf("Apakah anda yakin ingin menghapus ");
             displayWordWithoutEnter(name);
             printf(" dari daftar teman anda? (YA/TIDAK) ");
-            Word confirm = readWord(25);
-            if (confirm.Length == 2)
+            Word confirm = readWord(25), ya;
+            assignWord(&ya, "YA", 2);
+            if (isWordEqual(ya, confirm))
             {
+                listuser->listU[currIdx].friendNum--;
+                listuser->listU[idx].friendNum--;
                 unsetFriend(friend, currIdx, idx);
                 displayWordWithoutEnter(name);
                 printf(" berhasil dihapus dari teman Anda.\n\n");
@@ -353,7 +356,6 @@ void displayFriendRequestList(ListUser listuser, int currIdx)
 
 void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend)
 {
-    ;
     if (currIdx == -1)
     {
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
@@ -374,9 +376,10 @@ void confirmFriendRequest(ListUser *listuser, int currIdx, Friend *friend)
         displayWord(listuser->listU[val.first].name);
         printf("| Jumlah teman: %d\n\n", val.second);
         printf("Apakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK)  ");
-        Word confirm = readWord(25);
+        Word confirm = readWord(25), ya;
+        assignWord(&ya, "YA", 2);
         printf("\n");
-        if (confirm.Length == 2)
+        if (isWordEqual(ya, confirm))
         {
             setFriend(friend, currIdx, val.first);
             listuser->listU[currIdx].friendNum += 1;

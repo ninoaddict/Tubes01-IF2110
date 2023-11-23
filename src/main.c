@@ -99,7 +99,6 @@ int main()
             displayFriendRequestList(listuser, currID);
             break;
         case 13:
-            printf("masuk\n");
             confirmFriendRequest(&listuser, currID, &friendGraph);
             break;
         case 14:
@@ -194,7 +193,7 @@ int main()
             searchFYB(lkic, friendGraph, currID, listuser);
             break;
         case 24:
-            searchHashTag(lkic, &hashtag, command[1]);
+            searchHashTag(lkic, &hashtag, command[1], currID, friendGraph, listuser);
             break;
         case 25:
             if (currID == -1)
