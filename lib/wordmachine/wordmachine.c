@@ -159,7 +159,7 @@ int wordToInteger(Word W){
 
 boolean isAllSpace(Word w){
     for (int i = 0; i < w.Length; i++){
-        if (w.TabWord[i] != ' ')
+        if (w.TabWord[i] != ' ' && w.TabWord[i] != '\t')
             return false;
     }
     return true;

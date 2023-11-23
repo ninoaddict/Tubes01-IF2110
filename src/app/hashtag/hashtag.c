@@ -58,5 +58,5 @@ void addHashElement(Word w, int idx, HashTag *hashtag)
     }
     insertHashElement(&(hashtag->Buffer[i].val), idx);
     hashtag->Buffer[i].key = w;
-    printf("%d\n", i);
+    // printf("%d\n", i);
 }
