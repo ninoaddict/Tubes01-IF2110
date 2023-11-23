@@ -19,6 +19,7 @@ int main(void){
     int id;
     DATETIME t;
     Word w;
+    HashTag h;
 
     CreateFriend(&friend);
     
@@ -29,7 +30,7 @@ int main(void){
     createListKicauan(&l,10);
 
     SignUp(&listuser, &currIdx);  // signup pertama
-    bacaKicauan(&l, listuser.listU[0],&IdKicau,currIdx);
+    bacaKicauan(&l, listuser.listU[0],&IdKicau,currIdx,&h);
     // printf("\n");
     // currIdx = -1; 
 
@@ -118,7 +119,7 @@ int main(void){
     cetakUtas(l,friend,listuser,currIdx,1);
     currIdx = -1;
     SignUp(&listuser, &currIdx);  // signup pertama
-    bacaKicauan(&l, listuser.listU[0],&IdKicau,currIdx);
+    bacaKicauan(&l, listuser.listU[0],&IdKicau,currIdx,&h);
     printf("percobaan membuat utas\n");
     printf("id kicau berapa ? : ");
     userinput = readWord(100);

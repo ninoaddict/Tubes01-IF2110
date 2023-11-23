@@ -18,20 +18,12 @@ void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor, H
 {
     Word text;
     int i;
-    int initial_length;
+   
     printf("Masukkan kicauan:\n");
 
     text = readWord(280);
-    initial_length = text.Length;
-    for (i = 0; i < text.Length; i++)
-    {
-        if (text.TabWord[i] == ' ' || text.TabWord[i] == '\t')
-        {
-            initial_length -= 1;
-        }
-    }
 
-    if (text.Length == 0 || initial_length == 0)
+    if (isAllSpace(text))
     {
         printf("\n");
         printf("Kicauan tidak boleh hanya berisi spasi!\n\n");
@@ -129,11 +121,11 @@ boolean isFullListKicauan(ListKicauan l)
     return (NEFF(l) == CAPACITY(l));
 }
 
-void likeKicau(ListKicauan *lkic, ListUser lUser, Friend friend, int idKicauYangInginDiLike, int currIdx)
+void likeKicau(ListKicauan *lkic, ListUser lUser, Friend friend, int  idKicauYangInginDiLike, int currIdx)
 {
     if (idKicauYangInginDiLike < 1 || idKicauYangInginDiLike > NEFF(*lkic))
     {
-        printf("Tidak ditemukan kicauan dengan ID = %d\n", idKicauYangInginDiLike);
+        printf("Tidak ditemukan kicauan dengan ID = %d\n\n", idKicauYangInginDiLike);
     }
     else
     {
@@ -147,7 +139,7 @@ void likeKicau(ListKicauan *lkic, ListUser lUser, Friend friend, int idKicauYang
         }
         else
         {
-            printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu\n");
+            printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu\n\n");
         }
     }
 }
@@ -156,7 +148,7 @@ void updateKicau(ListKicauan *lkic, int currIdx, int idKicau)
 {
     if (idKicau < 1 || idKicau > NEFF(*lkic))
     {
-        printf("Tidak ditemukan kicauan dengan ID = %d!\n", idKicau);
+        printf("Tidak ditemukan kicauan dengan ID = %d!\n\n", idKicau);
     }
     else if (userOwnsKicau(*lkic, currIdx, idKicau))
     {
@@ -164,9 +156,9 @@ void updateKicau(ListKicauan *lkic, int currIdx, int idKicau)
         Word text;
         text = readWord(280);
         printf("\n");
-        if (text.Length == 0)
+        if (isAllSpace(text))
         {
-            printf("Kicauan tidak boleh hanya berisi spasi!");
+            printf("Kicauan tidak boleh hanya berisi spasi!\n\n");
         }
         else
         {
@@ -183,8 +175,12 @@ void updateKicau(ListKicauan *lkic, int currIdx, int idKicau)
 }
 
 void makeKicauanUtama(ListKicauan *lkic, int currIdx, int idKicau, int *idUtas)
-{
-    if (userOwnsKicau(*lkic, currIdx, idKicau) && isEmptyUtas((*lkic).buffer[idKicau - 1].ut))
+{   
+    if (idKicau <= 0 ){
+        printf("Kicauan tidak ditemukan\n\n");
+        return;
+    }
+    else if(userOwnsKicau(*lkic, currIdx, idKicau) && isEmptyUtas((*lkic).buffer[idKicau - 1].ut))
     {
         (*lkic).buffer[idKicau - 1].idUtas = *idUtas;
         CreateUtas(&(*lkic).buffer[idKicau - 1].ut);
@@ -252,7 +248,7 @@ void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser, int currIdx, int
     idAuthor = (lkic).buffer[i].idAuthor;
     if (!found)
     {
-        printf("Utas tidak ditemukan!\n");
+        printf("Utas tidak ditemukan!\n\n");
     }
     else if (userOwnsKicau(lkic, currIdx, i + 1) || lUser.listU[idAuthor].accType == 1 || isFriend(friend, idAuthor, currIdx))
     {
@@ -266,7 +262,7 @@ void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser, int currIdx, int
         printf("| ");
         displayWord(lkic.buffer[i].text);
         printf("\n");
-        displayListUtas(lkic.buffer[i].ut, lkic.buffer[i].author);
+        displayListUtas(lkic.buffer[i].ut,(lkic).buffer[i].author);
     }
     else
     {
@@ -303,15 +299,17 @@ void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index)
     boolean found = false;
     // int i,idAuthor;
     int i;
-
-    for (i = 0; i < NEFF(*lkic); i++)
-    {
-        if (ELMT(*lkic, i).idUtas == idUtas)
+    if(idUtas >= 1){
+        for (i = 0; i < NEFF(*lkic); i++)
         {
-            found = true;
-            break;
+            if (ELMT(*lkic, i).idUtas == idUtas)
+            {
+                found = true;
+                break;
+            }
         }
     }
+    
     if (found)
     {
         if (!userOwnsKicau((*lkic), currIdx, ELMT(*lkic, i).id))
@@ -353,19 +351,12 @@ void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index)
             {
                 printf("Masukkan kicauan:\n");
                 text = readWord(280);
-                if (text.Length == 0)
-                {
-                    printf("utas tidak bisa spasi saja\n\n");
-                    return;
-                }
-                else
-                {
-                    BacaDATETIME(&time);
-                }
+                BacaDATETIME(&time);
 
                 if (index == 1)
                 {
                     insertFirstListUtas(&(*lkic).buffer[i].ut, time, text);
+                    printf("Utas berhasil disambungkan\n\n");
                 }
                 else
                 {
@@ -378,10 +369,11 @@ void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index)
                         {
                             NEXTUTAS(pbefore) = pcontainer;
                         }
+                        printf("Utas berhasil disambungkan\n\n");
                     }
                     else
                     {
-                        printf("gagal membuat node");
+                        printf("gagal membuat node\n\n");
                     }
                 }
             }
@@ -409,8 +401,8 @@ void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int i
     boolean found = false;
     // int i,idAuthor;
     int i;
-
-    for (i = 0; i < NEFF(*lkic); i++)
+    if (idUtas >= 1){
+        for (i = 0; i < NEFF(*lkic); i++)
     {
         if (ELMT(*lkic, i).idUtas == idUtas)
         {
@@ -418,6 +410,9 @@ void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int i
             break;
         }
     }
+
+    }
+
     if (found)
     {
         if (!userOwnsKicau((*lkic), currIdx, ELMT(*lkic, i).id))
