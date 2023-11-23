@@ -485,3 +485,128 @@ void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag, int currID, Fri
         currNode = currNode->next;
     }
 }
+
+void balas(ListKicauan *lkic, int idKicauan, int idBalasan, int currID, Friend friendGraph, ListUser listuser)
+{
+    if (idKicauan <= NEFF(*lkic) && idKicauan > 0)
+    {
+        AddressTree *currTree = &(lkic->buffer[idKicauan - 1].tb.parentNode);
+        AddressTree bal = searchBalasan(*currTree, idBalasan);
+        if (idBalasan == -1)
+        {
+            int idAuthorKicau = lkic->buffer[idKicauan - 1].idAuthor;
+            if (isFriend(friendGraph, currID, idAuthorKicau) || listuser.listU[idAuthorKicau].accType)
+            {
+                Balasan newb;
+
+                // read time
+                DATETIME time;
+                BacaDATETIME(&time);
+
+                // read text
+                printf("Masukkan balasan: \n");
+                Word text = readWord(280);
+                printf("\n");
+
+                // create balasan
+                createBalasan(lkic->buffer[idKicauan - 1].tb.nEff + 1, listuser.listU[currID].name, text, time, currID, &newb);
+
+                // add balasan
+                AddressTree newBalasan = CreateNewNode(newb);
+
+                if (*currTree == NULL)
+                    *currTree = newBalasan;
+                else
+                {
+                    AddressTree p = *currTree;
+                    while (RIGHT(p) != NULL)
+                        p = RIGHT(p);
+                    RIGHT(p) = newBalasan;
+                }
+                
+                lkic->buffer[idKicauan - 1].tb.nEff += 1;
+                printf("Berhasil membuat balasan!\n\n");
+            }
+            else
+            {
+                printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman akun tersebut!\n\n");
+            }
+        }
+        else if (bal != NULL)
+        {
+            int idAuthorBal = IDAUTHORBALASAN(INFOREP(bal));
+            if (isFriend(friendGraph, currID, idAuthorBal) || listuser.listU[idAuthorBal].accType)
+            {
+                Balasan newb;
+
+                // read time
+                DATETIME time;
+                BacaDATETIME(&time);
+
+                // read text
+                printf("Masukkan balasan: \n");
+                Word text = readWord(280);
+                printf("\n");
+
+                // create balasan
+                createBalasan(lkic->buffer[idKicauan - 1].tb.nEff + 1, listuser.listU[currID].name, text, time, currID, &newb);
+
+                // add balasan
+                addBalasan(&bal, newb);
+                lkic->buffer[idKicauan - 1].tb.nEff += 1;
+                printf("Berhasil membuat balasan!\n\n");
+            }
+            else
+            {
+                printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman akun tersebut!\n\n");
+            }
+        }
+        else
+        {
+            printf("Wah, tidak terdapat balasan yang ingin Anda balas!\n\n");
+        }
+    }
+    else
+    {
+        printf("Wah, tidak terdapat kicauan yang ingin Anda balas!\n\n");
+    }
+}
+
+void deleteBalasan(int idKicau, int idBalasan, ListKicauan *lkic, int currID)
+{
+    if (idKicau > 0 && idKicau <= NEFF(*lkic))
+    {
+        AddressTree *currTree = &(lkic->buffer[idKicau - 1].tb.parentNode);
+        int del = deleteTreeBalasan(currTree, idBalasan, currID);
+        if (del == 1)
+            printf("Balasan berhasil dihapus\n\n");
+        else if (del == 2)
+            printf("Hei, ini balasan punya siapa? Jangan dihapus ya!\n\n");
+        else
+            printf("Balasan tidak ditemukan\n\n");
+    }
+    else
+    {
+        printf("Wah, tidak terdapat kicauan yang ingin Anda hapus!\n\n");
+    }
+}
+
+void displayBalasan(AddressTree currTree, ListUser listuser, Friend friendGraph, int dep, int currID)
+{
+    if (isAddressTreeEmpty(currTree))
+        return;
+    else
+    {
+        int idAuthor = currTree->info.idAuthorBalasan;
+        if (isFriend(friendGraph, idAuthor, currID) || listuser.listU[idAuthor].accType)
+        {
+            displayBalasanPublic(currTree->info, dep);
+        }
+        else
+        {
+            displayBalasanPrivate(currTree->info, dep);
+        }
+        displayBalasan(LEFT(currTree), listuser, friendGraph, dep + 1, currID);
+        displayBalasan(RIGHT(currTree), listuser, friendGraph, dep, currID);
+    }
+}

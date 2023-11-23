@@ -80,4 +80,10 @@ void setup()
     assignWord(&commands[25], "BUAT_DRAF", 9);
 
     assignWord(&commands[26], "LIHAT_DRAF", 10);
+
+    assignWord(&commands[27], "BALAS", 5);
+
+    assignWord(&commands[28], "BALASAN", 7);
+
+    assignWord(&commands[29], "HAPUS_BALASAN", 13);
 }

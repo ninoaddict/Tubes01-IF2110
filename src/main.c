@@ -8,7 +8,7 @@ int main()
         printf(">> ");
         readCommand(command);
         idxCommand = -1;
-        for (int i = 0; i < 27; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (isWordEqual(command[0], commands[i]))
             {
@@ -216,10 +216,47 @@ int main()
                 seeDraft(&lkic, currID, listuser.listU[currID].name, &(lsd.contents[currID]), &currTweetID, &hashtag);
             }
             break;
+        case 27:
+            if (currID == -1)
+            {
+                printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
+            }
+            else
+            {
+                balas(&lkic, wordToInteger(command[1]), wordToInteger(command[2]), currID, friendGraph, listuser);
+            }
+            break;
+        case 28:
+            if (currID == -1)
+            {
+                printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
+            }
+            else
+            {
+                int tweetQueryID = wordToInteger(command[1]);
+                if (tweetQueryID > 0 && tweetQueryID <= NEFF(lkic))
+                {
+                    displayBalasan(lkic.buffer[tweetQueryID - 1].tb.parentNode, listuser, friendGraph, 0, currID);
+                }
+                else
+                {
+                    printf("Wah, tidak terdapat kicauan yang dapat ditampilkan!\n\n");
+                }
+            }
+            break;
+        case 29:
+            if (currID == -1)
+            {
+                printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
+            }
+            else
+            {
+                deleteBalasan(wordToInteger(command[1]), wordToInteger(command[2]), &lkic, currID);
+            }
+            break;
         default:
             break;
         }
-        // printf("AFTER: %d\n", currID);
     }
     return 0;
 }
