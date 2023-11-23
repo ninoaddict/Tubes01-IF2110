@@ -18,20 +18,12 @@ void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor, H
 {
     Word text;
     int i;
-    int initial_length;
+   
     printf("Masukkan kicauan:\n");
 
     text = readWord(280);
-    initial_length = text.Length;
-    for (i = 0; i < text.Length; i++)
-    {
-        if (text.TabWord[i] == ' ' || text.TabWord[i] == '\t')
-        {
-            initial_length -= 1;
-        }
-    }
 
-    if (text.Length == 0 || initial_length == 0)
+    if (isAllSpace(text))
     {
         printf("\n");
         printf("Kicauan tidak boleh hanya berisi spasi!\n\n");
@@ -129,7 +121,7 @@ boolean isFullListKicauan(ListKicauan l)
     return (NEFF(l) == CAPACITY(l));
 }
 
-void likeKicau(ListKicauan *lkic, ListUser lUser, Friend friend, int idKicauYangInginDiLike, int currIdx)
+void likeKicau(ListKicauan *lkic, ListUser lUser, Friend friend, int  idKicauYangInginDiLike, int currIdx)
 {
     if (idKicauYangInginDiLike < 1 || idKicauYangInginDiLike > NEFF(*lkic))
     {
@@ -164,7 +156,7 @@ void updateKicau(ListKicauan *lkic, int currIdx, int idKicau)
         Word text;
         text = readWord(280);
         printf("\n");
-        if (text.Length == 0)
+        if (isAllSpace(text))
         {
             printf("Kicauan tidak boleh hanya berisi spasi!");
         }
@@ -183,8 +175,12 @@ void updateKicau(ListKicauan *lkic, int currIdx, int idKicau)
 }
 
 void makeKicauanUtama(ListKicauan *lkic, int currIdx, int idKicau, int *idUtas)
-{
-    if (userOwnsKicau(*lkic, currIdx, idKicau) && isEmptyUtas((*lkic).buffer[idKicau - 1].ut))
+{   
+    if (idKicau <= 0 ){
+        printf("Kicauan tidak ditemukan\n\n");
+        return;
+    }
+    else if(userOwnsKicau(*lkic, currIdx, idKicau) && isEmptyUtas((*lkic).buffer[idKicau - 1].ut))
     {
         (*lkic).buffer[idKicau - 1].idUtas = *idUtas;
         CreateUtas(&(*lkic).buffer[idKicau - 1].ut);
@@ -266,7 +262,7 @@ void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser, int currIdx, int
         printf("| ");
         displayWord(lkic.buffer[i].text);
         printf("\n");
-        displayListUtas(lkic.buffer[i].ut, lkic.buffer[i].author);
+        displayListUtas(lkic.buffer[i].ut,(lkic).buffer[i].author);
     }
     else
     {
@@ -353,15 +349,7 @@ void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index)
             {
                 printf("Masukkan kicauan:\n");
                 text = readWord(280);
-                if (text.Length == 0)
-                {
-                    printf("utas tidak bisa spasi saja\n\n");
-                    return;
-                }
-                else
-                {
-                    BacaDATETIME(&time);
-                }
+                BacaDATETIME(&time);
 
                 if (index == 1)
                 {

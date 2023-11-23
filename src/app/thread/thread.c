@@ -107,7 +107,6 @@ void displayListUtas(ListUtas l, Word author)
         printf("   | ");
         displayWordWithoutEnter(TEXTUTAS(p));
         printf("\n\n");
-
         p = NEXTUTAS(p);
     }
 }
