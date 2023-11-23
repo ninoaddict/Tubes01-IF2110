@@ -14,7 +14,7 @@ void dealocateListKicauan(ListKicauan *l)
     free(BUFFER(*l));
 }
 
-void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor, HashTag * hashtag)
+void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor, HashTag *hashtag)
 {
     Word text;
     int i;
@@ -50,9 +50,12 @@ void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int idAuthor, H
         }
         if (hasLen)
         {
-            addHashElement(tag, NEFF(*lkic), hashtag);   
+            addHashElement(tag, NEFF(*lkic), hashtag);
         }
-        // *IdKicau += 1; // Idkicau dianggap 0 di main
+        else
+        {
+            tag.Length = 0;
+        }
         DATETIME time;
         BacaDATETIME(&time);
         if (isFullListKicauan(*lkic))
@@ -463,17 +466,22 @@ void putusUtas(ListKicauan *lkic, DATETIME *date, Word *text, int currIdx, int i
     }
 }
 
-void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag){
+void searchHashTag(ListKicauan lkic, HashTag *hashtag, Word tag, int currID, Friend friendGraph, ListUser listuser)
+{
     int i = HashFunction(tag);
     while (hashtag->Buffer[i].val != NULL && !isWordEqual(hashtag->Buffer[i].key, tag))
     {
-        printf("ada collision bos!\n");
+        // printf("ada collision bos!\n");
         i = (i + 1) % mod;
     }
     hashAddress currNode = hashtag->Buffer[i].val;
-    while (currNode != NULL){
+    while (currNode != NULL)
+    {
         int idx = currNode->info;
-        displayKicau(lkic.buffer[idx]);
+        int userIdx = lkic.buffer[idx].idAuthor;
+        if ((currID != -1 && isFriend(friendGraph, currID, userIdx)) || listuser.listU[userIdx].accType)
+            displayKicau(lkic.buffer[idx]);
+        printf("\n");
         currNode = currNode->next;
     }
 }

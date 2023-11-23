@@ -3,6 +3,7 @@
 #include "app/user/listuser.h"
 #include "app/tweet/listkicauan.h"
 #include "app/fyb/fyb.h"
+#include "app/draft/liststackdraft.h"
 #include <stdio.h>
 extern ListUser listuser;
 extern Friend friendGraph;
@@ -18,6 +19,7 @@ extern ListKicauan lkic;
 extern int id_kicau;
 extern int id_utas;
 extern HashTag hashtag;
+extern ListStackDraft lsd;
 
 void setup();
 

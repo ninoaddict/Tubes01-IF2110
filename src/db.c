@@ -12,6 +12,7 @@ int id_kicau;
 int id_utas;
 boolean run;
 HashTag hashtag;
+ListStackDraft lsd;
 
 void setup()
 {
@@ -23,6 +24,7 @@ void setup()
     CreateListUser(&listuser);
     CreateFriend(&friendGraph);
     CreateHashTag(&hashtag);
+    CreateListStackDraft(&lsd);
 
     // setup commands
     assignWord(&commands[0], "DAFTAR", 6);
@@ -74,4 +76,8 @@ void setup()
     assignWord(&commands[23], "FYB", 3);
 
     assignWord(&commands[24], "CARI_KICAUAN", 12);
+
+    assignWord(&commands[25], "BUAT_DRAF", 9);
+
+    assignWord(&commands[26], "LIHAT_DRAF", 10);
 }

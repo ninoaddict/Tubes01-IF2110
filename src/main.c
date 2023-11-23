@@ -8,7 +8,7 @@ int main()
         printf(">> ");
         readCommand(command);
         idxCommand = -1;
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 27; i++)
         {
             if (isWordEqual(command[0], commands[i]))
             {
@@ -99,7 +99,6 @@ int main()
             displayFriendRequestList(listuser, currID);
             break;
         case 13:
-            printf("masuk\n");
             confirmFriendRequest(&listuser, currID, &friendGraph);
             break;
         case 14:
@@ -194,7 +193,29 @@ int main()
             searchFYB(lkic, friendGraph, currID, listuser);
             break;
         case 24:
-            searchHashTag(lkic, &hashtag, command[1]);
+            searchHashTag(lkic, &hashtag, command[1], currID, friendGraph, listuser);
+            break;
+        case 25:
+            if (currID == -1)
+            {
+                printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
+            }
+            else
+            {
+                printf("Masukkan draf:\n");
+                makeDraft(&lkic, currID, listuser.listU[currID].name, &(lsd.contents[currID]), &currTweetID, &hashtag);
+            }
+            break;
+        case 26:
+            if (currID == -1)
+            {
+                printf("Silahkan masuk terlebih dahulu ke akun Anda!\n\n");
+            }
+            else
+            {
+                seeDraft(&lkic, currID, listuser.listU[currID].name, &(lsd.contents[currID]), &currTweetID, &hashtag);
+            }
+            break;
         default:
             break;
         }
