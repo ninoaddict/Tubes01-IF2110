@@ -67,7 +67,8 @@ void save(ListUser listuser, Friend friendgraph, ListKicauan listkicauan, ListSt
             perror("Error creating folder");
         }
     }
-    printf("Anda akan melakukan penyimpanan di "); displayWord(folderconfig); printf("\n");
+    printf("Anda akan melakukan penyimpanan di "); 
+    printf("\n");
     savePengguna(folderconfig, listuser, friendgraph);
     saveKicauan(folderconfig, listkicauan);
     saveBalasan(folderconfig, listkicauan);
@@ -232,9 +233,9 @@ void deefes(FILE *file, int parNode, AddressTree t)
     fprintf(file, "%d ", parNode);
     fprintf(file, "%d\n", INFOREP(t).id);
     Word kata = addNewline(t->info.text);
-    fprintf(file, "%s\n", kata.TabWord);
+    fprintf(file, "%s", kata.TabWord);
     kata = addNewline(t->info.author);
-    fprintf(file, "%s\n", kata.TabWord);
+    fprintf(file, "%s", kata.TabWord);
     Word np = dateTimeToWord(t->info.time);
     fprintf(file, "%s", np.TabWord);
     deefes(file, INFOREP(t).id, LEFT(t));

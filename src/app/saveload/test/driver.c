@@ -4,6 +4,18 @@
 
 HashTag ht;
 
+void disBal(AddressTree currTree, int dep)
+{
+    if (currTree == NULL) 
+    {
+        printf("GADA\n");
+        return;
+    }
+    displayBalasanPublic(currTree->info, dep);
+    disBal(LEFT(currTree), dep + 1);
+    disBal(RIGHT(currTree), dep);
+}
+
 int main(void){
     ListUser listuser;
     Friend friendGraph;
@@ -32,6 +44,7 @@ int main(void){
     assignWord(&tuan2, "Tuan Hak", 8);
     int i = 2;
     seeDraft(&listkicauan, 0, tuan2, &(liststackdraft.contents[0]), &i, &ht);
+    disBal(listkicauan.buffer[4].tb.parentNode, 0);
     save(listuser, friendGraph, listkicauan, liststackdraft);
     return 0;
 }
