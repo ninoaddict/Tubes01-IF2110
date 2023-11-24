@@ -12,7 +12,7 @@ extern int currID;
 extern int currTweetID;
 extern int idxCommand;
 extern boolean run;
-extern Word command[4];
+extern Word command[20];
 extern Word commands[40];
 
 extern DATETIME current_time;

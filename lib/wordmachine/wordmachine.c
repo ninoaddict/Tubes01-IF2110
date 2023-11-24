@@ -171,6 +171,10 @@ void readCommand(Word *command)
         cnt++;
         ADVWORD();
     }
+    for (int i = cnt; i < 20; i++)
+    {
+        command[i].Length = 0;
+    }
 }
 
 int wordToInteger(Word W)

@@ -498,7 +498,9 @@ void balas(ListKicauan *lkic, int idKicauan, int idBalasan, int currID, Friend f
                 }
 
                 lkic->buffer[idKicauan - 1].tb.nEff += 1;
-                printf("Berhasil membuat balasan!\n\n");
+                printf("Berhasil membuat balasan!\n");
+                displayBalasanPublic(newb, 0);
+                printf("\n");
             }
             else
             {
@@ -527,7 +529,9 @@ void balas(ListKicauan *lkic, int idKicauan, int idBalasan, int currID, Friend f
                 // add balasan
                 addBalasan(&bal, newb);
                 lkic->buffer[idKicauan - 1].tb.nEff += 1;
-                printf("Berhasil membuat balasan!\n\n");
+                printf("Berhasil membuat balasan!\n");
+                displayBalasanPublic(newb, 0);
+                printf("\n");
             }
             else
             {

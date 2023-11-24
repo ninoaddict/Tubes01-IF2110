@@ -4,7 +4,7 @@ int currTweetID;
 ListUser listuser;
 Friend friendGraph;
 int idxCommand;
-Word command[4];
+Word command[20];
 Word commands[40];
 DATETIME current_time;
 ListKicauan lkic;

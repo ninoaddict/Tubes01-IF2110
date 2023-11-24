@@ -3,6 +3,7 @@
 int main()
 {
     setup();
+    printf("\n /$$$$$$$  /$$   /$$ /$$$$$$$  /$$$$$$$  /$$$$$$ /$$$$$$$ \n| $$__  $$| $$  | $$| $$__  $$| $$__  $$|_  $$_/| $$__  $$\n| $$  \\ $$| $$  | $$| $$  \\ $$| $$  \\ $$  | $$  | $$  \\ $$\n| $$$$$$$ | $$  | $$| $$$$$$$/| $$$$$$$   | $$  | $$$$$$$/\n| $$__  $$| $$  | $$| $$__  $$| $$__  $$  | $$  | $$__  $$\n| $$  \\ $$| $$  | $$| $$  \\ $$| $$  \\ $$  | $$  | $$  \\ $$\n| $$$$$$$/|  $$$$$$/| $$  | $$| $$$$$$$/ /$$$$$$| $$  | $$\n|_______/  \\______/ |__/  |__/|_______/ |______/|__/  |__/\n\n\n");
     muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);
     while (run)
     {
@@ -17,7 +18,6 @@ int main()
                 break;
             }
         }
-        // printf("BEFORE: %d\n", currID);
         switch (idxCommand)
         {
         case 0:
@@ -39,7 +39,7 @@ int main()
             break;
         case 3:
             run = false;
-            printf("Selesai\n");
+            printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya.\n");
             break;
         case 4:
             if (currID != -1)
@@ -56,7 +56,18 @@ int main()
             }
             break;
         case 5:
-            int idNameProfile = searchUserByID(listuser, command[1]);
+            Word nama = command[1];
+            Word space;
+            space.Length = 1;
+            space.TabWord[0] = ' ';
+            int ind = 2;
+            while (command[ind].Length && ind < 20)
+            {
+                mergeWord(&nama, space);
+                mergeWord(&nama, command[ind]);
+                ind++;
+            }
+            int idNameProfile = searchUserByID(listuser, nama);
             if (listuser.listU[idNameProfile].accType)
                 showProfile(listuser.listU[idNameProfile]);
             else if (currID != -1 && (isFriend(friendGraph, currID, idNameProfile)))
@@ -255,11 +266,12 @@ int main()
                 deleteBalasan(wordToInteger(command[1]), wordToInteger(command[2]), &lkic, currID);
             }
             break;
+        case 30:
+            setup();
+            muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);
+            break;
         case 31:
             save(listuser, friendGraph, lkic, lsd);
-            break;
-        case 30:
-            muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);
             break;
         default:
             break;
