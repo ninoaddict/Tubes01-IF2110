@@ -53,6 +53,6 @@ void makeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *st, 
 
 int draftLength(StackDraft sd);
 
-void inverseStackDraft(StackDraft *sd);
+StackDraft inverseStackDraft(StackDraft sd);
 
 #endif

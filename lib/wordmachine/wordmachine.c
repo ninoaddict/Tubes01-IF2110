@@ -252,7 +252,7 @@ void splitWordAndInt(Word *w, int *number)
         numberword.TabWord[j] = w->TabWord[j + i];
     }
     numberword.Length = w->Length - i;
-    w->Length -= numberword.Length;
+    w->Length = w->Length-numberword.Length-1;
     *number = wordToInteger(numberword);
 }
 

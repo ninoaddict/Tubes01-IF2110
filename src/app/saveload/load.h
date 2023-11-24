@@ -14,11 +14,11 @@ int max2(int a, int b);
 
 boolean isPublic(Word w);
 
-void muat(int currID, ListUser *listuser, Friend *friendgraph, ListKicauan *listkicauan, ListStackDraft *liststackdraft);
+void muat(int currID, ListUser *listuser, Friend *friendgraph, ListKicauan *listkicauan, ListStackDraft *liststackdraft, HashTag *hashtag);
 
 void muatPengguna(Word folder, ListUser *listuser, Friend *friendgraph);
 
-void muatKicauan(Word folder, ListKicauan *listkicauan);
+void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag);
 
 void muatBalasan(Word folder, ListKicauan *listkicauan, ListUser listuser);
 

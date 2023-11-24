@@ -52,7 +52,7 @@ boolean isPublic(Word w)
     return isWordEqual(check, w);
 }
 
-void muat(int currID, ListUser *listuser, Friend *friendgraph, ListKicauan *listkicauan, ListStackDraft *liststackdraft)
+void muat(int currID, ListUser *listuser, Friend *friendgraph, ListKicauan *listkicauan, ListStackDraft *liststackdraft, HashTag *hashtag)
 {
     if (currID == -1)
     {
@@ -65,13 +65,12 @@ void muat(int currID, ListUser *listuser, Friend *friendgraph, ListKicauan *list
         if (folderExists(folderconfig.TabWord))
         {
             printf("Anda akan melakukan pemuatan dari ");
-            displayWord(folderconfig);
-            printf(".\n\n");
+            displayWord(folderconfig); printf("\n");
             muatPengguna(folderconfig, listuser, friendgraph);
-            muatKicauan(folderconfig, listkicauan);
-            // muatBalasan(folderconfig, listkicauan);
-            // muatDraf(folderconfig, listuser, liststackdraft);
-            // muatUtas(folderconfig, listkicauan);
+            muatKicauan(folderconfig, listkicauan, hashtag);
+            muatBalasan(folderconfig, listkicauan, *listuser);
+            muatDraf(folderconfig, listuser, liststackdraft);
+            muatUtas(folderconfig, listkicauan);
             printf("Mohon tunggu...\n1...\n2...\n3...\n\n");
             printf("Pemuatan selesai!\n");
         }
@@ -157,8 +156,7 @@ void muatPengguna(Word folder, ListUser *listuser, Friend *friendgraph)
     fclose(file);
 }
 
-void muatKicauan(Word folder, ListKicauan *listkicauan)
-{
+void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag){
     FILE *file;
     Word config, newfolder;
     newfolder = folder;
@@ -174,6 +172,9 @@ void muatKicauan(Word folder, ListKicauan *listkicauan)
         fgets(line, sizeof(line), file);
         stringToWord(&kata, line);
         datacount = wordToInteger(kata);
+        if (listkicauan->capacity > datacount){
+            expandListKicauan(listkicauan, datacount*2);
+        }
         listkicauan->nEff = datacount;
         for (int i = 0; i < datacount; i++)
         {
@@ -198,9 +199,8 @@ void muatKicauan(Word folder, ListKicauan *listkicauan)
             if (tagCheck(kata))
             {
                 listkicauan->buffer[i].tag = kata;
-            }
-            else
-            {
+                addHashElement(kata, i, hashtag);
+            } else {
                 assignWord(&kata, "", 0);
                 listkicauan->buffer[i].tag = kata;
             }
@@ -337,6 +337,7 @@ void muatDraf(Word folder, ListUser *listuser, ListStackDraft *liststackdraft)
                 Draft draf;
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
+                displayWord(kata);
                 draf.word = kata;
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
@@ -362,7 +363,7 @@ void muatDraf(Word folder, ListUser *listuser, ListStackDraft *liststackdraft)
                     pushDraft(&(liststackdraft->contents[iddraf]), draf);
                 }
             }
-            inverseStackDraft(&(liststackdraft->contents[iddraf]));
+            liststackdraft->contents[iddraf] = inverseStackDraft(liststackdraft->contents[iddraf]);
         }
     }
     fclose(file);

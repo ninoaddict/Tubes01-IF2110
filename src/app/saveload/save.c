@@ -61,18 +61,18 @@ void save(ListUser listuser, Friend friendgraph, ListKicauan listkicauan, ListSt
     displayWord(folderconfig);
     if (!folderExists(folderconfig.TabWord)){
         if (mkdir(folderconfig.TabWord, S_IRWXU) == 0) {
-            printf("Belum terdapat "); displayWord(folderconfig); printf(". Akan dilakukan pembuatan Folder1 terlebih dahulu.\n\n");
+            printf("Belum terdapat "); displayWord(folderconfig); printf("Akan dilakukan pembuatan Folder1 terlebih dahulu.\n\n");
             printf("Mohon tunggu...\n1...\n2...\n3...\n\n");
         } else {
             perror("Error creating folder");
         }
     }
-    printf("Anda akan melakukan penyimpanan di "); displayWord(folderconfig); printf(".\n\n");
+    printf("Anda akan melakukan penyimpanan di "); displayWord(folderconfig); printf("\n");
     savePengguna(folderconfig, listuser, friendgraph);
     saveKicauan(folderconfig, listkicauan);
     // saveBalasan(folderconfig, listkicauan);
-    // saveDraf(folderconfig, listuser, liststackdraft);
-    // saveUtas(folderconfig, listkicauan);
+    saveDraf(folderconfig, listuser, liststackdraft);
+    saveUtas(folderconfig, listkicauan);
     printf("Mohon tunggu...\n1...\n2...\n3...\n\n");
     printf("Penyimpanan telah berhasil dilakukan!\n");
 }
@@ -84,7 +84,6 @@ void savePengguna(Word folder, ListUser listuser, Friend friendgraph)
     Word config;
     assignWord(&config, "/pengguna.config", 16);
     mergeWord(&folder, config);
-    displayWord(folder);
     file = fopen(folder.TabWord, "w");
     if (file == NULL)
     {
@@ -168,7 +167,6 @@ void saveKicauan(Word folder, ListKicauan listkicauan)
     Word config;
     assignWord(&config, "/kicauan.config", 15);
     mergeWord(&folder, config);
-    displayWord(folder);
     file = fopen(folder.TabWord, "w");
     if (file == NULL)
     {
@@ -186,12 +184,11 @@ void saveKicauan(Word folder, ListKicauan listkicauan)
         kata = dateTimeToWord(listkicauan.buffer[i].time);
         fprintf(file, "%s", kata.TabWord);
         assignWord(&kata, "", 0);
-        if (isWordEqual(listkicauan.buffer[i].tag, kata))
+        if (listkicauan.buffer[i].tag.Length == 0)
         {
             fprintf(file, "\n");
         }
-        else
-        {
+        else{
             kata = addNewline(listkicauan.buffer[i].tag);
             fprintf(file, "%s", kata.TabWord);
         }
@@ -250,22 +247,24 @@ void saveDraf(Word folder, ListUser listuser, ListStackDraft liststackdraft)
     Word config;
     assignWord(&config, "/draf.config", 12);
     mergeWord(&folder, config);
-    displayWord(folder);
     file = fopen(folder.TabWord, "w");
     if (file == NULL)
     {
         perror("Error opening file");
     }
     fprintf(file, "%d\n", countDraf(liststackdraft, listuser.Neff));
-    for (int i = 0; i < countDraf(liststackdraft, listuser.Neff); i++)
+    for (int i = 0; i < 20; i++)
     {
         if (liststackdraft.contents[i].addrTopDraft != NULL)
         {
             kata = listuser.listU[i].name;
+            kata = addNewline(kata);
+            kata.Length -= 1;
+            kata.TabWord[kata.Length-1] = '\0';
             fprintf(file, "%s", kata.TabWord);
             fprintf(file, " %d\n", draftLength(liststackdraft.contents[i]));
             Address p = liststackdraft.contents[i].addrTopDraft;
-            for (int j = 1; j < draftLength(liststackdraft.contents[i]); j++)
+            for (int j = 1; j <= draftLength(liststackdraft.contents[i]); j++)
             {
                 kata = addNewline(WORD(INFO(p)));
                 fprintf(file, "%s", kata.TabWord);
@@ -281,10 +280,10 @@ void saveDraf(Word folder, ListUser listuser, ListStackDraft liststackdraft)
                     kata = addNewline(p->info.tag);
                     fprintf(file, "%s", kata.TabWord);
                 }
+                p = NEXT(p);
             }
         }
     }
-
     fclose(file);
 }
 
@@ -295,7 +294,6 @@ void saveUtas(Word folder, ListKicauan listkicauan)
     Word config;
     assignWord(&config, "/utas.config", 12);
     mergeWord(&folder, config);
-    displayWord(folder);
     file = fopen(folder.TabWord, "w");
     if (file == NULL)
     {
