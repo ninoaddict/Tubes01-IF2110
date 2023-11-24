@@ -9,4 +9,6 @@ typedef struct matrix
 
 void CreateMatrix(Matrix *mat);
 
+void displayMatrix(Matrix mat);
+
 #endif

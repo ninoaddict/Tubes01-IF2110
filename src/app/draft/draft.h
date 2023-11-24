@@ -2,7 +2,7 @@
 #define __DRAFT_H__
 
 #include <stdio.h>
-#include "../../../lib/stack/stack.h"
+#include "../../../lib/stack/stacklinked.h"
 #include "../../../lib/datetime/datetime.h"
 #include "../../../lib/wordmachine/wordmachine.h"
 #include "../tweet/listkicauan.h"
