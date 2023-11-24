@@ -11,17 +11,7 @@ void CreateUser(User *user)
     CreateWord(&(user->bio));
     CreateWord(&(user->weton));
     CreateFriendRequest(&(user->friendReqList));
-    for (int i = 0; i < 5; i++)
-    {
-        for (int j = 0; j < 10; j += 2)
-        {
-            user->profilePic[i][j] = 'R';
-        }
-        for (int j = 1; j < 10; j += 2)
-        {
-            user->profilePic[i][j] = '*';
-        }
-    }
+    CreateMatrix(&(user->profilePic));
 }
 
 void readPhoneNum(User *user)
@@ -151,7 +141,7 @@ void changeProfilePicture(User *user)
     {
         for (int j = 0; j < 10; j++)
         {
-            user->profilePic[i][j] = currentWord.TabWord[0];
+            user->profilePic.Buffer[i][j] = currentWord.TabWord[0];
             ADVWORD();
         }
     }
@@ -163,17 +153,17 @@ void showProfilePicture(User user)
     {
         for (int j = 0; j < 10; j += 2)
         {
-            if (user.profilePic[i][j] == 'R')
+            if (user.profilePic.Buffer[i][j] == 'R')
             {
-                print_red(user.profilePic[i][j + 1]);
+                print_red(user.profilePic.Buffer[i][j + 1]);
             }
-            else if (user.profilePic[i][j] == 'G')
+            else if (user.profilePic.Buffer[i][j] == 'G')
             {
-                print_green(user.profilePic[i][j + 1]);
+                print_green(user.profilePic.Buffer[i][j + 1]);
             }
             else
             {
-                print_blue(user.profilePic[i][j + 1]);
+                print_blue(user.profilePic.Buffer[i][j + 1]);
             }
         }
         printf("\n");

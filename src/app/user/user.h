@@ -5,6 +5,7 @@
 #include "../friend/friendrequest.h"
 #include "pcolor.h"
 #include <stdio.h>
+#include "../../../lib/matrix/matrix.h"
 typedef struct
 {
     int friendNum; // banyak teman
@@ -14,7 +15,7 @@ typedef struct
     Word bio;
     Word weton;
     boolean accType; // true if public
-    char profilePic[5][10];
+    Matrix profilePic;
     FriendRequest friendReqList;
 } User;
 
