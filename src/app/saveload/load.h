@@ -10,6 +10,8 @@ boolean tagCheck(Word w);
 
 int folderExists(const char *folderPath);
 
+int max2(int a, int b);
+
 boolean isPublic(Word w);
 
 void muat(int currID, ListUser *listuser, Friend *friendgraph, ListKicauan *listkicauan, ListStackDraft *liststackdraft);
@@ -18,7 +20,7 @@ void muatPengguna(Word folder, ListUser *listuser, Friend *friendgraph);
 
 void muatKicauan(Word folder, ListKicauan *listkicauan);
 
-void muatBalasan(Word folder, ListKicauan *listkicauan);
+void muatBalasan(Word folder, ListKicauan *listkicauan, ListUser listuser);
 
 void muatDraf(Word folder, ListUser *listuser, ListStackDraft *liststackdraft);
 

@@ -77,4 +77,6 @@ void splitWordAndInt(Word *w, int *number);
 
 Word addNewline(Word w);
 
+void splitInt(Word *w, int *number1, int *number2);
+
 #endif

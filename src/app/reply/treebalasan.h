@@ -38,4 +38,6 @@ void displayBalasanPublic(Balasan bal, int dep);
 void displayBalasanPrivate(Balasan bal, int dep);
 void skipTab(int dep);
 
+int countTreeElement(AddressTree t);
+
 #endif

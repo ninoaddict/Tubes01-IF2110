@@ -29,6 +29,17 @@ int countUtas(ListKicauan listkicauan)
     return count;
 }
 
+int countBalasan(ListKicauan lkic)
+{
+    int cnt = 0;
+    for (int i = 0; i < lkic.nEff; i++)
+    {
+        if (lkic.buffer[i].tb.parentNode != NULL)
+            cnt++;
+    }
+    return cnt;
+}
+
 int countFriendReq(ListUser listuser)
 {
     int count = 0;
@@ -190,18 +201,46 @@ void saveKicauan(Word folder, ListKicauan listkicauan)
 
 void saveBalasan(Word folder, ListKicauan listkicauan)
 {
-    /*FILE *file;
-    Word kata;
+    FILE *file;
     Word config;
-    assignWord(&config, "/balasan.config", 16);
+    Word kata;
+    assignWord(&config, "/balasan.config", 15);
     mergeWord(&folder, config);
-    displayWord(folder);
     file = fopen(folder.TabWord, "w");
-    if (file == NULL) {
+    if (file == NULL)
+    {
         perror("Error opening file");
     }
+    else
+    {
+        // print count balasan
+        fprintf(file, "%d\n", countBalasan(listkicauan));
+        for (int i = 0; i < listkicauan.nEff; i++)
+        {
+            if (listkicauan.buffer[i].tb.parentNode != NULL)
+            {
+                // print tweet id
+                fprintf(file, "%d\n", i + 1);
+                fprintf(file, "%d\n", countTreeElement(listkicauan.buffer[i].tb.parentNode));
+                deefes(file, -1, listkicauan.buffer[i].tb.parentNode);
+            }
+        }
+    }
+    fclose(file);
+}
 
-    fclose(file);*/
+void deefes(FILE *file, int parNode, AddressTree t)
+{
+    if (isAddressTreeEmpty(t))
+        return;
+    fprintf(file, "%d ", parNode);
+    fprintf(file, "%d\n", INFOREP(t).id);
+    fprintf(file, "%s\n", t->info.text);
+    fprintf(file, "%s\n", t->info.author);
+    Word np = dateTimeToWord(t->info.time);
+    fprintf(file, "%s", np);
+    deefes(file, INFOREP(t).id, LEFT(t));
+    deefes(file, parNode, RIGHT(t));
 }
 
 void saveDraf(Word folder, ListUser listuser, ListStackDraft liststackdraft)

@@ -29,7 +29,8 @@ void displayKicau(Kicauan kic)
     printf("| ");
     displayWordWithoutEnter(TEXTKICAU(kic));
     printf("\n");
-    if (TAG(kic).Length > 0){
+    if (TAG(kic).Length > 0)
+    {
         printf("| #");
         displayWordWithoutEnter(TAG(kic));
         printf("\n");

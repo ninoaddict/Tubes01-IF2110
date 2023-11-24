@@ -193,3 +193,10 @@ void displayBalasanPrivate(Balasan bal, int dep)
     skipTab(dep);
     printf("| PRIVAT\n\n");
 }
+
+int countTreeElement(AddressTree t){
+    if (isAddressTreeEmpty(t))
+        return 0;
+    else
+        return 1 + countTreeElement(LEFT(t)) + countTreeElement(RIGHT(t));
+}

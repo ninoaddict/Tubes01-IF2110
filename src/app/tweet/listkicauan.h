@@ -35,7 +35,7 @@ void createListKicauan(ListKicauan *l, int capacity);
 
 void dealocateListKicauan(ListKicauan *l);
 
-void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int currId, HashTag * hashtag);
+void bacaKicauan(ListKicauan *lkic, User currUser, int *IdKicau, int currId, HashTag *hashtag);
 
 void displayListKicauan(ListKicauan lkic, Friend friend, int currId);
 

@@ -9,6 +9,8 @@ int countUtas(ListKicauan listkicauan);
 
 int countFriendReq(ListUser listuser);
 
+int countBalasan(ListKicauan lkic);
+
 void save(ListUser listuser, Friend friendgraph, ListKicauan listkicauan, ListStackDraft liststackdraft);
 
 void savePengguna(Word folder, ListUser listuser, Friend friendgraph);
