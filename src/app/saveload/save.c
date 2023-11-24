@@ -70,7 +70,7 @@ void save(ListUser listuser, Friend friendgraph, ListKicauan listkicauan, ListSt
     printf("Anda akan melakukan penyimpanan di "); displayWord(folderconfig); printf("\n");
     savePengguna(folderconfig, listuser, friendgraph);
     saveKicauan(folderconfig, listkicauan);
-    // saveBalasan(folderconfig, listkicauan);
+    saveBalasan(folderconfig, listkicauan);
     saveDraf(folderconfig, listuser, liststackdraft);
     saveUtas(folderconfig, listkicauan);
     printf("Mohon tunggu...\n1...\n2...\n3...\n\n");
@@ -200,7 +200,6 @@ void saveBalasan(Word folder, ListKicauan listkicauan)
 {
     FILE *file;
     Word config;
-    Word kata;
     assignWord(&config, "/balasan.config", 15);
     mergeWord(&folder, config);
     file = fopen(folder.TabWord, "w");
@@ -232,10 +231,12 @@ void deefes(FILE *file, int parNode, AddressTree t)
         return;
     fprintf(file, "%d ", parNode);
     fprintf(file, "%d\n", INFOREP(t).id);
-    fprintf(file, "%s\n", t->info.text);
-    fprintf(file, "%s\n", t->info.author);
+    Word kata = addNewline(t->info.text);
+    fprintf(file, "%s\n", kata.TabWord);
+    kata = addNewline(t->info.author);
+    fprintf(file, "%s\n", kata.TabWord);
     Word np = dateTimeToWord(t->info.time);
-    fprintf(file, "%s", np);
+    fprintf(file, "%s", np.TabWord);
     deefes(file, INFOREP(t).id, LEFT(t));
     deefes(file, parNode, RIGHT(t));
 }

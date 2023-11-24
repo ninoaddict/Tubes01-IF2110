@@ -65,7 +65,8 @@ void muat(int currID, ListUser *listuser, Friend *friendgraph, ListKicauan *list
         if (folderExists(folderconfig.TabWord))
         {
             printf("Anda akan melakukan pemuatan dari ");
-            displayWord(folderconfig); printf("\n");
+            displayWord(folderconfig);
+            printf("\n");
             muatPengguna(folderconfig, listuser, friendgraph);
             muatKicauan(folderconfig, listkicauan, hashtag);
             muatBalasan(folderconfig, listkicauan, *listuser);
@@ -156,7 +157,8 @@ void muatPengguna(Word folder, ListUser *listuser, Friend *friendgraph)
     fclose(file);
 }
 
-void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag){
+void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag)
+{
     FILE *file;
     Word config, newfolder;
     newfolder = folder;
@@ -172,8 +174,9 @@ void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag){
         fgets(line, sizeof(line), file);
         stringToWord(&kata, line);
         datacount = wordToInteger(kata);
-        if (listkicauan->capacity > datacount){
-            expandListKicauan(listkicauan, datacount*2);
+        if (listkicauan->capacity > datacount)
+        {
+            expandListKicauan(listkicauan, datacount * 2);
         }
         listkicauan->nEff = datacount;
         for (int i = 0; i < datacount; i++)
@@ -200,10 +203,16 @@ void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag){
             {
                 listkicauan->buffer[i].tag = kata;
                 addHashElement(kata, i, hashtag);
-            } else {
+            }
+            else
+            {
                 assignWord(&kata, "", 0);
                 listkicauan->buffer[i].tag = kata;
             }
+            listkicauan->buffer[i].ut = NULL;
+            // CreateTreeBalasan(&(listkicauan->buffer[i].tb));
+            listkicauan->buffer[i].tb.parentNode = NULL;
+            listkicauan->buffer[i].tb.nEff = 0;
         }
     }
     fclose(file);
@@ -211,7 +220,7 @@ void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag){
 
 int max2(int a, int b)
 {
-    return (a > b)? a : b;
+    return (a > b) ? a : b;
 }
 
 void muatBalasan(Word folder, ListKicauan *listkicauan, ListUser listuser)
@@ -253,12 +262,22 @@ void muatBalasan(Word folder, ListKicauan *listkicauan, ListUser listuser)
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
                 int u, v;
-                splitInt(&kata, &u, &v);
+                // splitInt(&kata, &u, &v);
+                if (kata.TabWord[0] == '-')
+                {
+                    u = (-1) * (kata.TabWord[1] - '0');
+                    v = kata.TabWord[3] - '0';
+                }
+                else
+                {
+                    u = kata.TabWord[0] - '0';
+                    v = kata.TabWord[2] - '0';
+                }
                 // create currTree
                 AddressTree *currTree = &(listkicauan->buffer[currTweetID - 1].tb.parentNode);
 
                 maxNum = max2(maxNum, u);
-                maxNum = max2(maxNum, v);
+                maxNum = max2(maxNum, v);                
 
                 // init newb
                 Balasan newb;
@@ -277,10 +296,13 @@ void muatBalasan(Word folder, ListKicauan *listkicauan, ListUser listuser)
                 // read DATETIME
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
+                displayWord(kata);
+                kata = addNewline(kata);
                 DATETIME time = string_toDate_time(kata);
 
                 // create balasan
                 createBalasan(v, author, text, time, authorID, &newb);
+                
 
                 if (u == -1)
                 {
