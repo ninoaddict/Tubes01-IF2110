@@ -182,3 +182,24 @@ void makeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *st, 
         }
     }
 }
+
+int draftLength(StackDraft sd) {
+    Address p = sd.addrTopDraft;
+    int cnt = 0;
+    while (p != NULL){
+        cnt++;
+        p = NEXT(p);
+    }
+    return cnt;
+}
+
+void inverseStackDraft(StackDraft *sd){
+    StackDraft inversesd;
+    Draft temp;
+    CreateStackDraft(&inversesd);
+    for (int i=1; i<=draftLength(*sd); i++){
+        deleteDraft(sd, &temp);
+        pushDraft(&inversesd, temp);
+    }
+    *sd = inversesd;
+}

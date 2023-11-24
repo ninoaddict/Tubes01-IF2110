@@ -42,4 +42,6 @@ void deleteLastListUtas(ListUtas *l, DATETIME *date, Word *text);
 
 void deleteAtListUtas(ListUtas *l, int idx, DATETIME *date, Word *text);
 
+int listUtasLength(ListUtas l);
+
 #endif

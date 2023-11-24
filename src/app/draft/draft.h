@@ -51,4 +51,8 @@ void publishDraft(int id_kicau, int id_user, Word user_name, Kicauan *k, Draft d
 
 void makeDraft(ListKicauan *lkic, int currIdx, Word authorName, StackDraft *st, int *IdKicau, HashTag *hashtag);
 
+int draftLength(StackDraft sd);
+
+void inverseStackDraft(StackDraft *sd);
+
 #endif

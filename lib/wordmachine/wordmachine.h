@@ -67,4 +67,14 @@ int wordToInteger(Word w);
 
 boolean isAllSpace(Word w);
 
+void stringToWord(Word *w, char arr[]);
+
+void wordToString(char *arr, Word w);
+
+void mergeWord(Word *w1, Word w2);
+
+void splitWordAndInt(Word *w, int *number);
+
+Word addNewline(Word w);
+
 #endif

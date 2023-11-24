@@ -164,3 +164,53 @@ boolean isAllSpace(Word w){
     }
     return true;
 }
+void stringToWord(Word *w, char arr[]){
+    CreateWord(w);
+    int i = 0;
+    while (arr[i] != '\n'){
+        w->TabWord[i] = arr[i];
+        i++;
+    }
+    w->Length = i;
+}
+
+void wordToString(char *arr, Word w){
+    for (int i=0; i<w.Length;i++){
+        arr[i] = w.TabWord[i];
+    }
+}
+
+void mergeWord(Word *w1, Word w2){
+    for (int i=0; i<w2.Length; i++){
+        w1->TabWord[i+w1->Length] = w2.TabWord[i]; 
+    }
+    w1->Length += w2.Length;
+}
+
+void splitWordAndInt(Word *w, int *number){
+    Word numberword;
+    boolean isnumber = true;
+    int i = w->Length - 1;
+    while (isnumber){
+        int check = w->TabWord[i] - '0';
+        if (check<0 || check>9){
+            isnumber = false;
+            i++;
+        } else {
+            i--;
+        }
+    }
+    CreateWord(&numberword);
+    for (int j=0;j<w->Length-i;j++){
+        numberword.TabWord[j] = w->TabWord[j+i];
+    }
+    numberword.Length = w->Length-i;
+    w->Length -= numberword.Length;
+    *number = wordToInteger(numberword);
+}
+
+Word addNewline(Word w){
+    w.TabWord[w.Length] = '\n';
+    w.Length++;
+    return w;
+}
