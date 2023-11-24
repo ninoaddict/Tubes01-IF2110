@@ -3,6 +3,7 @@
 int main()
 {
     setup();
+    muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);
     while (run)
     {
         printf(">> ");
@@ -258,7 +259,7 @@ int main()
             save(listuser, friendGraph, lkic, lsd);
             break;
         case 31:
-            muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);\
+            muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);
             break;
         default:
             break;
