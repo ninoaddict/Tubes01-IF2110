@@ -220,6 +220,10 @@ void deleteFriend(ListUser *listuser, int currIdx, Friend *friend)
             displayWordWithoutEnter(name);
             printf(" bukan teman Anda\n\n");
         }
+        else if (currIdx == idx)
+        {
+            printf("Tidak bisa mengirimkan permintaan pertemanan kepada diri sendiri\n\n");
+        }
         else
         {
             printf("Apakah anda yakin ingin menghapus ");
