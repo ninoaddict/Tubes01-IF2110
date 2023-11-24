@@ -111,7 +111,6 @@ boolean isListEqual(ListStatik l1, ListStatik l2){
 }
 
 int indexOf(ListStatik l, ElType val){
-    int i = 0;
     int idx = IDX_UNDEF;
     for (int i=0; i<=getLastIdx(l);i++){
         if (ELMT(l,i)==val){
