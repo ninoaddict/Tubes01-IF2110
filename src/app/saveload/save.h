@@ -13,6 +13,8 @@ int countBalasan(ListKicauan lkic);
 
 void save(ListUser listuser, Friend friendgraph, ListKicauan listkicauan, ListStackDraft liststackdraft);
 
+void deefes(FILE *file, int parNode, AddressTree t);
+
 void savePengguna(Word folder, ListUser listuser, Friend friendgraph);
 
 void saveKicauan(Word folder, ListKicauan listkicauan);
