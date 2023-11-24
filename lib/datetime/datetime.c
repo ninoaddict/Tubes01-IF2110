@@ -324,6 +324,8 @@ Word dateTimeToWord(DATETIME t)
     i++;
     date.TabWord[i] = '\n';
     i++;
+    date.TabWord[i] = '\0';
+    i++;
     date.Length = i;
 
     date.Length = i;

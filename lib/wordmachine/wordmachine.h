@@ -58,7 +58,7 @@ void displayWord(Word w);
 void displayWordWithoutEnter(Word w);
 
 boolean isWordEqual(Word w1, Word w2); // case sensitive
- 
+
 boolean isCharEqual(Word w1, Word w2); // case insensitive
 
 void assignWord(Word *w, char arr[], int len);
@@ -66,5 +66,17 @@ void assignWord(Word *w, char arr[], int len);
 int wordToInteger(Word w);
 
 boolean isAllSpace(Word w);
+
+void stringToWord(Word *w, char arr[]);
+
+void wordToString(char *arr, Word w);
+
+void mergeWord(Word *w1, Word w2);
+
+void splitWordAndInt(Word *w, int *number);
+
+Word addNewline(Word w);
+
+void splitInt(Word *w, int *number1, int *number2);
 
 #endif

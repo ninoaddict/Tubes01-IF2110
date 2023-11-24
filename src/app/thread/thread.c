@@ -197,3 +197,15 @@ void deleteAtListUtas(ListUtas *l, int idx, DATETIME *date, Word *text)
         }
     }
 }
+
+int listUtasLength(ListUtas l)
+{
+    int cnt = 0;
+    AddressUtas p = l;
+    while (p != NULL)
+    {
+        cnt++;
+        p = NEXTUTAS(p);
+    }
+    return cnt;
+}
