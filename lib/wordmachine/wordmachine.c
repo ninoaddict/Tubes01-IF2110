@@ -263,3 +263,26 @@ Word addNewline(Word w)
     w.Length += 2;
     return w;
 }
+
+void splitInt(Word *w, int *number1, int *number2){
+    Word numberword2;
+    boolean isnumber = true;
+    int i = w->Length - 1;
+    while (isnumber){
+        int check = w->TabWord[i] - '0';
+        if (check<0 || check>9){
+            isnumber = false;
+            i++;
+        } else {
+            i--;
+        }
+    }
+    CreateWord(&numberword2);
+    for (int j=0;j<w->Length-i;j++){
+        numberword2.TabWord[j] = w->TabWord[j+i];
+    }
+    numberword2.Length = w->Length-i;
+    w->Length -= numberword2.Length-1;
+    *number2 = wordToInteger(numberword2);
+    *number1 = wordToInteger(*w);
+}

@@ -42,29 +42,23 @@ int countFriendReq(ListUser listuser)
 void save(ListUser listuser, Friend friendgraph, ListKicauan listkicauan, ListStackDraft liststackdraft)
 {
     Word input, folderconfig;
-    char folder[100] = "config/";
-    assignWord(&folderconfig, folder, 7);
+    assignWord(&folderconfig, "config/", 7);
     printf("Masukkan nama folder penyimpanan\n");
     input = readWord(100);
     printf("\n");
     mergeWord(&folderconfig, input);
     displayWord(folderconfig);
-    if (!folderExists(folderconfig.TabWord))
-    {
-        printf("Belum terdapat Folder1. Akan dilakukan pembuatan Folder1 terlebih dahulu.\n\n");
-        printf("Mohon tunggu...\n1...\n2...\n3...\n\n");
-        if (mkdir(folderconfig.TabWord, S_IRWXU) == 0)
-        {
-            printf("Folder1 sudah berhasil dibuat.\n\n");
-        }
-        else
-        {
+    if (!folderExists(folderconfig.TabWord)){
+        if (mkdir(folderconfig.TabWord, S_IRWXU) == 0) {
+            printf("Belum terdapat "); displayWord(folderconfig); printf(". Akan dilakukan pembuatan Folder1 terlebih dahulu.\n\n");
+            printf("Mohon tunggu...\n1...\n2...\n3...\n\n");
+        } else {
             perror("Error creating folder");
         }
     }
-    printf("Anda akan melakukan penyimpanan di Folder1.\n\n");
+    printf("Anda akan melakukan penyimpanan di "); displayWord(folderconfig); printf(".\n\n");
     savePengguna(folderconfig, listuser, friendgraph);
-    // saveKicauan(folderconfig, listkicauan);
+    saveKicauan(folderconfig, listkicauan);
     // saveBalasan(folderconfig, listkicauan);
     // saveDraf(folderconfig, listuser, liststackdraft);
     // saveUtas(folderconfig, listkicauan);
@@ -76,7 +70,6 @@ void savePengguna(Word folder, ListUser listuser, Friend friendgraph)
 {
     FILE *file;
     Word kata;
-    // char filename[15] = "pengguna.config";
     Word config;
     assignWord(&config, "/pengguna.config", 16);
     mergeWord(&folder, config);
@@ -161,13 +154,11 @@ void saveKicauan(Word folder, ListKicauan listkicauan)
 {
     FILE *file;
     Word kata;
-    // char filename[15] = "pengguna.config";
-    // Word config;
-    // stringToWord(&config, filename);
-    // assignWord(&config, "/pengguna.config", 17);
-    // mergeWord(&folder, config);
-    // displayWord(folder);
-    file = fopen("config/config-2/kicauan.config", "w");
+    Word config;
+    assignWord(&config, "/kicauan.config", 15);
+    mergeWord(&folder, config);
+    displayWord(folder);
+    file = fopen(folder.TabWord, "w");
     if (file == NULL)
     {
         perror("Error opening file");
@@ -201,13 +192,11 @@ void saveBalasan(Word folder, ListKicauan listkicauan)
 {
     /*FILE *file;
     Word kata;
-    // char filename[15] = "pengguna.config";
-    // Word config;
-    // stringToWord(&config, filename);
-    // assignWord(&config, "/pengguna.config", 17);
-    // mergeWord(&folder, config);
-    // displayWord(folder);
-    file = fopen("config/config-2/balasan.config", "w");
+    Word config;
+    assignWord(&config, "/balasan.config", 16);
+    mergeWord(&folder, config);
+    displayWord(folder);
+    file = fopen(folder.TabWord, "w");
     if (file == NULL) {
         perror("Error opening file");
     }
@@ -219,13 +208,11 @@ void saveDraf(Word folder, ListUser listuser, ListStackDraft liststackdraft)
 {
     FILE *file;
     Word kata;
-    // char filename[15] = "pengguna.config";
-    // Word config;
-    // stringToWord(&config, filename);
-    // assignWord(&config, "/pengguna.config", 17);
-    // mergeWord(&folder, config);
-    // displayWord(folder);
-    file = fopen("config/config-2/draf.config", "w");
+    Word config;
+    assignWord(&config, "/draf.config", 12);
+    mergeWord(&folder, config);
+    displayWord(folder);
+    file = fopen(folder.TabWord, "w");
     if (file == NULL)
     {
         perror("Error opening file");
@@ -266,13 +253,11 @@ void saveUtas(Word folder, ListKicauan listkicauan)
 {
     FILE *file;
     Word kata;
-    // char filename[15] = "pengguna.config";
-    // Word config;
-    // stringToWord(&config, filename);
-    // assignWord(&config, "/pengguna.config", 17);
-    // mergeWord(&folder, config);
-    // displayWord(folder);
-    file = fopen("config/config-2/utas.config", "w");
+    Word config;
+    assignWord(&config, "/utas.config", 12);
+    mergeWord(&folder, config);
+    displayWord(folder);
+    file = fopen(folder.TabWord, "w");
     if (file == NULL)
     {
         perror("Error opening file");

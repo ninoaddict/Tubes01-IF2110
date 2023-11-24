@@ -79,7 +79,7 @@ void displayListKicauan(ListKicauan lkic, Friend friend, int currId)
 {
     int i;
 
-    for (i = 0; i < NEFF(lkic); i++)
+    for (i = NEFF(lkic)-1; i >= 0; i--)
     {
         if (ELMT(lkic, i).idAuthor == currId)
         {
