@@ -5,6 +5,7 @@
 #include "app/fyb/fyb.h"
 #include "app/draft/liststackdraft.h"
 #include <stdio.h>
+#include "app/saveload/save.h"
 extern ListUser listuser;
 extern Friend friendGraph;
 extern int currID;

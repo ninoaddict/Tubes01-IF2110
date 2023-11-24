@@ -254,6 +254,12 @@ int main()
                 deleteBalasan(wordToInteger(command[1]), wordToInteger(command[2]), &lkic, currID);
             }
             break;
+        case 30:
+            save(listuser, friendGraph, lkic, lsd);
+            break;
+        case 31:
+            muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);\
+            break;
         default:
             break;
         }

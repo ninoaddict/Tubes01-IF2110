@@ -86,4 +86,8 @@ void setup()
     assignWord(&commands[28], "BALASAN", 7);
 
     assignWord(&commands[29], "HAPUS_BALASAN", 13);
+
+    assignWord(&commands[30], "MUAT", 4);
+
+    assignWord(&commands[31], "SIMPAN", 6);
 }
