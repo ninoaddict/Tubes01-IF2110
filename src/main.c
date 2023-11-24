@@ -9,7 +9,7 @@ int main()
         printf(">> ");
         readCommand(command);
         idxCommand = -1;
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 32; i++)
         {
             if (isWordEqual(command[0], commands[i]))
             {
@@ -255,10 +255,10 @@ int main()
                 deleteBalasan(wordToInteger(command[1]), wordToInteger(command[2]), &lkic, currID);
             }
             break;
-        case 30:
+        case 31:
             save(listuser, friendGraph, lkic, lsd);
             break;
-        case 31:
+        case 30:
             muat(currID, &listuser, &friendGraph, &lkic, &lsd, &hashtag);
             break;
         default:

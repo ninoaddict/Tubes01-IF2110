@@ -93,7 +93,6 @@ void muatPengguna(Word folder, ListUser *listuser, Friend *friendgraph)
     newfolder = folder;
     assignWord(&config, "/pengguna.config", 16);
     mergeWord(&newfolder, config);
-    displayWord(newfolder);
     file = fopen(newfolder.TabWord, "r");
     if (file != NULL)
     {
@@ -164,7 +163,6 @@ void muatKicauan(Word folder, ListKicauan *listkicauan, HashTag *hashtag)
     newfolder = folder;
     assignWord(&config, "/kicauan.config", 15);
     mergeWord(&newfolder, config);
-    displayWord(newfolder);
     file = fopen(newfolder.TabWord, "r");
     if (file != NULL)
     {
@@ -296,7 +294,6 @@ void muatBalasan(Word folder, ListKicauan *listkicauan, ListUser listuser)
                 // read DATETIME
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
-                displayWord(kata);
                 kata = addNewline(kata);
                 DATETIME time = string_toDate_time(kata);
 
@@ -338,7 +335,6 @@ void muatDraf(Word folder, ListUser *listuser, ListStackDraft *liststackdraft)
     newfolder = folder;
     assignWord(&config, "/draf.config", 12);
     mergeWord(&newfolder, config);
-    displayWord(newfolder);
     file = fopen(newfolder.TabWord, "r");
     if (file != NULL)
     {
@@ -359,7 +355,6 @@ void muatDraf(Word folder, ListUser *listuser, ListStackDraft *liststackdraft)
                 Draft draf;
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
-                displayWord(kata);
                 draf.word = kata;
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
@@ -398,7 +393,6 @@ void muatUtas(Word folder, ListKicauan *listkicauan)
     newfolder = folder;
     assignWord(&config, "/utas.config", 12);
     mergeWord(&newfolder, config);
-    displayWord(newfolder);
     file = fopen(newfolder.TabWord, "r");
     if (file != NULL)
     {
