@@ -111,7 +111,7 @@ void muatPengguna(Word folder, ListUser *listuser, Friend *friendgraph){
                 fgets(line, sizeof(line), file);
                 stringToWord(&kata, line);
                 for (int k=0;k<19;k+=2){
-                    listuser->listU[i].profilePic[j][k/2] = kata.TabWord[k];
+                    listuser->listU[i].profilePic.Buffer[j][k/2] = kata.TabWord[k];
                 }
             }
         }
