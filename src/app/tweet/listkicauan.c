@@ -269,30 +269,7 @@ void cetakUtas(ListKicauan lkic, Friend friend, ListUser lUser, int currIdx, int
         printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!\n\n");
     }
 }
-boolean possibleToConnect(ListUtas lUtas, int index)
-{
-    index -= 1;
-    boolean possible = false;
-    AddressUtas p = lUtas;
-    if (index >= 0)
-    {
-        int i = 0;
-        while (p != NULL && (i < index - 1))
-        {
-            p = NEXTUTAS(p);
-            i += 1;
-        }
-        if (i == index - 1 || index == 0)
-        {
-            possible = true;
-        }
-    }
-    return possible;
-}
-boolean possibleToDisConnect(ListUtas lUtas, int index)
-{
-    return possibleToConnect(lUtas, index);
-}
+
 
 void sambungUtas(ListKicauan *lkic, int currIdx, int idUtas, int index)
 {
