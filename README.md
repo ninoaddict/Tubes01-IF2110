@@ -9,7 +9,7 @@ Tugas Besar Algoritma dan Struktur Data: Burung Biru (BURBIR)
 - <a href="#table-of-contents">Daftar Isi</a><br/>
 - <a href="#contributor">Kontributor</a><br/>
 - <a href="#how-to-run">Cara Penggunaan Program</a><br/>
-- <a href="feat">Fitur</a>
+- <a href="#feat">Fitur</a>
 
 
 <h2 id = "contributor">🌟Kontributor</h2>
